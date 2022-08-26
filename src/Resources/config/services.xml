@@ -4,10 +4,6 @@
         <import resource="services/**/*.xml"/>
     </imports>
 
-    <parameters>
-        <parameter key="bitbag_open_payu_cache_dir">%kernel.project_dir%/var/cache/%env(APP_ENV)%</parameter>
-    </parameters>
-
     <services>
 
         <service id="app.sylius_payment" class="Payum\Core\Bridge\Symfony\Builder\GatewayFactoryBuilder">
