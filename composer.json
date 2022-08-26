@@ -1,7 +1,30 @@
 {
     "name": "modenafin/modenafin-sylius-plugin",
     "description": "This is a modena payment gateway plugin",
+    "type": "sylius-plugin",
+    "keywords": ["sylius", "sylius-plugin"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jordi Boggiano",
+            "email": "j.boggiano@seld.be",
+            "homepage": "http://seld.be",
+            "role": "Developer"
+        }
+    ],
     "require": {
-        "php": ">=7.4"
+        "php": ">=7.4",
+        "sylius/sylius": "^1.11"
+    },
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "BuyPlanEstonia\\SyliusBuyPlanPlugin\\": "src/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
     }
 }
