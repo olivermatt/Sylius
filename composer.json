@@ -56,7 +56,7 @@
     "prefer-stable": true,
     "autoload": {
         "psr-4": {
-            "ModenaFin\\SyliusModenaPlugin\\": "src/",
+            "ModenaFin\\SyliusModenaPlugin\\": "src/"
         }
     },
     "config": {
