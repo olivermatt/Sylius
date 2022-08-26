@@ -1,20 +1,11 @@
 {
     "name": "mdnfin/mdnfinsyliusplugin",
-    "description": "This is a payment gateway plugin",
     "type": "sylius-plugin",
     "keywords": ["sylius", "sylius-plugin"],
+    "description": "Sylius Plugin for BuyPlan Payments.",
     "license": "MIT",
-    "authors": [
-        {
-            "name": "Jordi Boggiano",
-            "email": "j.boggiano@seld.be",
-            "homepage": "http://seld.be",
-            "role": "Developer"
-        }
-    ],
     "require": {
-        "php": ">=7.4",
-        "sylius/sylius": "^1.11"
+        "php": "^8.0"
     },
     "prefer-stable": true,
     "autoload": {
@@ -28,3 +19,17 @@
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
