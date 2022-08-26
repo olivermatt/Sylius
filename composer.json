@@ -7,17 +7,7 @@
     "require": {
         "php": "^8.0"
     },
-    "prefer-stable": true,
-    "autoload": {
-        "psr-4": {
-            "BuyPlanEstonia\\SyliusBuyPlanPlugin\\": "src/"
-        }
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.0.x-dev"
-        }
-    }
+    "prefer-stable": true
 }
 
 
