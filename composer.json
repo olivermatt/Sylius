@@ -1,7 +1,7 @@
 {
     "name": "modenafin/modena-plugin",
     "type": "sylius-plugin",
-    "description": Modena payment plugin for Sylius applications",
+    "description": "Modena payment plugin for Sylius applications",
     "license": "MIT",
     "authors": [
         {
