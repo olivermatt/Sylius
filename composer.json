@@ -1,5 +1,5 @@
 {
-    "name": "modena/modena-sylius-plugin",
+    "name": "modenafin/modenafin-sylius-plugin",
     "description": "This is a modena payment gateway plugin",
     "require": {
         "php": ">=7.4"
