@@ -2,12 +2,12 @@
 
 declare(strict_types = 1);
 
-namespace ModenaEstonia\SyliusModenaPlugin;
+namespace BuyPlanEstonia\SyliusBuyPlanPlugin;
 
 use Sylius\Bundle\CoreBundle\Application\SyliusPluginTrait;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-final class ModenaEstoniaSyliusModenaPlugin extends Bundle
+final class BuyPlanEstoniaSyliusBuyPlanPlugin extends Bundle
 {
     use SyliusPluginTrait;
 }

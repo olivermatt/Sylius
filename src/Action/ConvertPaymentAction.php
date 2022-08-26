@@ -1,5 +1,5 @@
 <?php
-namespace ModenaEstonia\SyliusModenaPlugin\Action;
+namespace BuyPlanEstonia\SyliusBuyPlanPlugin\Action;
 
 use Payum\Core\Action\ActionInterface;
 use Payum\Core\Exception\RequestNotSupportedException;
@@ -7,9 +7,9 @@ use Payum\Core\GatewayAwareInterface;
 use Payum\Core\GatewayAwareTrait;
 use Payum\Core\Request\Convert;
 use Payum\Core\Bridge\Spl\ArrayObject;
-use Modena\Payment\lib\Modena\domain\Order;
-use Modena\Payment\lib\Modena\domain\OrderRow;
-use Modena\Payment\lib\Modena\domain\ClientInfo;
+use BuyPlan\Payment\lib\BuyPlan\domain\Order;
+use BuyPlan\Payment\lib\BuyPlan\domain\OrderRow;
+use BuyPlan\Payment\lib\BuyPlan\domain\ClientInfo;
 use Sylius\Component\Core\Model\PaymentInterface;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
