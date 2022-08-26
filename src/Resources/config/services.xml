@@ -4,6 +4,7 @@
         <import resource="services/**/*.xml"/>
     </imports>
 
+
     <services>
 
         <service id="app.sylius_payment" class="Payum\Core\Bridge\Symfony\Builder\GatewayFactoryBuilder">
