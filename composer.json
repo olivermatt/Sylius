@@ -2,7 +2,7 @@
     "name": "mdnfin/mdnfinsyliusplugin",
     "type": "sylius-plugin",
     "keywords": ["sylius", "sylius-plugin"],
-    "description": "Sylius Plugin for BuyPlan Payments.",
+    "description": "Sylius Plugin for Modena Payments.",
     "license": "MIT",
     "require": {
         "php": "^8.0"

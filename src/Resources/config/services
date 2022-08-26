@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="Modena_estonia_sylius_Modena.form.type.Modena_gateway_configuration"
+                 class="ModenaEstonia\SyliusModenaPlugin\Form\Type\ModenaGatewayConfigurationType">
+            <tag name="sylius.gateway_configuration_type" type="Modena" label="Modena"/>
+        </service>
+
+        <service id="Modena_estonia_sylius_Modena.payum.gateway_factory_builder"
+                 class="Payum\Core\Bridge\Symfony\Builder\GatewayFactoryBuilder">
+            <argument>ModenaEstonia\PayumModena\ModenaGatewayFactory</argument>
+            <tag name="payum.gateway_factory_builder" factory="Modena"/>
+        </service>
+
+        <service id="Modena_estonia_sylius_Modena.payum_action.Modena.convert_payment"
+                 class="ModenaEstonia\SyliusModenaPlugin\Action\ConvertPaymentAction"
+                 public="true">
+            <tag name="payum.action" factory="Modena"/>
+        </service>
+    </services>
+</container>
