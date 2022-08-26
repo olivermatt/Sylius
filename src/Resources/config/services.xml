@@ -9,7 +9,21 @@
     </parameters>
 
     <services>
+
+        <service id="app.sylius_payment" class="Payum\Core\Bridge\Symfony\Builder\GatewayFactoryBuilder">
+            <argument>ModenaFin\SyliusExamplePlugin\Payum\SyliusPaymentGatewayFactory</argument>
+            <tag name="payum.gateway_factory_builder" factory="sylius_payment" />
+        </service>
+
+        <service id="ModenaFin\SyliusExamplePlugin\Form\Type\SyliusGatewayConfigurationType">
+            <tag name="sylius.gateway_configuration_type" type="sylius_payment" label="Sylius Payment" />
+            <tag name="form.type" />
+        </service>
+
         <defaults public="false" autoconfigure="false" autowire="false"/>
 
     </services>
 </container>
+
+<!-- src/Resources/config/services.xml -->
+
