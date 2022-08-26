@@ -7,7 +7,7 @@
 */
 
 declare(strict_types=1);
-
+ 
 namespace BitBag\SyliusPayUPlugin\Action;
 
 use BitBag\SyliusPayUPlugin\Bridge\OpenPayUBridge;
