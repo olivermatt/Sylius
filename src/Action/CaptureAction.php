@@ -43,6 +43,8 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface, Generic
     public function __construct(OpenPayUBridgeInterface $openPayUBridge)
     {
         $this->openPayUBridge = $openPayUBridge;
+        echo "The construct was run";
+        echo "<script>alert('construct');</script>";
     }
 
     /**
@@ -50,6 +52,10 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface, Generic
      */
     public function setApi($api): void
     {
+
+        echo "The setAPI was run";
+        echo "<script>alert('setapi');</script>";
+
         if (false === is_array($api)) {
             throw new UnsupportedApiException('Not supported. Expected to be set as array.');
         }
@@ -70,6 +76,10 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface, Generic
         /** @var OrderInterface $orderData */
         $order = $request->getFirstModel()->getOrder();
 
+        echo "The execute was run";
+        echo "<script>alert('execute');</script>";
+     
+     
         /** @var TokenInterface $token */
         $token = $request->getToken();
         $payUdata = $this->prepareOrder($token, $order);
