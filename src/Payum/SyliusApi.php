@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Acme\SyliusExamplePlugin\Payum;
+namespace ModenaFin\SyliusExamplePlugin\Payum;
 
 final class SyliusApi
 {
