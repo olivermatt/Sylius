@@ -41,7 +41,7 @@
         "symfony/intl": "^4.4 || ^5.2",
         "symfony/web-profiler-bundle": "^4.4 || ^5.2",
         "symfony/web-server-bundle": "^4.4|^5.2",
-        "vimeo/psalm": "4.16.1",
+        "vimeo/psalm": "4.26.0",
         "symfony/dependency-injection": "<4.4.19 || ^5.2",
         "polishsymfonycommunity/symfony-mocker-container": "^1.0",
         "bitbag/coding-standard": "^2.0"
