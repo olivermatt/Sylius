@@ -1,12 +1,16 @@
 {
-    "name": "mdnfin/mdnfinsyliusplugin",
+    "name": "modenafin/modena-plugin",
     "type": "sylius-plugin",
     "description": "Modena payment plugin for Sylius applications",
     "license": "MIT",
     "authors": [
         {
-            "name": "Oliver Matt",
-            "email": "oliver@modena.ee"
+            "name": "Mikołaj Król",
+            "email": "mikolaj.krol@bitbag.pl"
+        },
+        {
+            "name": "Patryk Drapik",
+            "email": "patryk.drapik@bitbag.pl"
         }
     ],
     "require": {

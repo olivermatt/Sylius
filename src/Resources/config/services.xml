@@ -4,25 +4,12 @@
         <import resource="services/**/*.xml"/>
     </imports>
 
+    <parameters>
+        <parameter key="bitbag_open_payu_cache_dir">%kernel.project_dir%/var/cache/%env(APP_ENV)%</parameter>
+    </parameters>
 
     <services>
-
-                     
-        <service id="app.sylius_payment" class="Payum\Core\Bridge\Symfony\Builder\GatewayFactoryBuilder">
-            <argument>ModenaFin\SyliusExamplePlugin\Payum\ModenaPaymentGatewayFactory</argument>
-            <tag name="payum.gateway_factory_builder" factory="sylius_payment" />
-        </service>
-
-                 
-        <service id="ModenaFin\SyliusExamplePlugin\Form\Type\SyliusGatewayConfigurationType">
-            <tag name="sylius.gateway_configuration_type" type="sylius_payment" label="Sylius PaymentA" />
-            <tag name="form.type" />
-        </service>
-
-
+        <defaults public="false" autoconfigure="false" autowire="false"/>
 
     </services>
 </container>
-
-<!-- src/Resources/config/services.xml -->
-
