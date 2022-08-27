@@ -1,7 +1,7 @@
 {
-    "name": "modenafin/modena-plugin",
+    "name": "bitbag/payu-plugin",
     "type": "sylius-plugin",
-    "description": "Modena payment plugin for Sylius applications",
+    "description": "PayU payment plugin for Sylius applications",
     "license": "MIT",
     "authors": [
         {
@@ -14,8 +14,8 @@
         }
     ],
     "require": {
-        "php": "^8.0",
-        "sylius/sylius": "^1.11",
+        "php": "^7.4 || ^8.0",
+        "sylius/sylius": "~1.9.0 || ~1.10.0 || ~1.11.0",
         "openpayu/openpayu": "^2.2"
     },
     "require-dev": {
@@ -56,8 +56,12 @@
     "prefer-stable": true,
     "autoload": {
         "psr-4": {
-            "ModenaFin\\SyliusModenaPlugin\\": "src/"
+            "BitBag\\SyliusPayUPlugin\\": "src/",
+            "Tests\\BitBag\\SyliusPayUPlugin\\": "tests/"
         }
+    },
+    "autoload-dev": {
+        "classmap": ["tests/Application/Kernel.php"]
     },
     "config": {
         "allow-plugins": true
