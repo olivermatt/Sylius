@@ -21,7 +21,7 @@ final class PayUGatewayFactory extends GatewayFactory
         $config->defaults(
             [
                 'payum.factory_name' => 'payu',
-                'payum.factory_title' => 'Mo.v1',
+                'payum.factory_title' => 'PayU',
             ]
         );
 
