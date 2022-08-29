@@ -1,4 +1,4 @@
-bitbag:
+bitbag2:
     payu_plugin:
         environment: Environment
         secure: Production
