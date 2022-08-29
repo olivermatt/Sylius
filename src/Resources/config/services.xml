@@ -9,7 +9,7 @@
     </parameters>
 
     <services>
-        <defaults public="false" autoconfigure="false" autowire="false"/>
+        <defaults public="false" autoconfigure="true" autowire="false"/>
 
     </services>
 </container>

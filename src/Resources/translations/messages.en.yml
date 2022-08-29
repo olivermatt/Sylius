@@ -5,6 +5,6 @@ bitbag:
         sandbox: Test
         signature_key: Second configuration key
         pos_id: Payment point identifier
-        gateway_label: Modena v1
+        gateway_label: Modena
         oauth_client_id: OAuth protocol - client_id
         oauth_client_secret: OAuth protocol - client_secret
