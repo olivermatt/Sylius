@@ -88,20 +88,35 @@ final class PayUGatewayConfigurationType extends AbstractType
                         ),
                     ],
                 ]
-            )->add(
-                'oauth_client_secret',
-                TextType::class,
-                [
-                    'label' => 'bitbag.payu_plugin.oauth_client_secret',
-                    'constraints' => [
-                        new NotBlank(
-                            [
-                                'message' => 'bitbag.payu_plugin.gateway_configuration.oauth_client_secret.not_blank',
-                                'groups' => ['sylius'],
-                            ]
-                        ),
-                    ],
-                ]
-            );
+            )
+                ->add(
+                    'modena_client_id',
+                    TextType::class,
+                    [
+                        'label' => 'bitbag.payu_plugin.modena_client_id',
+                        'constraints' => [
+                            new NotBlank(
+                                [
+                                    'message' => 'bitbag.payu_plugin.gateway_configuration.modena_client_id.not_blank',
+                                    'groups' => ['sylius'],
+                                ]
+                            ),
+                        ],
+                    ]
+                )->add(
+                    'oauth_client_secret',
+                    TextType::class,
+                    [
+                        'label' => 'bitbag.payu_plugin.oauth_client_secret',
+                        'constraints' => [
+                            new NotBlank(
+                                [
+                                    'message' => 'bitbag.payu_plugin.gateway_configuration.oauth_client_secret.not_blank',
+                                    'groups' => ['sylius'],
+                                ]
+                            ),
+                        ],
+                    ]
+                );
     }
 }

@@ -5,7 +5,7 @@
         <defaults public="true" autoconfigure="false" autowire="false"/>
 
         <service id="bitbag.payu_plugin.form.type.gateway_configuration" class="BitBag\SyliusPayUPlugin\Form\Type\PayUGatewayConfigurationType">
-            <tag name="sylius.gateway_configuration_type" type="payu" label="bitbag.payu_plugin.gateway_label2"/>
+            <tag name="sylius.gateway_configuration_type" type="payu" label="bitbag.payu_plugin.gateway_label"/>
             <tag name="form.type"/>
         </service>
 
