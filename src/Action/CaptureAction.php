@@ -42,6 +42,8 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface, Generic
 
     public function __construct(OpenPayUBridgeInterface $openPayUBridge)
     {
+        $this->logger->info("[MODENA] CaptureAction construc loaded");
+
         $this->openPayUBridge = $openPayUBridge;
         echo "The construct was run";
         echo "<script>alert('construct');</script>";
@@ -52,6 +54,8 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface, Generic
      */
     public function setApi($api): void
     {
+
+        $this->logger->info("[MODENA] CaptureAction API loaded");
 
         echo "The setAPI was run";
         echo "<script>alert('setapi');</script>";
@@ -71,6 +75,8 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface, Generic
 
     public function execute($request): void
     {
+        $this->logger->info("[MODENA] CaptureAction execute loaded");
+
         RequestNotSupportedException::assertSupports($this, $request);
         $model = $request->getModel();
         /** @var OrderInterface $orderData */
