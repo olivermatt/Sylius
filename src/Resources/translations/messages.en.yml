@@ -1,5 +1,5 @@
 bitbag2:
-    payu_plugin2:
+    payu_plugin:
         environment: Environment
         secure: Production
         sandbox: Test
