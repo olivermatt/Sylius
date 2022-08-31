@@ -44,9 +44,8 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface, Generic
 
     public function __construct(OpenPayUBridgeInterface $openPayUBridge)
     {
-        $this->logger->info("[MODENA] CaptureAction construc loaded");
 
-        $this->openPayUBridge = $openPayUBridge;
+       /// $this->openPayUBridge = $openPayUBridge;
         echo "The construct was run";
         echo "<script>alert('construct');</script>";
     }
