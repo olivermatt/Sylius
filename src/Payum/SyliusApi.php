@@ -1,8 +1,10 @@
+// src/Payum/SyliusApi.php
+
 <?php
 
 declare(strict_types=1);
 
-namespace ModenaFin\SyliusExamplePlugin\Payum;
+namespace Acme\SyliusExamplePlugin\Payum;
 
 final class SyliusApi
 {
