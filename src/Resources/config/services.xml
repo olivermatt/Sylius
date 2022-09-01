@@ -14,8 +14,8 @@
 
         <service id="ModenaFin\SyliusExamplePlugin\Form\Type\SyliusGatewayConfigurationType">
             <tag name="sylius.gateway_configuration_type" type="sylius_payment" label="Sylius Payment" />
-            <tag name="form.type" />
         </service>
+
 
         <defaults public="false" autoconfigure="false" autowire="false"/>
 
