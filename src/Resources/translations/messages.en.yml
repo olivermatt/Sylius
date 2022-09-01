@@ -1,4 +1,4 @@
-bitbag:
+ModenaFin:
     payu_plugin:
         environment: Environment
         secure: Production
