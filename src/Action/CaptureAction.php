@@ -1,17 +1,11 @@
 <?php
 
-/*
- * This file was created by developers working at BitBag
- * Do you need more information about us and what we do? Visit our https://bitbag.io website!
- * We are hiring developers from all over the world. Join us and start your new, exciting adventure and become part of us: https://bitbag.io/career
-*/
-
 declare(strict_types=1);
 
-namespace BitBag\SyliusPayUPlugin\Action;
+namespace ModenaFin\SyliusModenaPlugin\Action;
 
-use BitBag\SyliusPayUPlugin\Bridge\OpenPayUBridgeInterface;
-use BitBag\SyliusPayUPlugin\Exception\PayUException;
+use ModenaFin\SyliusModenaPlugin\Bridge\OpenModenaBridgeInterface;
+use ModenaFin\SyliusModenaPlugin\Exception\PayUException;
 use OpenPayU_Configuration;
 use Payum\Core\Action\ActionInterface;
 use Payum\Core\ApiAwareInterface;
@@ -29,8 +23,6 @@ use Sylius\Component\Core\Model\CustomerInterface;
 use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Core\Model\OrderItemInterface;
 use Webmozart\Assert\Assert;
-use Psr\Log\LoggerAwareInterface;
-use Psr\Log\LoggerAwareTrait;
 
 final class CaptureAction implements ActionInterface, ApiAwareInterface, GenericTokenFactoryAwareInterface, GatewayAwareInterface
 {
@@ -44,10 +36,7 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface, Generic
 
     public function __construct(OpenPayUBridgeInterface $openPayUBridge)
     {
-
-       /// $this->openPayUBridge = $openPayUBridge;
-        echo "The construct was run";
-        echo "<script>alert('construct');</script>";
+        $this->openPayUBridge = $openPayUBridge;
     }
 
     /**
@@ -55,12 +44,6 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface, Generic
      */
     public function setApi($api): void
     {
-
-        $this->logger->info("[MODENA] CaptureAction API loaded");
-
-        echo "The setAPI was run";
-        echo "<script>alert('setapi');</script>";
-
         if (false === is_array($api)) {
             throw new UnsupportedApiException('Not supported. Expected to be set as array.');
         }
@@ -76,17 +59,11 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface, Generic
 
     public function execute($request): void
     {
-        $this->logger->info("[MODENA] CaptureAction execute loaded");
-
         RequestNotSupportedException::assertSupports($this, $request);
         $model = $request->getModel();
         /** @var OrderInterface $orderData */
         $order = $request->getFirstModel()->getOrder();
 
-        echo "The execute was run";
-        echo "<script>alert('execute');</script>";
-     
-     
         /** @var TokenInterface $token */
         $token = $request->getToken();
         $payUdata = $this->prepareOrder($token, $order);
