@@ -15,7 +15,10 @@ final class StatusAction implements ActionInterface
     {
         RequestNotSupportedException::assertSupports($this, $request);
 
+
         /** @var SyliusPaymentInterface $payment */
+        /*
+
         $payment = $request->getFirstModel();
 
         $details = $payment->getDetails();
@@ -31,6 +34,10 @@ final class StatusAction implements ActionInterface
 
             return;
         }
+
+        
+        */
+
     }
 
     public function supports($request): bool
