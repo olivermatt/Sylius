@@ -5,7 +5,6 @@ namespace Acme\SyliusExamplePlugin\Payum\Action;
 
 
 
-
 class Test
 {
 

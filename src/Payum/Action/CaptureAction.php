@@ -15,6 +15,8 @@ use Sylius\Component\Core\Model\PaymentInterface as SyliusPaymentInterface;
 use Payum\Core\Request\Capture;
 use Payum\Core\GatewayAwareInterface;
 use Payum\Core\GatewayAwareTrait;
+use Payum\Paypal\ExpressCheckout\Nvp\Request\Api\DoCapture;
+
 
 
 final class CaptureAction implements ActionInterface, GatewayAwareInterface
@@ -39,7 +41,7 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
 
 
         //// Authenticate
-        $this->gateway->execute(new ModenaAuth($request));
+        $this->gateway->execute(new Test);
 
 
         /** @var SyliusPaymentInterface $payment */
