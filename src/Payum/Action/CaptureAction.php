@@ -56,6 +56,9 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface
         echo "tellimuse summa: " . round($order->getTotal() / 100, 2);
 
 
+        $itemsData = [];
+
+
         if ($items = $order->getItems()) {
 
             foreach ($items as $key => $item) {
