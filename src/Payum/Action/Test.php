@@ -6,7 +6,7 @@ use Payum\Core\Action\ActionInterface;
 use Payum\Core\Reply\HttpRedirect;
 
 
-class Test implements ActionInterface
+class Test implements ActionInterface,ApiAwareInterface, GatewayAwareInterface
 {
 
     public function __construct()
