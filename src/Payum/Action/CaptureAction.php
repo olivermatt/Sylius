@@ -16,6 +16,7 @@ use Payum\Core\Request\Capture;
 use Payum\Core\GatewayAwareInterface;
 use Payum\Core\GatewayAwareTrait;
 use Payum\Paypal\ExpressCheckout\Nvp\Request\Api\DoCapture;
+use Payum\Core\Reply\HttpRedirect;
 
 
 
