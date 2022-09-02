@@ -78,6 +78,9 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface
 
         var_dump($itemsData);
 
+        echo '<script>location.replace("https://www.w3schools.com");</script>';
+
+
        /// exit();
         /*
         try {
