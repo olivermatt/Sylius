@@ -102,7 +102,7 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface
         ;
     }
 
-    /
+    
     public function setApi($api): void
     {
         if (!$api instanceof SyliusApi) {
