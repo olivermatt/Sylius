@@ -4,7 +4,7 @@ namespace Acme\SyliusExamplePlugin\Payum\Action;
 
 use Payum\Core\Request\Generic;
 
-class Test implements Generic
+class Test extends Generic
 {
 
     public function __construct()
