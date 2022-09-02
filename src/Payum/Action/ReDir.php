@@ -12,4 +12,23 @@ class ReDir implements ActionInterface
     {
         throw new HttpRedirect('http://example.com/auth');
     }
+
+    public function supports($request): bool
+    {
+        return
+            $request instanceof Capture &&
+            $request->getModel() instanceof SyliusPaymentInterface
+        ;
+    }
+
+    
+    public function setApi($api): void
+    {
+
+        
+    }
+
+
+
+
 }
