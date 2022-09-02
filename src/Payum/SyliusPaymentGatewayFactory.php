@@ -6,6 +6,8 @@ namespace Acme\SyliusExamplePlugin\Payum;
 
 use Payum\Core\Bridge\Spl\ArrayObject;
 use Payum\Core\GatewayFactory;
+use Acme\SyliusExamplePlugin\Payum\Action\StatusAction;
+
 
 final class SyliusPaymentGatewayFactory extends GatewayFactory
 {
