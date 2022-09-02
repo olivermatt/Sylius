@@ -40,8 +40,24 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
         RequestNotSupportedException::assertSupports($this, $request);
 
 
+
         //// Authenticate
-        $this->gateway->execute(new Test);
+        //// $this->gateway->execute(new Test);
+
+
+        try {
+            /** @var \Payum\Core\Gateway $gateway */
+            $gateway->addAction(new ReDir);
+        
+            $gateway->execute(new ReDir);
+        } catch (HttpRedirect $reply) {
+            header( 'Location: '.$reply->getUrl());
+            exit;
+        }
+
+
+
+
 
 
         /** @var SyliusPaymentInterface $payment */
