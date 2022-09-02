@@ -9,7 +9,7 @@ use Payum\Core\GatewayAwareInterface;
 use Payum\Core\GatewayAwareTrait;
 
 
-class Test implements ActionInterface, GatewayAwareInterface
+class Test implements ActionInterface
 {
 
     public function __construct()
