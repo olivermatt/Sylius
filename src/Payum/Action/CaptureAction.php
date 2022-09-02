@@ -40,7 +40,8 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
 
         RequestNotSupportedException::assertSupports($this, $request);
 
-        $this->gateway->execute(new Test($request));
+
+        $this->gateway->execute(new TestB());
 
 
 
@@ -48,13 +49,13 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
         if($this->gateway->addAction(new Test))
         {
             echo '<script>alert("Test added to gateway success");</script>';
-            $this->gateway->execute(new Test($request));
+            
         }
         else
         {
             echo '<script>alert("Test added to gateway fail");</script>';
         }
-///        
+    
 
 
 
