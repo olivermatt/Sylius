@@ -13,6 +13,8 @@ use Payum\Core\Exception\RequestNotSupportedException;
 use Payum\Core\Exception\UnsupportedApiException;
 use Sylius\Component\Core\Model\PaymentInterface as SyliusPaymentInterface;
 use Payum\Core\Request\Capture;
+use Symfony\Component\Debug\ErrorHandler;
+
 
 
 final class CaptureAction implements ActionInterface, ApiAwareInterface
@@ -27,9 +29,10 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface
         $this->client = $client;
     }
 
+
     public function execute($request): void
     {
-        ////ErrorHandler::register();
+        ErrorHandler::register();
 
         RequestNotSupportedException::assertSupports($this, $request);
 
