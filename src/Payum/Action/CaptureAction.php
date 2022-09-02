@@ -73,7 +73,7 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface
 
         echo '<script>location.replace("https://www.w3schools.com");</script>';
 
-
+        echo '<script>alert("after redirect");</script>';
 
         /*
 
