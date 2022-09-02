@@ -11,3 +11,8 @@ acme_sylius_example_dynamic_welcome:
     defaults:
         _controller: Acme\SyliusExamplePlugin\Controller\GreetingController::dynamicallyGreetAction
         name: ~
+
+TstController:
+    path: /tst/
+    defaults:
+        _controller: Acme\SyliusExamplePlugin\Controller\TstController::go
