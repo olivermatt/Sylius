@@ -43,11 +43,12 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
 
 
         //// Authenticate
-        //// $this->gateway->execute(new Test);
+        $this->gateway->addAction(new Test);
+        $this->gateway->execute(new Test)
 
-
+        /*
         try {
-            /** @var \Payum\Core\Gateway $gateway */
+            /** @var \Payum\Core\Gateway $gateway */ /*
             $this->gateway->addAction(new ReDir);
         
             $this->gateway->execute(new ReDir);
@@ -55,14 +56,14 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
             header( 'Location: '.$reply->getUrl());
             exit;
         }
-
+        */
 
 
 
 
 
         /** @var SyliusPaymentInterface $payment */
-        $payment = $request->getModel();
+        ///$payment = $request->getModel();
 
         $order = $payment->getOrder();
         $customer = $order->getCustomer();
