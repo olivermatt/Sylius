@@ -9,7 +9,7 @@ use Payum\Core\GatewayAwareInterface;
 use Payum\Core\GatewayAwareTrait;
 
 
-class Test implements ActionInterface, ApiAwareInterface, GatewayAwareInterface
+class Test implements ActionInterface, GatewayAwareInterface
 {
 
     public function __construct()
@@ -17,7 +17,7 @@ class Test implements ActionInterface, ApiAwareInterface, GatewayAwareInterface
         echo '<script>alert("Modena TEST __Construct");</script>';
     }
 
-    function execute($request)
+    public function execute($request)
     {
         echo '<script>alert("ModenaTEST Execute Called");</script>';
 
