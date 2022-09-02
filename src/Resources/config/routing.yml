@@ -1,5 +1,5 @@
-TstController:
-    methods: [GET, POST]
-    path: /tst/
+app_shop_custom_action:
+    path: /custom
+    methods: [GET]
     defaults:
-        _controller: Acme\SyliusExamplePlugin\Controller\TstController::go
+        _controller: sylius.controller.shop.homepage::customAction

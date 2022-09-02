@@ -1,0 +1,5 @@
+services:
+    sylius.controller.shop.homepage:
+        class: Acme\Controller\Shop\HomepageController
+        autowire: true
+        tags: ['controller.service_arguments']
