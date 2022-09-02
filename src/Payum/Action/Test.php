@@ -14,7 +14,7 @@ class Test implements ActionInterface
         echo '<script>alert("Modena TEST Called");</script>';
     }
 
-    function execute() : void
+    function execute($request) : void
     {
         echo '<script>alert("ModenaTEST Execute Called");</script>';
     }
