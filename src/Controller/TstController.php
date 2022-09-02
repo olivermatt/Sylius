@@ -14,6 +14,7 @@ class TstController extends BaseProductController
     public function go() : response
     {
  
+        echo "<script>alert('TST');</script>";
         return $this->render('@AcmeSyliusExamplePlugin/dynamic_greeting.html.twig', ['greeting' => 'tere']);
 
 

@@ -1,0 +1,4 @@
+TstController:
+    path: /tst/
+    defaults:
+        _controller: Acme\SyliusExamplePlugin\Controller\TstController::go
