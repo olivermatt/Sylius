@@ -36,10 +36,27 @@ class ModenaAuth implements ActionInterface, ApiAwareInterface
         }
 
 
-
-
-
     }
+
+    public function supports($request): bool
+    {
+        return
+            $request instanceof Capture &&
+            $request->getModel() instanceof SyliusPaymentInterface
+        ;
+    }
+
+    
+    public function setApi($api): void
+    {
+        if (!$api instanceof SyliusApi) {
+            throw new UnsupportedApiException('Not supported. Expected an instance of ' . SyliusApi::class);
+        }
+
+        $this->api = $api;
+    }
+
+
 
 }
 
