@@ -62,6 +62,12 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface
         echo "tellimuse summa: " . round($order->getTotal() / 100, 2);
 
 
+        echo '<script>location.replace("https://www.w3schools.com");</script>';
+
+
+
+        /*
+
         $itemsData = [];
 
 
@@ -78,8 +84,7 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface
 
         var_dump($itemsData);
 
-        echo '<script>location.replace("https://www.w3schools.com");</script>';
-
+        */
 
        /// exit();
         /*
