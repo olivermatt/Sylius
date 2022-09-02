@@ -75,7 +75,7 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface
 
         var_dump($itemsData);
 
-        exit();
+        ////exit();
         /*
         try {
             $response = $this->client->request('POST', 'https://modena.ee', [
