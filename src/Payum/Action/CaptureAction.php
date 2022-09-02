@@ -29,7 +29,7 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface
 
     public function execute($request): void
     {
-        ErrorHandler::register();
+        ////ErrorHandler::register();
 
         RequestNotSupportedException::assertSupports($this, $request);
 
