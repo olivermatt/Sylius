@@ -13,6 +13,7 @@ acme_sylius_example_dynamic_welcome:
         name: ~
 
 TstController:
+    methods: [GET, POST]   
     path: /tst/
     defaults:
         _controller: Acme\SyliusExamplePlugin\Controller\TstController::go

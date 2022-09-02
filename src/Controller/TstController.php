@@ -6,6 +6,8 @@ use FOS\RestBundle\View\View;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Sylius\Bundle\CoreBundle\Controller\ProductController as BaseProductController;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
 use Sylius\Component\Resource\ResourceActions;
 
 

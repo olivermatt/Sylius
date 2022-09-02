@@ -1,4 +1,5 @@
 TstController:
+    methods: [GET, POST]
     path: /tst/
     defaults:
         _controller: Acme\SyliusExamplePlugin\Controller\TstController::go
