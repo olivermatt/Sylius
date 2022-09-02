@@ -44,7 +44,7 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
 
         //// Authenticate
         $this->gateway->addAction(new Test);
-        $this->gateway->execute(new Test)
+        $this->gateway->execute(new Test);
 
         /*
         try {
