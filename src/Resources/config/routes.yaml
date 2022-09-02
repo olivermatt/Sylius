@@ -1,0 +1,3 @@
+app_shop_custom_action:
+    path: /customm
+    controller: App/Controller/Shop/HomepageController::customAction
