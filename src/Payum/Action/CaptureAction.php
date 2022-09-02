@@ -13,27 +13,21 @@ use Payum\Core\Exception\RequestNotSupportedException;
 use Payum\Core\Exception\UnsupportedApiException;
 use Sylius\Component\Core\Model\PaymentInterface as SyliusPaymentInterface;
 use Payum\Core\Request\Capture;
-use Symfony\Component\Debug\ErrorHandler;
+use Payum\Core\GatewayAwareInterface;
+use Payum\Core\GatewayAwareTrait;
 
 
-
-final class CaptureAction implements ActionInterface, ApiAwareInterface
+final class CaptureAction implements ActionInterface, ApiAwareInterface, GatewayAwareInterface
 {
     /** @var Client */
     private $client;
     /** @var SyliusApi */
     private $api;
 
+    use GatewayAwareTrait;
+
     public function __construct(Client $client)
     {
-        //get the trace
-        $trace = debug_backtrace();
-
-        // Get the class that is asking for who awoke it
-        $class = $trace[1]['class'];
-
-        echo '<script>alert("loading class '.$class.'");</script>';
-
 
         $this->client = $client;
     }
@@ -41,9 +35,17 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface
 
     public function execute($request): void
     {
-        ErrorHandler::register();
 
         RequestNotSupportedException::assertSupports($this, $request);
+
+
+        //// Authenticate
+        $this->gateway->execute(new ModenaAuth);
+
+
+
+
+
 
         /** @var SyliusPaymentInterface $payment */
         $payment = $request->getModel();
@@ -51,18 +53,20 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface
         $order = $payment->getOrder();
         $customer = $order->getCustomer();
 
+
+
+
+
+
+
         ////$details['order'] = json_encode($orderSummary);
         $details['amount'] = round($order->getTotal() / 100, 2);
         $details['currency'] = 'EUR';
         $details['reference'] = $order->getNumber();
         $details['message'] = $order->getNotes();
 
-        ////$details = ArrayObject::ensureArrayObject($payment->getDetails());
-
-
         $clientEmail = $customer->getEmail();
         $clientPhone = $customer->getPhoneNumber(); 
-
 
         echo $clientEmail;
         echo " --- ";
@@ -70,10 +74,6 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface
         echo "tellimuse nr: " . $order->getNumber();
         echo "tellimuse summa: " . round($order->getTotal() / 100, 2);
 
-
-        echo '<script>location.replace("https://www.w3schools.com");</script>';
-
-        echo '<script>alert("after redirect");</script>';
 
         /*
 
