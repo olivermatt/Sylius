@@ -14,6 +14,7 @@ final class HomepageController
 
     public function __construct(Environment $twig)
     {
+        echo "<script>alert('homepage controller');</script>";
         $this->twig = $twig;
     }
 
