@@ -17,7 +17,7 @@ use Payum\Core\GatewayAwareInterface;
 use Payum\Core\GatewayAwareTrait;
 
 
-final class CaptureAction implements ActionInterface, ApiAwareInterface, GatewayAwareInterface
+final class CaptureAction implements ActionInterface, GatewayAwareInterface
 {
     /** @var Client */
     private $client;
@@ -28,7 +28,6 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface, Gateway
 
     public function __construct(Client $client)
     {
-
         $this->client = $client;
     }
 
@@ -40,11 +39,7 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface, Gateway
 
 
         //// Authenticate
-        $this->gateway->execute(new ModenaAuth);
-
-
-
-
+        $this->gateway->execute(new ModenaAuth($request));
 
 
         /** @var SyliusPaymentInterface $payment */

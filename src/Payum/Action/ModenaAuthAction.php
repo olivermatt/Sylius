@@ -9,7 +9,7 @@ use Payum\Core\ApiAwareInterface;
 use Payum\Core\Reply\HttpRedirect;
 
 
-class ModenaAuth implements ActionInterface, ApiAwareInterface
+class ModenaAuthActions implements ActionInterface, ApiAwareInterface
 {
 
     public function __construct()
@@ -19,7 +19,7 @@ class ModenaAuth implements ActionInterface, ApiAwareInterface
 
     }
 
-    function execute($request): void
+    function execute($request)
     {
 
         echo '<script>alert("ModenaAUTH exceute Called");</script>';
