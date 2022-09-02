@@ -3,3 +3,12 @@ app_shop_custom_action:
     methods: [GET]
     defaults:
         _controller: sylius.controller.shop.homepage::customAction
+
+account_token_custody:
+    path: /account/custody
+    methods: [GET, POST]
+    defaults:
+        _controller: app.controller.custody:custodyAction
+        _sylius:
+            template: "@AppBundle/custody.html.twig"
+            redirect: sylius_shop_account_dashboard
