@@ -1,8 +1,4 @@
 //// src/Payum/Action/StatusAction.php
-/* StatusAction will update the state of payment based on details provided by CaptureAction. Based on the value of the status code of the HTTP request, the payment status will be adjusted as follows:
-
-HTTP 400 (Bad request) - payment has failed
-HTTP 200 (OK) - payment succeeded */
 
 
 <?php
