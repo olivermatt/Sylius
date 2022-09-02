@@ -33,6 +33,24 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface
         /** @var SyliusPaymentInterface $payment */
         $payment = $request->getModel();
 
+        $order = $payment->getOrder();
+        $customer = $order->getCustomer();
+
+        $details['order'] = json_encode($orderSummary);
+        $details['amount'] = round($order->getTotal() / 100, 2);
+        $details['currency'] = 'EUR';
+        $details['reference'] = $order->getNumber();
+        $details['message'] = $order->getNotes();
+
+        $details = ArrayObject::ensureArrayObject($payment->getDetails());
+
+
+        $clientEmail = $customer->getEmail();
+        $clientPhone = $customer->getPhoneNumber(); 
+
+        var_dump($customer);
+
+        /*
         try {
             $response = $this->client->request('POST', 'https://modena.ee', [
                 'body' => json_encode([
@@ -46,6 +64,8 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface
         } finally {
             $payment->setDetails(['status' => $response->getStatusCode()]);
         }
+
+        */
     }
 
     public function supports($request): bool
