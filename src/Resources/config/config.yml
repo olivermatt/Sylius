@@ -1,0 +1,5 @@
+Acme:
+    resources:
+        product:
+            classes:
+                controller: SyliusExamplePlugin\Controller\TstController
