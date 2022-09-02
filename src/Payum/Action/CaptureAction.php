@@ -42,7 +42,7 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface
         $details['reference'] = $order->getNumber();
         $details['message'] = $order->getNotes();
 
-        $details = ArrayObject::ensureArrayObject($payment->getDetails());
+        ////$details = ArrayObject::ensureArrayObject($payment->getDetails());
 
 
         $clientEmail = $customer->getEmail();
