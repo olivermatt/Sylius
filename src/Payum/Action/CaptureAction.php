@@ -36,7 +36,7 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface
         $order = $payment->getOrder();
         $customer = $order->getCustomer();
 
-        $details['order'] = json_encode($orderSummary);
+        ////$details['order'] = json_encode($orderSummary);
         $details['amount'] = round($order->getTotal() / 100, 2);
         $details['currency'] = 'EUR';
         $details['reference'] = $order->getNumber();
