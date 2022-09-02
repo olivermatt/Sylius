@@ -1,5 +1,3 @@
-// src/Payum/Action/CaptureAction.php
-
 <?php
 
 declare(strict_types=1);
