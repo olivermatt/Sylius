@@ -11,12 +11,14 @@ class Test implements ActionInterface
 
     public function __construct()
     {
-        echo '<script>alert("Modena TEST Called");</script>';
+        echo '<script>alert("Modena TEST __Construct");</script>';
     }
 
-    function execute($request) : void
+    function execute($request)
     {
         echo '<script>alert("ModenaTEST Execute Called");</script>';
+
+        return;
     }
 
     public function supports($request): bool

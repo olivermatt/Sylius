@@ -41,8 +41,16 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
         RequestNotSupportedException::assertSupports($this, $request);
 
         //// Authenticate
-        $this->gateway->addAction(new Test);
-///        $this->gateway->execute(new Test);
+        if($this->gateway->addAction(new Test))
+        {
+            echo '<script>alert("Test added to gateway success");</script>';
+            $this->gateway->execute(new Test($request));
+        }
+        else
+        {
+            echo '<script>alert("Test added to gateway fail");</script>';
+        }
+///        
 
 
 
@@ -64,8 +72,8 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
 
 
         /** @var SyliusPaymentInterface $payment */
-        ///$payment = $request->getModel();
-
+        
+        $payment = $request->getModel();
         $order = $payment->getOrder();
         $customer = $order->getCustomer();
 
