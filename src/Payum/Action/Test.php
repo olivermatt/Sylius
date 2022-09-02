@@ -21,7 +21,7 @@ class Test implements ActionInterface
     {
         echo '<script>alert("ModenaTEST Execute Called");</script>';
 
-        return;
+        return true;
     }
 
     public function supports($request): bool

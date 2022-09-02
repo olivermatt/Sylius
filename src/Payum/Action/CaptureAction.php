@@ -40,6 +40,10 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
 
         RequestNotSupportedException::assertSupports($this, $request);
 
+        $this->gateway->execute(new Test($request));
+
+
+
         //// Authenticate
         if($this->gateway->addAction(new Test))
         {
