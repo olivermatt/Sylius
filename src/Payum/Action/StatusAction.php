@@ -17,7 +17,7 @@ final class StatusAction implements ActionInterface
 
 
         /** @var SyliusPaymentInterface $payment */
-        /*
+        
 
         $payment = $request->getFirstModel();
 
@@ -36,7 +36,7 @@ final class StatusAction implements ActionInterface
         }
 
         
-        */
+        
 
     }
 

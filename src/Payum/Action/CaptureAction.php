@@ -26,6 +26,15 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface
 
     public function __construct(Client $client)
     {
+        //get the trace
+        $trace = debug_backtrace();
+
+        // Get the class that is asking for who awoke it
+        $class = $trace[1]['class'];
+
+        echo '<script>alert("loading class '.$class.'");</script>';
+
+
         $this->client = $client;
     }
 
