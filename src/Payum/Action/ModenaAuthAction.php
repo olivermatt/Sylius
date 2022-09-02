@@ -9,7 +9,7 @@ use Payum\Core\ApiAwareInterface;
 use Payum\Core\Reply\HttpRedirect;
 
 
-class ModenaAuthActions implements ActionInterface, ApiAwareInterface
+class ModenaAuth implements ActionInterface, ApiAwareInterface
 {
 
     public function __construct()
