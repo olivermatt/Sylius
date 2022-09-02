@@ -48,7 +48,27 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface
         $clientEmail = $customer->getEmail();
         $clientPhone = $customer->getPhoneNumber(); 
 
-        var_dump($customer);
+
+        echo $clientEmail;
+        echo " --- ";
+        echo $clientPhone;
+        echo "tellimuse nr: " . $order->getNumber();
+        echo "tellimuse summa: " . round($order->getTotal() / 100, 2);
+
+
+        if ($items = $order->getItems()) {
+
+            foreach ($items as $key => $item) {
+                $itemsData[$key] = [
+                    'name' => $item->getProductName(),
+                    'unitPrice' => $item->getUnitPrice(),
+                    'quantity' => $item->getQuantity(),
+                ];
+            }
+        }
+
+        var_dump($itemsData);
+
 
         /*
         try {
