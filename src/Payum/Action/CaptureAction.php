@@ -28,6 +28,8 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
     private $api;
 
     use GatewayAwareTrait;
+    use ApiAwareTrait;
+
 
     public function __construct(Client $client)
     {
