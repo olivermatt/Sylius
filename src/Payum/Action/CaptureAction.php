@@ -48,9 +48,9 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
 
         try {
             /** @var \Payum\Core\Gateway $gateway */
-            $gateway->addAction(new ReDir);
+            $this->gateway->addAction(new ReDir);
         
-            $gateway->execute(new ReDir);
+            $this->gateway->execute(new ReDir);
         } catch (HttpRedirect $reply) {
             header( 'Location: '.$reply->getUrl());
             exit;
