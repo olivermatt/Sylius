@@ -4,9 +4,12 @@ namespace Acme\SyliusExamplePlugin\Payum\Action;
 
 use Payum\Core\Action\ActionInterface;
 use Payum\Core\Reply\HttpRedirect;
+use Payum\Core\ApiAwareInterface;
+use Payum\Core\GatewayAwareInterface;
+use Payum\Core\GatewayAwareTrait;
 
 
-class Test implements ActionInterface,ApiAwareInterface, GatewayAwareInterface
+class Test implements ActionInterface, ApiAwareInterface, GatewayAwareInterface
 {
 
     public function __construct()

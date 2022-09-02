@@ -19,6 +19,10 @@
     <tag name="payum.action" factory="sylius_payment" alias="payum.action.capture" />
 </service>
 
+<service id="Acme\SyliusExamplePlugin\Payum\Action\Test" public="true" class="Acme\SyliusExamplePlugin\Payum\Action\Test">
+    <argument type="service" id="sylius.http_client" />
+    <tag name="payum.test" factory="sylius_payment" alias="payum.action.test" />
+</service>
 
         <!-- Put your services here -->
     </services>
