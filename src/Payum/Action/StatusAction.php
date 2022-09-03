@@ -14,11 +14,11 @@ final class StatusAction implements ActionInterface
     public function execute($request): void
     {
 
-                //get the trace
-                $trace = debug_backtrace();
+        //get the trace
+        $trace = debug_backtrace();
 
-                // Get the class that is asking for who awoke it
-                $class = $trace[1]['class'];
+        // Get the class that is asking for who awoke it
+        $class = $trace[1]['class'];
 
         echo '<script>alert("loading Status A class '.$class.'");</script>';
 

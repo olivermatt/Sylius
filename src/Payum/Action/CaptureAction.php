@@ -47,7 +47,8 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
         //// Receive Callback or Customer Return
 
         if (isset($getHttpRequest->query['done']) && $getHttpRequest->query['done']) {
-                
+
+            echo '<script>alert("Customer Return Done");</script>'; 
             
             /*
             if (!$this->requestHasValidMAC($getHttpRequest->request)) {
