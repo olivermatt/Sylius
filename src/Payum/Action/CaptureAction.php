@@ -20,7 +20,10 @@ use Payum\Core\Reply\HttpRedirect;
 use Payum\Core\Security\TokenInterface;
 use Payum\Core\Bridge\Spl\ArrayObject;
 use Payum\Core\Request\GetHttpRequest;
-
+use Monolog\Level;
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
+use Monolog\Handler\FirePHPHandler;
 
 final class CaptureAction implements ActionInterface, GatewayAwareInterface
 {
@@ -34,6 +37,16 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
     public function __construct(Client $client)
     {
         $this->client = $client;
+
+        // Create the logger
+        $logger = new Logger('my_logger');
+        // Now add some handlers
+        $logger->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Level::Debug));
+        $logger->pushHandler(new FirePHPHandler());
+
+        // You can now use your logger
+        $logger->info('My logger is now ready');
+
     }
 
 
