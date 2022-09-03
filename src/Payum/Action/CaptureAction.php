@@ -44,6 +44,9 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
         $model = ArrayObject::ensureArrayObject($request->getModel());
 
 
+        $getHttpRequest = new GetHttpRequest();
+        $this->gateway->execute($getHttpRequest);
+
         //// Receive Callback or Customer Return
 
         if (isset($getHttpRequest->query['done']) && $getHttpRequest->query['done']) {
@@ -62,6 +65,7 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
             $model['status'] = 'done';
             return;
         }
+
 
         ////////////////////////////////////////
 
