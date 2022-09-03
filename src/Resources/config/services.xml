@@ -19,12 +19,13 @@
     <tag name="payum.action" factory="sylius_payment" alias="payum.action.capture" />
 </service>
 
+<!--
 <service id="Acme\SyliusExamplePlugin\Payum\Action\ConvertPaymentAction" 
                 class="Acme\SyliusExamplePlugin\Payum\Action\ConvertPaymentAction">
      <tag name="payum.action" factory="sylius_payment" alias="payum.action.convert_payment" />
 </service>
 
-        <!-- <service id="Acme\SyliusExamplePlugin\Payum\Action\NotifyAction" class="Acme\SyliusExamplePlugin\Payum\Action\NotifyAction">
+        <service id="Acme\SyliusExamplePlugin\Payum\Action\NotifyAction" class="Acme\SyliusExamplePlugin\Payum\Action\NotifyAction">
             <argument type="service" id="bitbag.payu_plugin.bridge.open_payu"/>
             <tag name="payum.action" factory="sylius_payment" alias="payum.action.notify"/>
         </service>
