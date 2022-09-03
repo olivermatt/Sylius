@@ -1,3 +1,0 @@
-sylius.controller.shop.homepage:
-    path: /customm
-    controller: Acme/Controller/Shop/HomepageController::customAction
