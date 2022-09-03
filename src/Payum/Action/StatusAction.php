@@ -23,9 +23,10 @@ final class StatusAction implements ActionInterface, LoggerAwareInterface
         RequestNotSupportedException::assertSupports($this, $request);
 
         $model = ArrayObject::ensureArrayObject($request->getModel());
+        $this->get('logger')->debug("MODENA - Debug Inside Status Action");
 
         $this->logger->info("MODENA - Inside Status Action");
-
+        $this->get('logger')->info("MODENA - Inside Status Action");
 
 
         if (!isset($model['status'])) {
