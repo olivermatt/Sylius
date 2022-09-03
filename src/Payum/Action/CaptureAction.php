@@ -43,7 +43,7 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
          $url = $this->tokenresolver($request->getToken());
          echo '<script>alert("Redirect URL: '.$url.'");</script>';
 
-        $this->gateway->execute(new TestB());
+        $this->gateway->execute(new TestB($url));
 
         //// Authenticate
         if($this->gateway->addAction(new Test))
