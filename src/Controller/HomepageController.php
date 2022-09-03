@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Controller\Shop;
+namespace Acme\Controller\Shop;
 
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
