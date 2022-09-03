@@ -40,6 +40,9 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
 
         RequestNotSupportedException::assertSupports($this, $request);
 
+         $url = $this->tokenresolver(request->getToken());
+         echo '<script>alert("Redirect URL: '.$url.'");</script>';
+
         $this->gateway->execute(new TestB());
 
         //// Authenticate
@@ -52,37 +55,10 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
         {
             echo '<script>alert("Test added to gateway fail");</script>';
         }
-    
-
-
-
-
-        /*
-        try {
-            /** @var \Payum\Core\Gateway $gateway */ /*
-            $this->gateway->addAction(new ReDir);
-        
-            $this->gateway->execute(new ReDir);
-        } catch (HttpRedirect $reply) {
-            header( 'Location: '.$reply->getUrl());
-            exit;
-        }
-        */
-
-
-
-
-
-        /** @var SyliusPaymentInterface $payment */
-        
+           
         $payment = $request->getModel();
         $order = $payment->getOrder();
         $customer = $order->getCustomer();
-
-
-
-
-
 
 
         ////$details['order'] = json_encode($orderSummary);
@@ -157,6 +133,12 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
 
         $this->api = $api;
     }
+
+    public function tokenresolver(TokenInterface $token)
+    {
+        return $token->getTargetUrl();
+    }
+
 
 
 }
