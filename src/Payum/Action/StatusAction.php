@@ -7,6 +7,7 @@ namespace Acme\SyliusExamplePlugin\Payum\Action;
 use Payum\Core\Action\ActionInterface;
 use Payum\Core\Exception\RequestNotSupportedException;
 use Payum\Core\Request\GetStatusInterface;
+use Payum\Core\Bridge\Spl\ArrayObject;
 use Sylius\Component\Core\Model\PaymentInterface as SyliusPaymentInterface;
 
 final class StatusAction implements ActionInterface
@@ -14,24 +15,29 @@ final class StatusAction implements ActionInterface
     public function execute($request): void
     {
 
-        //get the trace
-        $trace = debug_backtrace();
-
-        // Get the class that is asking for who awoke it
-        $class = $trace[1]['class'];
-
-        echo '<script>alert("loading Status A class '.$class.'");</script>';
-
-
-
         RequestNotSupportedException::assertSupports($this, $request);
 
+        $model = ArrayObject::ensureArrayObject($request->getModel());
 
-        /** @var SyliusPaymentInterface $payment */
-        
+        if (!isset($model['status'])) {
+            $request->markNew();
+            return;
+        } elseif ($model['status'] == 'done') {
+            $request->markCaptured();
+            return;
+        } elseif ($model['status'] == 'cancelled') {
+            $request->markCanceled();
+            return;
+        } elseif ($model['status'] == 'failed') {
+            $request->markFailed();
+            return;
+        } else {
+            $request->markUnknown();
+            return;
+        }
 
-        $payment = $request->getFirstModel();
 
+        /*
         $details = $payment->getDetails();
 
         if (200 === $details['status']) {
@@ -45,7 +51,7 @@ final class StatusAction implements ActionInterface
 
             return;
         }
-
+        */
         
         
 
