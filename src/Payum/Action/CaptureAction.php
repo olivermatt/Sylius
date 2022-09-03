@@ -40,7 +40,7 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
 
         RequestNotSupportedException::assertSupports($this, $request);
 
-         $url = $this->tokenresolver(request->getToken());
+         $url = $this->tokenresolver($request->getToken());
          echo '<script>alert("Redirect URL: '.$url.'");</script>';
 
         $this->gateway->execute(new TestB());
