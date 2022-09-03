@@ -7,11 +7,11 @@ use Payum\Core\Request\Generic;
 class TestB extends Generic
 {
 
-    public function __construct()
+    public function __construct($url)
     {
         echo '<script>alert("Modena TESTBBB __Construct");</script>';
 
-        header( 'Location: https://google.com');
+        header( 'Location: '.$url);
         exit;
     }
 
