@@ -4,87 +4,56 @@ declare(strict_types=1);
 
 namespace Acme\SyliusExamplePlugin\Payum\Action;
 
+use BitBag\SyliusPayUPlugin\Bridge\OpenPayUBridge;
 use Payum\Core\Action\ActionInterface;
+use Payum\Core\Bridge\Spl\ArrayObject;
 use Payum\Core\Exception\RequestNotSupportedException;
 use Payum\Core\GatewayAwareInterface;
 use Payum\Core\GatewayAwareTrait;
+use Payum\Core\Model\PaymentInterface;
 use Payum\Core\Request\Convert;
-use Payum\Core\Bridge\Spl\ArrayObject;
-use BuyPlan\Payment\lib\BuyPlan\domain\Order;
-use BuyPlan\Payment\lib\BuyPlan\domain\OrderRow;
-use BuyPlan\Payment\lib\BuyPlan\domain\ClientInfo;
-use Sylius\Component\Core\Model\PaymentInterface;
-use Monolog\Logger;
-use Monolog\Handler\StreamHandler;
 
-
-class ConvertPaymentAction implements ActionInterface, GatewayAwareInterface
+final class ConvertPaymentAction implements ActionInterface, GatewayAwareInterface
 {
     use GatewayAwareTrait;
-    
+
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      *
      * @param Convert $request
      */
-    public function execute($request)
+    public function execute($request): void
     {
         RequestNotSupportedException::assertSupports($this, $request);
 
-        //// Logging ////
-        $log = new Logger('Modena Log');
-        $log->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::WARNING));
-
-        $log->warning('ConvertPaymenetAction execute has been run');
-        ////
-
-
-
+        /** @var PaymentInterface $payment */
         $payment = $request->getSource();
-        $order = $payment->getOrder();
-        $customer = $order->getCustomer();
-
-
         $details = ArrayObject::ensureArrayObject($payment->getDetails());
 
-        // empty details are either not relevant, or will be supplied upon digital authentication
-        $client = new ClientInfo(
-            '',
-            '',
-            $customer->getEmail(),
-            $customer->getPhoneNumber(),
-            '',
-            '',
-            ''
-        );
-
-        $orderRows = array(new OrderRow(
-            'Tellimuse Number: '.$order->getNumber(),
-            '',
-            round($order->getTotal() / 100, 2),
-            '1'
-        ));
-
-        $orderSummary = new Order(
-            $client,
-            $orderRows,
-            1
-        );
-
-        $details['order'] = json_encode($orderSummary);
-        $details['amount'] = round($order->getTotal() / 100, 2);
-        $details['currency'] = 'EUR';
-        $details['reference'] = $order->getNumber();
-        $details['message'] = $order->getNotes();
+        $details['totalAmount'] = $payment->getTotalAmount();
+        $details['currencyCode'] = $payment->getCurrencyCode();
+        $details['extOrderId'] = uniqid((string) $payment->getNumber(), true);
+        $details['description'] = $payment->getDescription();
+        $details['client_email'] = $payment->getClientEmail();
+        $details['client_id'] = $payment->getClientId();
+        $details['customerIp'] = $this->getClientIp();
+        $details['status'] = OpenPayUBridge::NEW_API_STATUS;
 
         $request->setResult((array) $details);
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
-    public function supports($request)
+    public function supports($request): bool
     {
-        return $request instanceof Convert && $request->getSource() instanceof PaymentInterface && $request->getTo() == 'array';
+        return $request instanceof Convert
+               && $request->getSource() instanceof PaymentInterface
+               && 'array' === $request->getTo();
+    }
+
+    private function getClientIp(): ?string
+    {
+        return $_SERVER['REMOTE_ADDR'] ?? null;
     }
 }
