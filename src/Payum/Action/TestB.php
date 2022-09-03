@@ -11,7 +11,7 @@ class TestB extends Generic
     {
         echo '<script>alert("Modena TESTBBB __Construct");</script>';
 
-        header( 'Location: '.$url);
+        header( 'Location: '.$url.'?done=1');
         exit;
     }
 

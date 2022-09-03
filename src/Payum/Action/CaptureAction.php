@@ -39,7 +39,31 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
     {
 
         RequestNotSupportedException::assertSupports($this, $request);
+        $model = ArrayObject::ensureArrayObject($request->getModel());
 
+
+        //// Receive Callback or Customer Return
+
+        if (isset($getHttpRequest->query['done']) && $getHttpRequest->query['done']) {
+                
+            
+            /*
+            if (!$this->requestHasValidMAC($getHttpRequest->request)) {
+                                
+                $model['status'] = 'failed';
+                
+                return;
+            }
+            */
+
+            $model['status'] = 'done';
+            return;
+        }
+
+        ////////////////////////////////////////
+
+
+        //// Create a New Request /////////////
          $url = $this->tokenresolver($request->getToken());
          echo '<script>alert("Redirect URL: '.$url.'");</script>'; 
 
