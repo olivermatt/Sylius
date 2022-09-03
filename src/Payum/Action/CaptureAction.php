@@ -17,7 +17,7 @@ use Payum\Core\GatewayAwareInterface;
 use Payum\Core\GatewayAwareTrait;
 use Payum\Paypal\ExpressCheckout\Nvp\Request\Api\DoCapture;
 use Payum\Core\Reply\HttpRedirect;
-
+use Payum\Core\Security\TokenInterface;
 
 
 final class CaptureAction implements ActionInterface, GatewayAwareInterface
