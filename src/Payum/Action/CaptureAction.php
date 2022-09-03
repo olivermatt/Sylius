@@ -38,12 +38,6 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
     {
         $this->client = $client;
 
-        $log = new Logger('name');
-        $log->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::WARNING));
-
-        $log->warning('Foo');
-        $log->error('Bar');
-
     }
 
 
@@ -53,6 +47,13 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
         RequestNotSupportedException::assertSupports($this, $request);
         $model = ArrayObject::ensureArrayObject($request->getModel());
 
+                //// Logging ////
+                $log = new Logger('Modena Log');
+                $log->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::WARNING));
+        
+                $log->warning('CaptureAction execute has been run');
+                ////
+        
 
 
 

@@ -9,15 +9,26 @@ use Payum\Core\Exception\RequestNotSupportedException;
 use Payum\Core\Request\GetStatusInterface;
 use Payum\Core\Bridge\Spl\ArrayObject;
 use Sylius\Component\Core\Model\PaymentInterface as SyliusPaymentInterface;
-use Psr\Log\LoggerAwareInterface;
-use Psr\Log\LoggerAwareTrait;
 
-final class StatusAction implements ActionInterface, LoggerAwareInterface
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
+
+
+
+
+final class StatusAction implements ActionInterface
 {
-    use LoggerAwareTrait;
+
 
     public function execute($request): void
     {
+
+        //// Logging ////
+        $log = new Logger('Modena Log');
+        $log->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::WARNING));
+
+        $log->warning('StatusAction execute has been run');
+        ////
 
 
         RequestNotSupportedException::assertSupports($this, $request);
