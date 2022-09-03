@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Acme\SyliusExamplePlugin\Payum\Action;
 
 use Payum\Core\Action\ActionInterface;
@@ -19,8 +21,7 @@ use Monolog\Handler\StreamHandler;
 class ConvertPaymentAction implements ActionInterface, GatewayAwareInterface
 {
     use GatewayAwareTrait;
- 
-
+    
     /**
      * {@inheritDoc}
      *
