@@ -19,7 +19,7 @@ use Payum\Paypal\ExpressCheckout\Nvp\Request\Api\DoCapture;
 use Payum\Core\Reply\HttpRedirect;
 use Payum\Core\Security\TokenInterface;
 use Payum\Core\Bridge\Spl\ArrayObject;
-
+use Payum\Core\Request\GetHttpRequest;
 
 
 final class CaptureAction implements ActionInterface, GatewayAwareInterface
@@ -44,11 +44,15 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
         $model = ArrayObject::ensureArrayObject($request->getModel());
 
 
-        $getHttpRequest = new GetHttpRequest();
-        $this->gateway->execute($getHttpRequest);
+
 
         //// Receive Callback or Customer Return
 
+        /// Get the GET request 
+        $getHttpRequest = new GetHttpRequest();
+        $this->gateway->execute($getHttpRequest);
+
+        /// Check the params of the requst
         if (isset($getHttpRequest->query['done']) && $getHttpRequest->query['done']) {
 
             echo '<script>alert("Customer Return Done");</script>'; 
