@@ -9,15 +9,24 @@ use Payum\Core\Exception\RequestNotSupportedException;
 use Payum\Core\Request\GetStatusInterface;
 use Payum\Core\Bridge\Spl\ArrayObject;
 use Sylius\Component\Core\Model\PaymentInterface as SyliusPaymentInterface;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerAwareTrait;
 
-final class StatusAction implements ActionInterface
+final class StatusAction implements ActionInterface, LoggerAwareInterface
 {
+    use LoggerAwareTrait;
+
     public function execute($request): void
     {
+
 
         RequestNotSupportedException::assertSupports($this, $request);
 
         $model = ArrayObject::ensureArrayObject($request->getModel());
+
+        $this->logger->info("MODENA - Inside Status Action");
+
+
 
         if (!isset($model['status'])) {
             echo '<script>alert("Model status new");</script>'; 

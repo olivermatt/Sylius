@@ -12,10 +12,14 @@ use BuyPlan\Payment\lib\BuyPlan\domain\Order;
 use BuyPlan\Payment\lib\BuyPlan\domain\OrderRow;
 use BuyPlan\Payment\lib\BuyPlan\domain\ClientInfo;
 use Sylius\Component\Core\Model\PaymentInterface;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerAwareTrait;
 
-class ConvertPaymentAction implements ActionInterface, GatewayAwareInterface
+
+class ConvertPaymentAction implements ActionInterface, GatewayAwareInterface, LoggerAwareInterface
 {
     use GatewayAwareTrait;
+    use LoggerAwareTrait;
 
     /**
      * {@inheritDoc}
@@ -25,6 +29,8 @@ class ConvertPaymentAction implements ActionInterface, GatewayAwareInterface
     public function execute($request)
     {
         RequestNotSupportedException::assertSupports($this, $request);
+
+        $this->logger->info("MODENA - Inside ConvertPaymentActions");
 
         echo '<script>alert("Converting Payment Done");</script>'; 
 
