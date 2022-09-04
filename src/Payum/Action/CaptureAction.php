@@ -49,6 +49,9 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
     
         $model = ArrayObject::ensureArrayObject($request->getModel());
 
+        print_r($model);
+
+
         //// Logging ////
         $trace = debug_backtrace();
         $class = $trace[1]['class'];
@@ -85,7 +88,10 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
         /////////////////////////////////////////////
         ////////// Create a New Request /////////////
         $url = $this->tokenresolver($request->getToken());
-        header( 'Location: '.$url.'?done=1');
+        
+        $log->warning('Return URL: ' . $url .'?done=1');
+              
+        header('Location: https://webhook.site/8c83605f-3347-4ad0-9b50-778dfc65dd89');
 
         
         /// $this->gateway->execute(new TestB($url));
