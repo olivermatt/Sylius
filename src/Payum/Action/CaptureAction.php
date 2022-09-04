@@ -53,9 +53,9 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
         $class = $trace[1]['class'];
         $function = $trace[1]['function'];
 
-            $log = new Logger('Modena Log');
-            $log->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::WARNING));        
-            $log->warning('CaptureAction execute has been run, called by: ' . $class . ', func: '. $function);
+        $log = new Logger('Modena Log');
+        $log->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::WARNING));        
+        $log->warning('CaptureAction execute has been run, called by: ' . $class . ', func: '. $function);
         ////
         
 
@@ -80,9 +80,18 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
             */
 
             $log->warning('CaptureAction has marked the model as done');
+
+
             $model['statusModena'] = 'done';
             
             $request->setModel($model);
+
+
+            $token = $payum->getHttpRequestVerifier()->verify($request);
+            $payum->getHttpRequestVerifier()->invalidate($token);
+
+            header("Location: ".$token->getAfterUrl());
+
 
             return;
         }

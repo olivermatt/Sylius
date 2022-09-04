@@ -18,6 +18,7 @@ final class StatusAction implements ActionInterface
 
     public function execute($request): void
     {
+        RequestNotSupportedException::assertSupports($this, $request);
 
         //// Logging ////
         $log = new Logger('Modena Log');
@@ -30,7 +31,6 @@ final class StatusAction implements ActionInterface
         $log->warning('StatusAction execute has been run, called by: ' . $class . ', func: '. $function);
         ////
 
-        RequestNotSupportedException::assertSupports($this, $request);
 
         $model = ArrayObject::ensureArrayObject($request->getModel());
 
