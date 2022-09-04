@@ -45,13 +45,14 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
     {
 
         RequestNotSupportedException::assertSupports($this, $request);
+    
         $model = ArrayObject::ensureArrayObject($request->getModel());
 
-                //// Logging ////
+        //// Logging ////
             $log = new Logger('Modena Log');
             $log->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::WARNING));        
             $log->warning('CaptureAction execute has been run');
-                ////
+        ////
         
 
 
@@ -75,8 +76,10 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
             */
 
             $log->warning('CaptureAction has marked the model as done');
+            $model['statusModena'] = 'done';
 
-            $model['status'] = 'done';
+            $log->warning(var_dump($model));
+
             return;
         }
 

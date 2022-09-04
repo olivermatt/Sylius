@@ -13,12 +13,8 @@ use Sylius\Component\Core\Model\PaymentInterface as SyliusPaymentInterface;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 
-
-
-
 final class StatusAction implements ActionInterface
 {
-
 
     public function execute($request): void
     {
@@ -30,32 +26,31 @@ final class StatusAction implements ActionInterface
         $log->warning('StatusAction execute has been run');
         ////
 
-
         RequestNotSupportedException::assertSupports($this, $request);
 
         $model = ArrayObject::ensureArrayObject($request->getModel());
 
-        if (!isset($model['status'])) {
+        if (!isset($model['statusModena'])) {
 
             $log->warning('StatusAction Model status new');
 
             $request->markNew();
 
             return;
-        } elseif ($model['status'] == 'done') {
+        } elseif ($model['statusModena'] == 'done') {
 
             $log->warning('StatusAction Model status done');
 
             $request->markCaptured();
 
             return;
-        } elseif ($model['status'] == 'cancelled') {
+        } elseif ($model['statusModena'] == 'cancelled') {
             $log->warning('StatusAction Model status cancelled');
 
 
             $request->markCanceled();
             return;
-        } elseif ($model['status'] == 'failed') {
+        } elseif ($model['statusModena'] == 'failed') {
             $log->warning('StatusAction Model status failed');
 
             $request->markFailed();
