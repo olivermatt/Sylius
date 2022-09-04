@@ -23,7 +23,11 @@ final class StatusAction implements ActionInterface
         $log = new Logger('Modena Log');
         $log->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::WARNING));
 
-        $log->warning('StatusAction execute has been run');
+        $trace = debug_backtrace();
+        $class = $trace[1]['class'];
+
+
+        $log->warning('StatusAction execute has been run, called by: ' . $class);
         ////
 
         RequestNotSupportedException::assertSupports($this, $request);
