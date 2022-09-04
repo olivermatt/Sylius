@@ -34,16 +34,10 @@ final class StatusAction implements ActionInterface
 
         $model = ArrayObject::ensureArrayObject($request->getModel());
 
-        $payment = $request->getSource();
-            
-        $order = $payment->getOrder();
-
-
-
 
         if (!isset($model['statusModena'])) {
 
-            $log->warning('StatusAction Model status new, id: '.$order->getNumber());
+            $log->warning('StatusAction Model status new, id: ');
             $request->markNew();
             return;
 
