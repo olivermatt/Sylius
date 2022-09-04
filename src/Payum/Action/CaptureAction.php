@@ -21,6 +21,8 @@ use Payum\Core\Security\TokenInterface;
 use Payum\Core\Bridge\Spl\ArrayObject;
 use Payum\Core\Request\GetHttpRequest;
 use Payum\Core\Request\RenderTemplate;
+use Payum\Core\Request\GetHumanStatus;
+
 
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
@@ -77,7 +79,17 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
             $log->warning('CaptureAction has marked the model as done');
             $model['statusModena'] = 'done';          
             $request->setModel($model);
+           
+           
+           
+            $action = new StatusAction();
+            $status = new GetHumanStatus($model);
             $request->markCaptured();
+            $action->execute($status);
+                   
+           
+           
+           
 
             return;
         }
