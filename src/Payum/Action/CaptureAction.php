@@ -76,8 +76,11 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
                 return;
             }
             */
-
-            $log->warning('CaptureAction has marked the model as done');
+            $payment = $request->getSource();
+            
+            $order = $payment->getOrder();
+            
+            $log->warning('CaptureAction has marked the model as done, order id: ' .$order->getNumber() );
             $model['statusModena'] = 'done';          
             $request->setModel($model);
            
