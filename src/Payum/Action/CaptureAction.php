@@ -86,10 +86,8 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
         /////////////////////////////////////////////
         ////////// Create a New Request /////////////
         $url = $this->tokenresolver($request->getToken());
-        $url2 = $this->tokenresolver2($request->getToken());
         
         $log->warning('Return URL: ' . $url .'?done=1');
-        $log->warning('After URL: ' . $url2 .'?done=1');
               
         ////header('Location: https://webhook.site/8c83605f-3347-4ad0-9b50-778dfc65dd89');
 
