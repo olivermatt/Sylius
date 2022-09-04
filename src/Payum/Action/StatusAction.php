@@ -38,8 +38,6 @@ final class StatusAction implements ActionInterface
 
             $log->warning('StatusAction Model status new');
 
-            $log->warning(get_object_vars($model));
-
             $request->markNew();
 
             return;

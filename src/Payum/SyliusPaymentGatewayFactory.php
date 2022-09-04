@@ -13,6 +13,13 @@ final class SyliusPaymentGatewayFactory extends GatewayFactory
 {
     protected function populateConfig(ArrayObject $config): void
     {
+
+        $trace = debug_backtrace();
+        $class = $trace[1]['class'];
+        $log = new Logger('Modena Log');
+        $log->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::WARNING));        
+        $log->warning('SyliusPaymentGatewayFactory populateconfig has been run, called by: ' . $class);
+
         $config->defaults([
             'payum.factory_name' => 'sylius_payment',
             'payum.factory_title' => 'Sylius Payment',
