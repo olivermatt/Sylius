@@ -25,9 +25,9 @@ final class StatusAction implements ActionInterface
 
         $trace = debug_backtrace();
         $class = $trace[1]['class'];
+        $function = $trace[1]['function'];
 
-
-        $log->warning('StatusAction execute has been run, called by: ' . $class);
+        $log->warning('StatusAction execute has been run, called by: ' . $class . ', func: '. $function);
         ////
 
         RequestNotSupportedException::assertSupports($this, $request);
@@ -38,7 +38,9 @@ final class StatusAction implements ActionInterface
 
             $log->warning('StatusAction Model status new');
 
-            $request->markNew();
+            $request->markCaptured();
+
+            ///$request->markNew();
 
             return;
         } elseif ($model['statusModena'] == 'done') {
