@@ -36,14 +36,18 @@ final class StatusAction implements ActionInterface
         $model = ArrayObject::ensureArrayObject($request->getModel());
 
         if (!isset($model['status'])) {
+
             $log->warning('StatusAction Model status new');
 
             $request->markNew();
+
             return;
         } elseif ($model['status'] == 'done') {
+
             $log->warning('StatusAction Model status done');
 
             $request->markCaptured();
+
             return;
         } elseif ($model['status'] == 'cancelled') {
             $log->warning('StatusAction Model status cancelled');

@@ -48,10 +48,9 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
         $model = ArrayObject::ensureArrayObject($request->getModel());
 
                 //// Logging ////
-                $log = new Logger('Modena Log');
-                $log->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::WARNING));
-        
-                $log->warning('CaptureAction execute has been run');
+            $log = new Logger('Modena Log');
+            $log->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::WARNING));        
+            $log->warning('CaptureAction execute has been run');
                 ////
         
 
@@ -65,9 +64,7 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
 
         /// Check the params of the requst
         if (isset($getHttpRequest->query['done']) && $getHttpRequest->query['done']) {
-
-            echo '<script>alert("Customer Return Done");</script>'; 
-            
+           
             /*
             if (!$this->requestHasValidMAC($getHttpRequest->request)) {
                                 
@@ -77,19 +74,20 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
             }
             */
 
+            $log->warning('CaptureAction has marked the model as done');
+
             $model['status'] = 'done';
             return;
         }
 
 
         ////////////////////////////////////////
-
-
         //// Create a New Request /////////////
          $url = $this->tokenresolver($request->getToken());
-         echo '<script>alert("Redirect URL: '.$url.'");</script>'; 
-
         $this->gateway->execute(new TestB($url));
+
+
+
 
         //// Authenticate
         if($this->gateway->addAction(new Test))
