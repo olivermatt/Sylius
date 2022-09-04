@@ -189,11 +189,6 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
     }
 
     
-    public function tokenresolver2(TokenInterface $token)
-    {
-        return $token->getAfterUrl();
-    }
-
 
 
 

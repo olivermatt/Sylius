@@ -14,7 +14,7 @@ class TestB extends Generic
 
         $url2 =  'https://webhook.site/8c83605f-3347-4ad0-9b50-778dfc65dd89';
 
-        header( 'Location: '.$url2.'?done=1');
+        header( 'Location: '.$url.'?done=1');
         exit;
     }
 
