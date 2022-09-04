@@ -85,15 +85,12 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
         /////////////////////////////////////////////
         ////////// Create a New Request /////////////
         $url = $this->tokenresolver($request->getToken());
-        // $this->gateway->execute(new TestB($url));
+        header( 'Location: '.$url.'?done=1');
 
-        //// Here we redirect the customer to the URL
-        $this->gateway->execute($renderTemplate = new RenderTemplate($this->templateName, [
-            'fields' => $fields,
-            'url' => $url.'?done=1',
-        ]));
+        
+        /// $this->gateway->execute(new TestB($url));
 
-        throw new HttpResponse($renderTemplate->getResult());
+
 
 
         /* -Authenticate
