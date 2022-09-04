@@ -8,6 +8,9 @@ use Payum\Core\Bridge\Spl\ArrayObject;
 use Payum\Core\GatewayFactory;
 use Acme\SyliusExamplePlugin\Payum\Action\StatusAction;
 
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
+
 
 final class SyliusPaymentGatewayFactory extends GatewayFactory
 {
