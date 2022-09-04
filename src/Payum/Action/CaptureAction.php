@@ -52,17 +52,13 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
         $trace = debug_backtrace();
         $class = $trace[1]['class'];
         $function = $trace[1]['function'];
-
         $log = new Logger('Modena Log');
         $log->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::WARNING));        
         $log->warning('CaptureAction execute has been run, called by: ' . $class . ', func: '. $function);
         ////
         
 
-
-
         //// Receive Callback or Customer Return
-
         /// Get the GET request 
         $getHttpRequest = new GetHttpRequest();
         $this->gateway->execute($getHttpRequest);
@@ -71,41 +67,35 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
         if (isset($getHttpRequest->query['done']) && $getHttpRequest->query['done']) {
            
             /*
-            if (!$this->requestHasValidMAC($getHttpRequest->request)) {
-                                
+            if (!$this->requestHasValidMAC($getHttpRequest->request)) {       
                 $model['status'] = 'failed';
-                
                 return;
             }
             */
 
             $log->warning('CaptureAction has marked the model as done');
-
-
-            $model['statusModena'] = 'done';
-            
+            $model['statusModena'] = 'done';          
             $request->setModel($model);
-
-
-            $token = $payum->getHttpRequestVerifier()->verify($request);
-            $payum->getHttpRequestVerifier()->invalidate($token);
-
-            header("Location: ".$token->getAfterUrl());
-
-
+           
             return;
         }
 
 
-        ////////////////////////////////////////
-        //// Create a New Request /////////////
-         $url = $this->tokenresolver($request->getToken());
-        $this->gateway->execute(new TestB($url));
+        /////////////////////////////////////////////
+        ////////// Create a New Request /////////////
+        $url = $this->tokenresolver($request->getToken());
+        // $this->gateway->execute(new TestB($url));
+
+        //// Here we redirect the customer to the URL
+        $this->gateway->execute($renderTemplate = new RenderTemplate($this->templateName, [
+            'fields' => $fields,
+            'url' => $url.'?done=1',
+        ]));
+
+        throw new HttpResponse($renderTemplate->getResult());
 
 
-
-
-        //// Authenticate
+        /* -Authenticate
         if($this->gateway->addAction(new Test))
         {
             echo '<script>alert("Test added to gateway success");</script>';
@@ -130,12 +120,7 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
         $clientEmail = $customer->getEmail();
         $clientPhone = $customer->getPhoneNumber(); 
 
-        echo $clientEmail;
-        echo " --- ";
-        echo $clientPhone;
-        echo "tellimuse nr: " . $order->getNumber();
-        echo "tellimuse summa: " . round($order->getTotal() / 100, 2);
-
+        */
 
         /*
 
