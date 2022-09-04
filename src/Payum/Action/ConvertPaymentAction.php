@@ -12,6 +12,10 @@ use Payum\Core\GatewayAwareTrait;
 use Payum\Core\Model\PaymentInterface;
 use Payum\Core\Request\Convert;
 
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
+
+
 final class ConvertPaymentAction implements ActionInterface, GatewayAwareInterface
 {
     use GatewayAwareTrait;
@@ -24,6 +28,12 @@ final class ConvertPaymentAction implements ActionInterface, GatewayAwareInterfa
     public function execute($request): void
     {
         RequestNotSupportedException::assertSupports($this, $request);
+
+        //// Logging ////
+        $log = new Logger('Modena Log');
+        $log->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::WARNING));    
+        $log->warning('ConvertPayment execute has been run');
+        ////
 
         /** @var PaymentInterface $payment */
         $payment = $request->getSource();
