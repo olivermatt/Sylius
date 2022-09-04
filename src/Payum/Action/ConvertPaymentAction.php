@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Acme\SyliusExamplePlugin\Payum\Action;
 
-use BitBag\SyliusPayUPlugin\Bridge\OpenPayUBridge;
 use Payum\Core\Action\ActionInterface;
 use Payum\Core\Bridge\Spl\ArrayObject;
 use Payum\Core\Exception\RequestNotSupportedException;
