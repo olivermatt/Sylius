@@ -24,15 +24,13 @@
         <tag name="payum.action" factory="sylius_payment" alias="payum.action.convert_payment"/>
     </service>
 
+
+<!--
+
         <service id="Acme\SyliusExamplePlugin\Payum\Action\NotifyAction" class="Acme\SyliusExamplePlugin\Payum\Action\NotifyAction">
             <argument type="service" id="sylius.http_client"/>
             <tag name="payum.action" factory="sylius_payment" alias="payum.action.notify"/>
         </service>
-
- 
-
-
-<!--
 
 <service id="Acme\SyliusExamplePlugin\Payum\Action\ConvertPaymentAction" 
                 class="Acme\SyliusExamplePlugin\Payum\Action\ConvertPaymentAction">
