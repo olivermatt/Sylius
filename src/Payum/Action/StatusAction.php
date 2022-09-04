@@ -37,16 +37,12 @@ final class StatusAction implements ActionInterface
         if (!isset($model['statusModena'])) {
 
             $log->warning('StatusAction Model status new');
-
-            $request->markCaptured();
-
-            ///$request->markNew();
-
+            $request->markNew();
             return;
+
         } elseif ($model['statusModena'] == 'done') {
 
             $log->warning('StatusAction Model status done');
-
             $request->markCaptured();
 
             return;
