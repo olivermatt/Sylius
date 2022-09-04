@@ -20,6 +20,7 @@ use Payum\Core\Reply\HttpRedirect;
 use Payum\Core\Security\TokenInterface;
 use Payum\Core\Bridge\Spl\ArrayObject;
 use Payum\Core\Request\GetHttpRequest;
+use Payum\Core\Request\RenderTemplate;
 
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
