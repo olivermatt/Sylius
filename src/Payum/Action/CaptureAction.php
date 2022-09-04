@@ -49,7 +49,7 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
     
         $model = ArrayObject::ensureArrayObject($request->getModel());
 
-        print_r($model);
+        var_dump($model);
 
 
         //// Logging ////
