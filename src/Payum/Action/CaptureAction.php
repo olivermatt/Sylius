@@ -81,6 +81,7 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
 
             $log->warning('CaptureAction has marked the model as done');
             $model['statusModena'] = 'done';
+            
             $request->setModel($model);
 
             return;
