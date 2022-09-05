@@ -25,21 +25,12 @@ final class StatusAction implements ActionInterface
     public function execute($request): void
     {
         RequestNotSupportedException::assertSupports($this, $request);
-        ///$model = ArrayObject::ensureArrayObject($request->getModel());
+        $model = ArrayObject::ensureArrayObject($request->getModel());
         
-        $token = $this->get('payum')->getHttpRequestVerifier()->verify($request);
-        $identity = $token->getDetails();
-        $model = $this->get('payum')->getStorage($identity->getClass())->find($identity);
-        $gateway = $this->get('payum')->getGateway($token->getGatewayName());
-        $gateway->execute($status = new GetHumanStatus($token));
-        $details = $status->getFirstModel();
+        $token = $request->getToken();      
+        $gwname = $token->getGatewayName();
 
-
-
-
-
-
-
+        $log->warning('StatusAction token wg name = ' . $gwname);
 
         $status = $model['statusModena'] == null ? "NULL" : $model['statusModena'];
 
