@@ -85,7 +85,7 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
             $action = new StatusAction();
             $status = new GetHumanStatus($model);
 
-            $log->warning('GetHumanStatus status: ' .  print_r($status));
+            ////$log->warning('GetHumanStatus status: ' .  print_r($status));
          
             
          ///   $request->markCaptured();
