@@ -47,6 +47,8 @@ final class StatusAction implements ActionInterface
         $log->warning('StatusAction execute has been run, called by: ' . $class . ', func: '. $function. ' staus modena ' . $status);
         ////
 
+
+        /*
         if (!isset($model['statusModena'])) {
 
             $log->warning('StatusAction Model status new, id: ');
@@ -77,6 +79,7 @@ final class StatusAction implements ActionInterface
             $request->markUnknown();
             return;
         }
+        */
 
 
         /*
@@ -91,10 +94,10 @@ final class StatusAction implements ActionInterface
         if (400 === $details['status']) {
             $request->markFailed();
 
-            return;
         }
         */
         
+        return;
         
 
     }
