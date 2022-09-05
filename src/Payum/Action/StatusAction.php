@@ -8,6 +8,7 @@ use Payum\Core\Action\ActionInterface;
 use Payum\Core\Exception\RequestNotSupportedException;
 use Payum\Core\Request\GetStatusInterface;
 use Payum\Core\Bridge\Spl\ArrayObject;
+use Payum\Core\Model\ModelAwareInterface;
 use Sylius\Component\Core\Model\PaymentInterface as SyliusPaymentInterface;
 
 use Monolog\Logger;
@@ -15,6 +16,11 @@ use Monolog\Handler\StreamHandler;
 
 final class StatusAction implements ActionInterface
 {
+        /**
+     * {@inheritDoc}
+     *
+     * @param GetStatusInterface $request
+     */
 
     public function execute($request): void
     {

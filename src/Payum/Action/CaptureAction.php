@@ -74,27 +74,29 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
                 $model['status'] = 'failed';
                 return;
             }
-            */
+            
 
+            try {
+               
+          
+
+            } catch (RequestException $exception) {
+
+
+
+            }
+*/
             $log->warning('CaptureAction has marked the model as done');
             $model['statusModena'] = 'done';          
             $request->setModel($model);
            
            /// $gateway->execute($status = new GetHumanStatus($token));
          
-            $action = new StatusAction();
-            $status = new GetHumanStatus($model);
 
             ////$log->warning('GetHumanStatus status: ' .  print_r($status));
          
             
          ///   $request->markCaptured();
-            $action->execute($request);
-                   
-           
-           
-           
-
             return;
         }
 
