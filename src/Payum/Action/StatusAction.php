@@ -26,6 +26,11 @@ final class StatusAction implements ActionInterface
     {
         RequestNotSupportedException::assertSupports($this, $request);
         $model = ArrayObject::ensureArrayObject($request->getModel());
+
+        $log = new Logger('Modena Log');
+        $log->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::WARNING));
+
+
         
         $token = $request->getToken();      
         $gwname = $token->getGatewayName();
@@ -37,8 +42,7 @@ final class StatusAction implements ActionInterface
 
 
         //// Logging ////
-        $log = new Logger('Modena Log');
-        $log->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::WARNING));
+
 
         $trace = debug_backtrace();
         $class = $trace[1]['class'];
