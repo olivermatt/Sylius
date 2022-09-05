@@ -17,17 +17,14 @@ use Monolog\Handler\StreamHandler;
 final class StatusAction implements ActionInterface
 {
 
-
     /** @var ModenaBridgeInterface */
     private $openPayUBridge;
 
-    /** @param ModenaBridgeInterface */
-    public function __construct(ModenaBridgeInterface $openPayUBridge)
+    /** @param GetStatusInterface $request */
+    public function __construct($request)
     {
-        $this->openPayUBridge = $openPayUBridge;
+        $this->openPayUBridge = $request;
     }
-
-
 
     public function execute($request): void
     {
