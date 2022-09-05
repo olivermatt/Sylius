@@ -24,6 +24,10 @@
         <tag name="payum.action" factory="sylius_payment" alias="payum.action.convert_payment"/>
     </service>
 
+    
+        <service id="acme.payu_plugin.bridge.open_payu" class="Acme\SyliusPayUPlugin\Bridge\ModenaBridge">
+     <argument type="service" id="sylius.http_client" />
+             </service>
 
 <!--
 

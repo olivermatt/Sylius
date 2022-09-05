@@ -16,15 +16,24 @@ use Monolog\Handler\StreamHandler;
 
 final class StatusAction implements ActionInterface
 {
-        /**
-     * {@inheritDoc}
-     *
-     * @param GetStatusInterface $request
-     */
+
+
+    /** @var ModenaBridgeInterface */
+    private $openPayUBridge;
+
+    /** @param ModenaBridgeInterface */
+    public function __construct(ModenaBridgeInterface $openPayUBridge)
+    {
+        $this->openPayUBridge = $openPayUBridge;
+    }
+
+
 
     public function execute($request): void
     {
         RequestNotSupportedException::assertSupports($this, $request);
+        $model = ArrayObject::ensureArrayObject($request->getModel());
+        $status = $model['statusModena'] == null ? "NULL" : $model['statusModena'];
 
         //// Logging ////
         $log = new Logger('Modena Log');
@@ -34,12 +43,8 @@ final class StatusAction implements ActionInterface
         $class = $trace[1]['class'];
         $function = $trace[1]['function'];
 
-        $log->warning('StatusAction execute has been run, called by: ' . $class . ', func: '. $function);
+        $log->warning('StatusAction execute has been run, called by: ' . $class . ', func: '. $function. ' staus modena ' . $status);
         ////
-
-
-        $model = ArrayObject::ensureArrayObject($request->getModel());
-
 
         if (!isset($model['statusModena'])) {
 
