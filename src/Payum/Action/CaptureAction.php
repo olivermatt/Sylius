@@ -58,6 +58,8 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
         $log = new Logger('Modena Log');
         $log->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::WARNING));        
         $log->warning('CaptureAction execute has been run, called by: ' . $class . ', func: '. $function);
+        $log->warning('CaptureAction request = ' . gettype($request) . " " . get_class($request));
+
         ////
         
 
@@ -91,6 +93,8 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
             $model['statusModena'] = 'done';          
             $request->setModel($model);
            
+            $this->gateway->execute($status = new GetHumanStatus($token));
+
            /// $gateway->execute($status = new GetHumanStatus($token));
          
 

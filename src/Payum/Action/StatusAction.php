@@ -31,11 +31,7 @@ final class StatusAction implements ActionInterface
         $log->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::WARNING));
 
 
-        
-        $token = $request->getToken();      
-        $gwname = $token->getGatewayName();
-
-        $log->warning('StatusAction token wg name = ' . $gwname);
+        $log->warning('StatusAction request ' . gettype($request) . " " . get_class($request));
 
         $status = $model['statusModena'] == null ? "NULL" : $model['statusModena'];
 
