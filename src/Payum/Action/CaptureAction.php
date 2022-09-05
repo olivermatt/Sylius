@@ -89,7 +89,7 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
          
             
          ///   $request->markCaptured();
-            $action->execute($model);
+            $action->execute($request);
                    
            
            
