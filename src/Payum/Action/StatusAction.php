@@ -18,19 +18,18 @@ final class StatusAction implements ActionInterface
 {
 
     /** @var ModenaBridgeInterface */
-    private $openPayUBridge;
+    private $bridge;
 
     /** @param GetStatusInterface $request */
-    public function __construct($request)
-    {
-        $this->openPayUBridge = $request;
-    }
-
     public function execute($request): void
     {
         RequestNotSupportedException::assertSupports($this, $request);
         $model = ArrayObject::ensureArrayObject($request->getModel());
+        
+
         $status = $model['statusModena'] == null ? "NULL" : $model['statusModena'];
+
+
 
         //// Logging ////
         $log = new Logger('Modena Log');
