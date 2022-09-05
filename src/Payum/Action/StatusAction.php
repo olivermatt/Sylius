@@ -30,21 +30,18 @@ final class StatusAction implements ActionInterface
         $log = new Logger('Modena Log');
         $log->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::WARNING));
 
-
         $log->warning('StatusAction request ' . gettype($request) . " " . get_class($request));
-
-        $status = $model['statusModena'] == null ? "NULL" : $model['statusModena'];
-
 
 
         //// Logging ////
-
-
         $trace = debug_backtrace();
         $class = $trace[1]['class'];
         $function = $trace[1]['function'];
 
         $log->warning('StatusAction execute has been run, called by: ' . $class . ', func: '. $function. ' staus modena ' . $status);
+        $log->warning('Status in Statusaction ' . $request->getValue());
+       
+       
         ////
 
 
