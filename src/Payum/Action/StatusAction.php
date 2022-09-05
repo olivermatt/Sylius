@@ -38,7 +38,7 @@ final class StatusAction implements ActionInterface
         $class = $trace[1]['class'];
         $function = $trace[1]['function'];
 
-        $log->warning('StatusAction execute has been run, called by: ' . $class . ', func: '. $function. ' staus modena ' . $status);
+        $log->warning('StatusAction execute has been run, called by: ' . $class . ', func: '. $function);
         $log->warning('Status in Statusaction ' . $request->getValue());
        
        
