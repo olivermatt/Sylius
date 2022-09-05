@@ -10,6 +10,7 @@ use Payum\Core\Request\GetStatusInterface;
 use Payum\Core\Bridge\Spl\ArrayObject;
 use Payum\Core\Model\ModelAwareInterface;
 use Sylius\Component\Core\Model\PaymentInterface as SyliusPaymentInterface;
+use Payum\Core\Request\GetHumanStatus;
 
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
@@ -24,8 +25,21 @@ final class StatusAction implements ActionInterface
     public function execute($request): void
     {
         RequestNotSupportedException::assertSupports($this, $request);
-        $model = ArrayObject::ensureArrayObject($request->getModel());
+        ///$model = ArrayObject::ensureArrayObject($request->getModel());
         
+        $token = $this->get('payum')->getHttpRequestVerifier()->verify($request);
+        $identity = $token->getDetails();
+        $model = $this->get('payum')->getStorage($identity->getClass())->find($identity);
+        $gateway = $this->get('payum')->getGateway($token->getGatewayName());
+        $gateway->execute($status = new GetHumanStatus($token));
+        $details = $status->getFirstModel();
+
+
+
+
+
+
+
 
         $status = $model['statusModena'] == null ? "NULL" : $model['statusModena'];
 

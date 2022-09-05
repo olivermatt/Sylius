@@ -78,11 +78,23 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
 
             try {
                
-               $payment = $request->getModel();
-               $order = $payment->getOrder();
-               $customer = $order->getCustomer();
-
-               $log->warning('runnig 3 func @ capture action');
+                $storage = $this->get('payum')->getStorage('Acme\PaymentBundle\Entity\Payment');
+        
+                $payment = $storage->create();
+                $payment->setNumber(uniqid());
+                $payment->setCurrencyCode('EUR');
+                $payment->setTotalAmount(123); // 1.23 EUR
+                $payment->setDescription('A description');
+                $payment->setClientId('anId');
+                $payment->setClientEmail('foo@example.com');
+                
+                $storage->update($payment);
+                
+                $captureToken = $this->get('payum')->getTokenFactory()->createCaptureToken(
+                    $gatewayName, 
+                    $payment, 
+                    'done' // the route to redirect after capture
+                );
 
 
             } catch (RequestException $exception) {
