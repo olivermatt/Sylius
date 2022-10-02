@@ -45,11 +45,10 @@ final class StatusAction implements ActionInterface
         $log = new Logger('Modena Log');
         $log->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::WARNING));
         //$log->warning('StatusAction testvar: ' .$this->input->mvars);
-        $log->warning('StatusAction testvar2: ' .$this->input2);
-
+        $log->warning('StatusAction Constructor input: ' .$this->input2);
         $log->warning('StatusAction model status: ' . $model['status']);
 
-        $log->warning('StatusAction request type:' . gettype($request) . ", class instance: " . get_class($request));
+        $log->warning('StatusAction request '. ", class instance: " . get_class($request));
 
         if($model==null)
         {
