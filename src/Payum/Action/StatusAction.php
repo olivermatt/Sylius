@@ -79,7 +79,7 @@ final class StatusAction implements ActionInterface
         $log->warning('Status in Statusaction ' . $request->getValue());
        
 
-        if($this->input2 == "DONE")
+        if($model['status'] == "DONE")
         {
             $request->markCaptured();
         }
