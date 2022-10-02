@@ -27,7 +27,7 @@ final class StatusAction implements ActionInterface
 
     public function __construct($input2)
     {
-        $this->input = $input;
+        ///$this->input = $input;
         $this->input2 = $input2;
 
     }
@@ -44,7 +44,7 @@ final class StatusAction implements ActionInterface
 
         $log = new Logger('Modena Log');
         $log->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::WARNING));
-        $log->warning('StatusAction testvar: ' .$this->input->mvars);
+        //$log->warning('StatusAction testvar: ' .$this->input->mvars);
         $log->warning('StatusAction testvar2: ' .$this->input2);
 
         $log->warning('StatusAction model status: ' . $model['status']);
@@ -71,7 +71,7 @@ final class StatusAction implements ActionInterface
         $log->warning('Status in Statusaction ' . $request->getValue());
        
 
-        if($this->input->mvars == "DONE")
+        if($this->input2 == "DONE")
         {
             $request->markCaptured();
         }
