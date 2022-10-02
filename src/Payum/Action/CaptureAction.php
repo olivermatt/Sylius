@@ -43,11 +43,12 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
     ///function __construct(ModenaBridgeInterface $openPayUBridge);
 
  
-    public function __construct(Client $client)
+    public function __construct($client)
     {
         $this->client = $client;
-        $classmethods = get_class_methods($client);
+        ///$classmethods = get_class_methods($client);
 
+        $this->client->mvars = "JAMES BOND";
         ///$this->openPayUBridge = $openPayUBridge;
         ///$this->openPayUBridge->testvar = "OLIVER TESTING";
     }
