@@ -7,6 +7,7 @@ namespace Acme\SyliusExamplePlugin\Payum;
 use Payum\Core\Bridge\Spl\ArrayObject;
 use Payum\Core\GatewayFactory;
 use Acme\SyliusExamplePlugin\Payum\Action\StatusAction;
+use Acme\SyliusExamplePlugin\Payum\Bridge\ModenaBridgeInterface;
 
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
@@ -25,9 +26,10 @@ final class SyliusPaymentGatewayFactory extends GatewayFactory
 
         $config->defaults([
             'payum.factory_name' => 'sylius_payment',
-            'payum.factory_title' => 'Sylius Payment',
-            'payum.action.status' => new StatusAction(),
+            'payum.factory_title' => 'Sylius Payment'
         ]);
+
+        /// 'payum.action.status' => new StatusAction(),
 
         $config['payum.api'] = function (ArrayObject $config) {
             return new SyliusApi($config['api_key']);
