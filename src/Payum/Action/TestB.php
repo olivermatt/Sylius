@@ -11,10 +11,10 @@ class TestB extends Generic
     {
         echo '<script>alert("Modena TESTBBB __Construct");</script>';
 
-
         $url2 =  'https://webhook.site/8c83605f-3347-4ad0-9b50-778dfc65dd89';
 
-        header( 'Location: '.$url.'?done=1');
+        sleep(2);
+        header('Location: '.$url.'?done=1');
         exit;
     }
 

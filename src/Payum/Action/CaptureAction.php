@@ -40,7 +40,6 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
     public function __construct(Client $client)
     {
         $this->client = $client;
-
     }
 
 
@@ -59,7 +58,6 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
         $log->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::WARNING));        
         $log->warning('CaptureAction execute has been run, called by: ' . $class . ', func: '. $function);
         $log->warning('CaptureAction request = ' . gettype($request) . " " . get_class($request));
-
         ////
         
 
@@ -68,7 +66,7 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
         $getHttpRequest = new GetHttpRequest();
         $this->gateway->execute($getHttpRequest);
 
-        /// Check the params of the requst
+        /// Check the params of the requst, done means payment is done, proceed to make the order done
         if (isset($getHttpRequest->query['done']) && $getHttpRequest->query['done']) {
            
             /*
@@ -78,12 +76,12 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
             }
             */
 
-            $log->warning('CaptureAction has marked the model as done');
 
             $token = $request->getToken(); 
 
             $this->gateway->execute($status = new GetHumanStatus($token));
             
+            $log->warning('CaptureAction has marked the model as done');
             $status->markCaptured();
 
             $log->warning('CaptureAction status value ' . $status->getValue());

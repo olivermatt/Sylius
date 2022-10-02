@@ -30,7 +30,7 @@ final class StatusAction implements ActionInterface
         $log = new Logger('Modena Log');
         $log->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::WARNING));
 
-        $log->warning('StatusAction request ' . gettype($request) . " " . get_class($request));
+        $log->warning('StatusAction request type:' . gettype($request) . ", class instance: " . get_class($request));
 
 
         //// Logging ////
