@@ -70,10 +70,11 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
         $log->warning('v 1.1 CaptureAction execute has been run, called by: ' . $class . ', func: '. $function);
         $log->warning('CaptureAction request = ' . gettype($request) . " " . get_class($request));
         
+        /*
         foreach ($this->classmethods as $method_name) {
             $log->warning($method_name);
         }
-        
+        */
         
         ////
         
