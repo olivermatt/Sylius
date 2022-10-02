@@ -36,6 +36,7 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
     private $api;
 
     private $openPayUBridge;
+    private $classmethods;
 
     use GatewayAwareTrait;
 
@@ -45,6 +46,8 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
     public function __construct(Client $client)
     {
         $this->client = $client;
+        $classmethods = get_class_methods($client);
+
         ///$this->openPayUBridge = $openPayUBridge;
         ///$this->openPayUBridge->testvar = "OLIVER TESTING";
     }
@@ -65,6 +68,12 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
         $log->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::WARNING));        
         $log->warning('v 1.1 CaptureAction execute has been run, called by: ' . $class . ', func: '. $function);
         $log->warning('CaptureAction request = ' . gettype($request) . " " . get_class($request));
+        
+        foreach ($this->classmethods as $method_name) {
+            $log->warning($method_name);
+        }
+        
+        
         ////
         
 
