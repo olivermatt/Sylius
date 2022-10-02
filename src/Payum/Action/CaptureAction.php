@@ -39,13 +39,14 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
 
     use GatewayAwareTrait;
 
-   //// public function __construct(Client $client)
-    
-   function __construct(ModenaBridgeInterface $openPayUBridge)
+    ///function __construct(ModenaBridgeInterface $openPayUBridge);
+
+ 
+    public function __construct(Client $client)
     {
-        ///$this->client = $client;
-        $this->openPayUBridge = $openPayUBridge;
-        $this->openPayUBridge->testvar = "OLIVER TESTING";
+        $this->client = $client;
+        ///$this->openPayUBridge = $openPayUBridge;
+        ///$this->openPayUBridge->testvar = "OLIVER TESTING";
     }
 
 
