@@ -53,9 +53,11 @@ final class StatusAction implements ActionInterface
         $log->warning('StatusAction execute has been run, called by: ' . $class . ', func: '. $function);
         $log->warning('Status in Statusaction ' . $request->getValue());
        
-       
-        ////
 
+        if($this->input->mvars == "DONE")
+        {
+            $request->markCaptured();
+        }
 
         /*
         if (!isset($model['statusModena'])) {

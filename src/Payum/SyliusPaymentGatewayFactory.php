@@ -25,11 +25,8 @@ final class SyliusPaymentGatewayFactory extends GatewayFactory
         $log->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::WARNING));        
         $log->warning('SyliusPaymentGatewayFactory populateconfig has been run, called by: ' . $class);
         ///$log->warning('SyliusPaymentGatewayFactory config: ' . implode(",", $config));
-
-        
-
+       
         $i = new ModenaVars();
-        $i->mvars = "JULIUS CEASAR";
 
         $config->defaults([
             'payum.factory_name' => 'sylius_payment',

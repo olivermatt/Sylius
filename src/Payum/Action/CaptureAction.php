@@ -48,7 +48,6 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
         $this->client = $client;
         ///$classmethods = get_class_methods($client);
 
-        $this->client->mvars = "JAMES BOND";
         ///$this->openPayUBridge = $openPayUBridge;
         ///$this->openPayUBridge->testvar = "OLIVER TESTING";
     }
@@ -94,6 +93,10 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
             $this->gateway->execute($status = new GetHumanStatus($token));
             
             $log->warning('CaptureAction has marked the model as done');
+
+
+            $this->client->mvars = "DONE";
+
             $status->markCaptured();
 
             $log->warning('CaptureAction status value ' . $status->getValue());
