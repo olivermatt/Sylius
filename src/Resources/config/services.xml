@@ -25,9 +25,10 @@
     </service>
 
     
-        <service id="acme.payu_plugin.bridge.open_payu" class="Acme\SyliusPayUPlugin\Bridge\ModenaBridge">
-     <argument type="service" id="sylius.http_client" />
-             </service>
+    <service id="acme.payu_plugin.bridge.open_payu" class="Acme\SyliusPayUPlugin\Bridge\ModenaBridge">
+         <argument type="service" id="sylius.http_client" />
+    </service>
+
 
 <!--
 

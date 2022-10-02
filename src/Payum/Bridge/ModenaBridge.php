@@ -18,6 +18,7 @@ final class ModenaBridge implements ModenaBridgeInterface
 
     private $calldone;
 
+    public $testvar;
 
     public function __construct(string $cacheDir = null)
     {
@@ -45,6 +46,14 @@ final class ModenaBridge implements ModenaBridgeInterface
         OpenPayU_Configuration::setOauthTokenCache(new OauthCacheFile($this->cacheDir));
         */
     }
+    public function create(array $order): ?OpenPayU_Result
+    {
+        /** @var OpenPayU_Result|null $result */
+        $result = OpenPayU_Order::create($order);
+
+        return $result;
+    }
+
 
     public function getDone()
     {

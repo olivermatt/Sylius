@@ -22,7 +22,7 @@ use Payum\Core\Bridge\Spl\ArrayObject;
 use Payum\Core\Request\GetHttpRequest;
 use Payum\Core\Request\RenderTemplate;
 use Payum\Core\Request\GetHumanStatus;
-
+use Acme\SyliusExamplePlugin\Payum\Bridge\ModenaBridgeInterface;
 
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
@@ -35,11 +35,17 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
     /** @var SyliusApi */
     private $api;
 
+    private $openPayUBridge;
+
     use GatewayAwareTrait;
 
-    public function __construct(Client $client)
+   //// public function __construct(Client $client)
+    
+   function __construct(ModenaBridgeInterface $openPayUBridge)
     {
-        $this->client = $client;
+        ///$this->client = $client;
+        $this->openPayUBridge = $openPayUBridge;
+        $this->openPayUBridge->testvar = "OLIVER TESTING";
     }
 
 
@@ -56,7 +62,7 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
         $function = $trace[1]['function'];
         $log = new Logger('Modena Log');
         $log->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::WARNING));        
-        $log->warning('v 1.0 CaptureAction execute has been run, called by: ' . $class . ', func: '. $function);
+        $log->warning('v 1.1 CaptureAction execute has been run, called by: ' . $class . ', func: '. $function);
         $log->warning('CaptureAction request = ' . gettype($request) . " " . get_class($request));
         ////
         

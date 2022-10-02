@@ -11,12 +11,22 @@ use Payum\Core\Bridge\Spl\ArrayObject;
 use Payum\Core\Model\ModelAwareInterface;
 use Sylius\Component\Core\Model\PaymentInterface as SyliusPaymentInterface;
 use Payum\Core\Request\GetHumanStatus;
+use Acme\SyliusExamplePlugin\Payum\Bridge\ModenaBridgeInterface;
 
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 
 final class StatusAction implements ActionInterface
 {
+
+    private $openPayUBridge;
+
+    /** @param OpenPayUBridgeInterface $openPayUBridge */
+    public function __construct(ModenaBridgeInterface $openPayUBridge)
+    {
+        $this->openPayUBridge = $openPayUBridge;
+    }
+
 
     /** @var ModenaBridgeInterface */
     private $bridge;
@@ -29,7 +39,7 @@ final class StatusAction implements ActionInterface
 
         $log = new Logger('Modena Log');
         $log->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::WARNING));
-
+        $log->warning('StatusAction testvar: ' .$this->openPayUBridge->testvar);
         $log->warning('StatusAction request type:' . gettype($request) . ", class instance: " . get_class($request));
 
 
