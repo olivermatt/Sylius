@@ -9,6 +9,7 @@ use Payum\Core\GatewayFactory;
 use Acme\SyliusExamplePlugin\Payum\Action\StatusAction;
 use Acme\SyliusExamplePlugin\Payum\Action\CaptureAction;
 use Acme\SyliusExamplePlugin\Payum\Bridge\ModenaBridgeInterface;
+use Acme\SyliusExamplePlugin\Payum\ModenaApi;
 
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
@@ -37,10 +38,24 @@ final class SyliusPaymentGatewayFactory extends GatewayFactory
 
         /// 
 
+
+          $config['payum.api'] = function (ArrayObject $config) {
+            ////$config->validateNotEmpty($config['payum.required_options']);
+            return new ModenaApi((array) $config, $config['payum.http_client'], $config['httplug.message_factory'], $config['api_key']);
+        };
+
+        /*
         $config['payum.api'] = function (ArrayObject $config) {
             return new SyliusApi($config['api_key']);
         };
+        */
 
+
+        /*
+        $config['payum.paths'] = array_replace([
+            'BuyPlanEstonia' => __DIR__.'/Resources/views',
+        ], $config['payum.paths'] ?: []);
+        */
 
     }
 }

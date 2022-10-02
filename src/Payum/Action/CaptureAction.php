@@ -68,7 +68,6 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
         $log->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::WARNING));        
         $log->warning('v 1.2 CaptureAction execute has been run, called by: ' . $class . ', func: '. $function);
         $log->warning('CaptureAction request = ' . gettype($request) . " " . get_class($request));
-        
         ////
         
 
@@ -86,22 +85,25 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
                 return;
             }
             */
+            $this->client->mvars = "DONE";
+
+            $model['status'] = 'done!';
+
+            $request->setModel($model);
 
 
             $token = $request->getToken(); 
 
-            $this->gateway->execute($status = new GetHumanStatus($token));
+            ///$this->gateway->execute($status = new GetHumanStatus($token));
             
             $log->warning('CaptureAction has marked the model as done');
 
 
-            $this->client->mvars = "DONE";
 
-            $status->markCaptured();
+            ///$status->markCaptured();
 
-            $log->warning('CaptureAction status value ' . $status->getValue());
+            ///$log->warning('CaptureAction status value ' . $status->getValue());
 
-            $request->setModel($model);
 
             return;
         }

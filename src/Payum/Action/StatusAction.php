@@ -42,7 +42,19 @@ final class StatusAction implements ActionInterface
         $log = new Logger('Modena Log');
         $log->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::WARNING));
         $log->warning('StatusAction testvar: ' .$this->input->mvars);
+        $log->warning('StatusAction model status: ' . $model['status']);
+
         $log->warning('StatusAction request type:' . gettype($request) . ", class instance: " . get_class($request));
+
+        if($model==null)
+        {
+            $log->warning('StatusAction model is null');
+        }
+        else
+        {
+            $log->warning('StatusAction model is NOT null');
+        }
+
 
 
         //// Logging ////
