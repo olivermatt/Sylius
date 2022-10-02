@@ -87,6 +87,7 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
                 return;
             }
             */
+            $log->warning('CaptureAction has marked the model as done');
             $this->client->mvars = "DONE";
             $model['status'] = 'DONE';
             return;
