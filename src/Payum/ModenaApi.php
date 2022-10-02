@@ -52,6 +52,7 @@ final class ModenaApi
 
     protected function doRequest($method, array $fields)
     {
+        /*
         $log = new Logger('Modena Log');
         $log->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::WARNING));        
         $log->warning('Modena API doRequest called');
@@ -67,6 +68,7 @@ final class ModenaApi
         }
 
         return $response;
+        */
     }
 
     protected function getApiEndpoint()

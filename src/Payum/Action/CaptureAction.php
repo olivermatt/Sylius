@@ -42,16 +42,11 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
 
     use GatewayAwareTrait;
 
-    ///function __construct(ModenaBridgeInterface $openPayUBridge);
-
  
     public function __construct($client)
     {
         $this->client = $client;
-        ///$classmethods = get_class_methods($client);
 
-        ///$this->openPayUBridge = $openPayUBridge;
-        ///$this->openPayUBridge->testvar = "OLIVER TESTING";
     }
 
 
@@ -93,28 +88,11 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
             $log->warning('CaptureAction model token ' . $token->getHash());
 
             $log->warning('CaptureAction has marked the model as done');
-            $this->client->mvars = "DONE";
+           
             $model['status'] = 'DONE';
             return;
 
-
-            ///$request->setModel($model);
-
-
-            //// Request -> Generic -> Model
-
-            ///$this->gateway->execute($status = new GetHumanStatus($token));
-            
-            $log->warning('CaptureAction has marked the model as done');
-
-
-
-            ///$status->markCaptured();
-
-            ///$log->warning('CaptureAction status value ' . $status->getValue());
-
-
-            return;
+          
         }
 
 
