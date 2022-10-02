@@ -95,9 +95,10 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
             $log->warning('CaptureAction has marked the model as done');
             $this->client->mvars = "DONE";
             $model['status'] = 'DONE';
-            $request->setModel($model);
             return;
 
+
+            ///$request->setModel($model);
 
 
             //// Request -> Generic -> Model
@@ -199,12 +200,20 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
 
         */
     }
-
+    /*
     public function supports($request): bool
     {
         return
             $request instanceof Capture &&
             $request->getModel() instanceof SyliusPaymentInterface
+        ;
+    }
+    */
+    public function supports($request)
+    {
+        return
+            $request instanceof Capture &&
+            $request->getModel() instanceof \ArrayAccess
         ;
     }
 

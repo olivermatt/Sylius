@@ -48,7 +48,12 @@ final class StatusAction implements ActionInterface
         $log->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::WARNING));
 
         $log->warning('StatusAction request '. ", class instance: " . get_class($request));
-        $log->warning('Statusaction model token ' . $token->getHash());
+        
+        if($token != null)
+        {
+            $log->warning('Statusaction model token ' . $token->getHash());
+        }
+        
         $log->warning('StatusAction model:' . gettype($model) . " " . get_class($model));
         $log->warning('StatusAction Constructor input: ' .$this->input2);
         $log->warning('StatusAction model status value: ' . $model['status']);
@@ -133,6 +138,13 @@ final class StatusAction implements ActionInterface
 
     }
 
+    public function supports($request)
+    {
+        return $request instanceof GetStatusInterface && $request->getModel() instanceof \ArrayAccess;
+    }
+
+
+    /*
     public function supports($request): bool
     {
         return
@@ -140,4 +152,5 @@ final class StatusAction implements ActionInterface
             $request->getFirstModel() instanceof SyliusPaymentInterface
         ;
     }
+    */
 }
