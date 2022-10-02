@@ -66,7 +66,7 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
         $function = $trace[1]['function'];
         $log = new Logger('Modena Log');
         $log->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::WARNING));        
-        $log->warning('v 1.1 CaptureAction execute has been run, called by: ' . $class . ', func: '. $function);
+        $log->warning('v 1.2 CaptureAction execute has been run, called by: ' . $class . ', func: '. $function);
         $log->warning('CaptureAction request = ' . gettype($request) . " " . get_class($request));
         
         ////
