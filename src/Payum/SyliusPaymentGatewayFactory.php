@@ -7,6 +7,7 @@ namespace Acme\SyliusExamplePlugin\Payum;
 use Payum\Core\Bridge\Spl\ArrayObject;
 use Payum\Core\GatewayFactory;
 use Acme\SyliusExamplePlugin\Payum\Action\StatusAction;
+use Acme\SyliusExamplePlugin\Payum\Action\CaptureAction;
 use Acme\SyliusExamplePlugin\Payum\Bridge\ModenaBridgeInterface;
 
 use Monolog\Logger;
