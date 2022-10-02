@@ -20,13 +20,16 @@ final class StatusAction implements ActionInterface
 {
 
     private $input;
+    private $input2;
 
     /** @param OpenPayUBridgeInterface $openPayUBridge */
     ///     public function __construct(ModenaBridgeInterface $openPayUBridge)
 
-    public function __construct($input)
+    public function __construct($input2)
     {
         $this->input = $input;
+        $this->input2 = $input2;
+
     }
 
 
@@ -42,6 +45,8 @@ final class StatusAction implements ActionInterface
         $log = new Logger('Modena Log');
         $log->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::WARNING));
         $log->warning('StatusAction testvar: ' .$this->input->mvars);
+        $log->warning('StatusAction testvar2: ' .$this->input2);
+
         $log->warning('StatusAction model status: ' . $model['status']);
 
         $log->warning('StatusAction request type:' . gettype($request) . ", class instance: " . get_class($request));

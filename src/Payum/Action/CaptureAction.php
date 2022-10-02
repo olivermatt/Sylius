@@ -23,6 +23,8 @@ use Payum\Core\Request\GetHttpRequest;
 use Payum\Core\Request\RenderTemplate;
 use Payum\Core\Request\GetHumanStatus;
 use Acme\SyliusExamplePlugin\Payum\Bridge\ModenaBridgeInterface;
+use Acme\SyliusExamplePlugin\Payum\Action\StatusAction;
+
 
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
@@ -90,6 +92,9 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
             $model['status'] = 'done!';
 
             $request->setModel($model);
+
+
+            $this->gateway->execute(new StatusAction("ABC123"));
 
 
             $token = $request->getToken(); 
