@@ -19,12 +19,14 @@ use Monolog\Handler\StreamHandler;
 final class StatusAction implements ActionInterface
 {
 
-    private $openPayUBridge;
+    private $input;
 
     /** @param OpenPayUBridgeInterface $openPayUBridge */
-    public function __construct(ModenaBridgeInterface $openPayUBridge)
+    ///     public function __construct(ModenaBridgeInterface $openPayUBridge)
+
+    public function __construct($input)
     {
-        $this->openPayUBridge = $openPayUBridge;
+        $this->input = $input;
     }
 
 
@@ -39,7 +41,7 @@ final class StatusAction implements ActionInterface
 
         $log = new Logger('Modena Log');
         $log->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::WARNING));
-        $log->warning('StatusAction testvar: ' .$this->openPayUBridge->testvar);
+        $log->warning('StatusAction testvar: ' .$this->input->mvars);
         $log->warning('StatusAction request type:' . gettype($request) . ", class instance: " . get_class($request));
 
 
