@@ -25,10 +25,10 @@ final class StatusAction implements ActionInterface
     /** @param OpenPayUBridgeInterface $openPayUBridge */
     ///     public function __construct(ModenaBridgeInterface $openPayUBridge)
 
-    public function __construct($input2)
+    public function __construct()
     {
         ///$this->input = $input;
-        $this->input2 = $input2;
+        $this->input2 = "TERE";
 
     }
 
