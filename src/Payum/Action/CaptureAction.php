@@ -89,6 +89,9 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
                 return;
             }
             */
+            $token = $request->getToken(); 
+           $log->warning('CaptureAction model token ' . $token->getHash());
+
             $log->warning('CaptureAction has marked the model as done');
             $this->client->mvars = "DONE";
             $model['status'] = 'DONE';
@@ -96,7 +99,6 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
             return;
 
 
-            $token = $request->getToken(); 
 
             //// Request -> Generic -> Model
 
