@@ -88,14 +88,10 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
             }
             */
             $this->client->mvars = "DONE";
-
-            $model['status'] = 'done!';
+            $model['status'] = 'DONE';
+            return;
 
             $request->setModel($model);
-
-
-            $this->gateway->execute(new StatusAction("DONE"));
-
 
             $token = $request->getToken(); 
 
