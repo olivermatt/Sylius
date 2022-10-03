@@ -44,7 +44,7 @@ final class SyliusPaymentGatewayFactory extends GatewayFactory
 
           $config['payum.api'] = function (ArrayObject $config) {
             ////$config->validateNotEmpty($config['payum.required_options']);
-            return new ModenaApi((array) $config, $config['payum.http_client'], $config['httplug.message_factory'], $config['api_key']);
+            return new ModenaApi((array) $config, $config['payum.http_client'], $config['httplug.message_factory'], "AVC123");
         };
 
         /*
