@@ -20,8 +20,8 @@
         <tag name="payum.action" factory="modena_payment" alias="payum.action.capture" />
     </service>
 
-        <service id="Acme\SyliusExamplePlugin\Payum\Action\CaptureAction" public="true">
-        <argument type="service" id="sylius.http_cliente"/>
+    <service id="Acme\SyliusExamplePlugin\Payum\Action\CaptureAction" public="true">
+        <argument type="service" id="sylius.http_client"/>
         <tag name="payum.convertpayment" factory="modena_payment" alias="payum.action.convertpayment" />
     </service>
 
