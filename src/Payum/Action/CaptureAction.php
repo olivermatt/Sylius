@@ -62,6 +62,7 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
         RequestNotSupportedException::assertSupports($this, $request);
     
         $model = ArrayObject::ensureArrayObject($request->getModel());
+        $model2 = $request->getModel();
 
         //// Logging ////
         $trace = debug_backtrace();
@@ -72,6 +73,8 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
         $log->warning('v 1.2 CaptureAction execute has been run, called by: ' . $class . ', func: '. $function);
         $log->warning('CaptureAction request = ' . gettype($request) . " " . get_class($request));
         $log->warning('CaptureAction model = ' . gettype($model) . " " . get_class($model));
+        $log->warning('CaptureAction model = ' . gettype($model2) . " " . get_class($model2));
+
         ////$log->warning('CaptureAction input data ' . $this->inputData);
 
         ////
