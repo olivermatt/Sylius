@@ -25,7 +25,7 @@ use Payum\Core\Request\RenderTemplate;
 use Payum\Core\Request\GetHumanStatus;
 use Acme\SyliusExamplePlugin\Payum\Bridge\ModenaBridgeInterface;
 use Acme\SyliusExamplePlugin\Payum\Action\StatusAction;
-
+use Acme\SyliusExamplePlugin\Payum\ModenaApi;
 
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
@@ -34,8 +34,9 @@ use Monolog\Handler\StreamHandler;
 final class CaptureAction implements ActionInterface, GatewayAwareInterface, ApiAwareInterface
 {
     private $client;
+
     /** @var SyliusApi */
-    ///private $api;
+    private $api;
 
     private $openPayUBridge;
     private $inputData;
@@ -221,8 +222,8 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface, Api
     
     public function setApi($api): void
     {
-        if (!$api instanceof SyliusApi) {
-            throw new UnsupportedApiException('Not supported. Expected an instance of ' . SyliusApi::class);
+        if (!$api instanceof ModenaApi) {
+            throw new UnsupportedApiException('Not supported. Expected an instance of ' . ModenaApi::class);
         }
 
         $this->api = $api;

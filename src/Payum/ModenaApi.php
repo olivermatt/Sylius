@@ -29,9 +29,6 @@ final class ModenaApi
      */
     protected $options = [];
 
-
-
-
     /** @var string */
     private $apiKey;
 
