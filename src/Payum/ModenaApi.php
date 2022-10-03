@@ -27,10 +27,12 @@ final class ModenaApi
     /**
      * @var array
      */
-    protected $options = [];
+    public $options = [];
 
     /** @var string */
     private $apiKey;
+
+    public $testvar;
 
     /*
     public function __construct(string $apiKey)
@@ -41,6 +43,7 @@ final class ModenaApi
 
     public function __construct(array $options, HttpClientInterface $client, MessageFactory $messageFactory, string $apiKey)
     {
+        $this->testvar = $apiKey;
         $this->options = $options;
         $this->client = $client;
         $this->messageFactory = $messageFactory;
