@@ -21,7 +21,7 @@ final class SyliusGatewayConfigurationType extends AbstractType
                     'modena.payu_plugin.secure' => 'LIVE',
                     'modena.payu_plugin.sandbox' => 'DEV'
                 ],
-                'label' => 'modena.payu_plugin.environment',
+                'label' => 'Modena environment',
             ]
             );
 
