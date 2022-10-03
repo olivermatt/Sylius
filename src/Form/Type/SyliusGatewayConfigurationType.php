@@ -12,7 +12,42 @@ final class SyliusGatewayConfigurationType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder->add('api_key', TextType::class);
+        $builder
+        ->add(
+            'environment',
+            ChoiceType::class,
+            [
+                'choices' => [
+                    'modena.payu_plugin.secure' => 'LIVE',
+                    'modena.payu_plugin.sandbox' => 'DEV'
+                ],
+                'label' => 'modena.payu_plugin.environment',
+            ]
+            );
+
+            $builder
+            ->add(
+                'product',
+                ChoiceType::class,
+                [
+                    'choices' => [
+                        'modena.payu_plugin.swedbank' => 'SWEDBANK',
+                        'modena.payu_plugin.lhv' => 'LHV',
+                        'modena.payu_plugin.seb' => 'SEB',
+                        'modena.payu_plugin.luminor' => 'LUMINOR',
+                        'modena.payu_plugin.coop' => 'COOP',
+                        'modena.payu_plugin.citadele' => 'CITADELE',
+                        'modena.payu_plugin.paylater' => 'Pay-Later',
+                        'modena.payu_plugin.hirepurchase' => 'Hire-Purchase'
+
+                    ],
+                    'label' => 'modena.payu_plugin.product',
+                ]
+                );
+
+            $builder->add('client_id', TextType::class);
+
+            $builder->add('client_secret', TextType::class);
     }
 }
 

@@ -43,9 +43,8 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
     use GatewayAwareTrait;
 
  
-    public function __construct($client)
+    public function __construct($client_id, $client_secret, $product)
     {
-        $this->client = $client;
 
     }
 

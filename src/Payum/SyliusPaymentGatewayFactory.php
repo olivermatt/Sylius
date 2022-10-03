@@ -25,14 +25,16 @@ final class SyliusPaymentGatewayFactory extends GatewayFactory
         $log = new Logger('Modena Log');
         $log->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::WARNING));        
         $log->warning('SyliusPaymentGatewayFactory populateconfig has been run, called by: ' . $class);
-        ///$log->warning('SyliusPaymentGatewayFactory config: ' . implode(",", $config));
        
-        $i = new ModenaVars();
+    
+        $client_id = "CLIENTID";
+        $client_secret = "CLIENTSECRET";
+        $product = "PRODUCT";
 
         $config->defaults([
             'payum.factory_name' => 'sylius_payment',
             'payum.factory_title' => 'Sylius Payment',
-            'payum.action.capture' => new CaptureAction($i),
+            'payum.action.capture' => new CaptureAction($client_id, $client_secret, $product),
             'payum.action.status' => new StatusAction(),
         ]);
 
@@ -60,7 +62,3 @@ final class SyliusPaymentGatewayFactory extends GatewayFactory
     }
 }
 
-class ModenaVars
-{
-    public $mvars;
-}
