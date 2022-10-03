@@ -21,7 +21,7 @@
     </service>
 
         <service id="Acme\SyliusExamplePlugin\Payum\Action\CaptureAction" public="true">
-        <argument type="service"/>
+        <argument type="service" id="sylius.http_client"/>
         <tag name="payum.convertpayment" factory="modena_payment" alias="payum.action.convertpayment" />
     </service>
 
