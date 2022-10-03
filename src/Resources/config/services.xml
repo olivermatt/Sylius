@@ -5,46 +5,28 @@
 
     <defaults public="true" autoconfigure="false" autowire="false"/>
         
-    <service id="app.sylius_payment" class="Payum\Core\Bridge\Symfony\Builder\GatewayFactoryBuilder">
-        <argument>Acme\SyliusExamplePlugin\Payum\SyliusPaymentGatewayFactory</argument>
-        <tag name="payum.gateway_factory_builder" factory="sylius_payment" />
+    <service id="app.modena_payment" class="Payum\Core\Bridge\Symfony\Builder\GatewayFactoryBuilder">
+        <argument>Acme\SyliusExamplePlugin\Payum\ModenaPaymentGatewayFactory</argument>
+        <tag name="payum.gateway_factory_builder" factory="modena_payment" />
     </service>
 
     <service id="Acme\SyliusExamplePlugin\Form\Type\SyliusGatewayConfigurationType">
-        <tag name="sylius.gateway_configuration_type" type="sylius_payment" label="Sylius Payment" />
+        <tag name="sylius.gateway_configuration_type" type="modena_payment" label="Modena" />
         <tag name="form.type" />
     </service>
         
     <service id="Acme\SyliusExamplePlugin\Payum\Action\CaptureAction" public="true">
         <argument type="service" id="sylius.http_client" />
-        <tag name="payum.action" factory="sylius_payment" alias="payum.action.capture" />
+        <tag name="payum.action" factory="modena_payment" alias="payum.action.capture" />
     </service>
 
     <service id="acme.payu_plugin.action.convert_payment" class="Acme\SyliusExamplePlugin\Payum\Action\ConvertPaymentAction"  public="true">
-        <tag name="payum.action" factory="sylius_payment" alias="payum.action.convert_payment"/>
+        <tag name="payum.action" factory="modena_payment" alias="payum.action.convert_payment"/>
     </service>
                                                           
     <service id="acme.payu_plugin.bridge.open_payu" class="Acme\SyliusExamplePlugin\Payum\Bridge\ModenaBridge">
         <argument>%kernel.project_dir%/var/cache/%env(APP_ENV)%</argument>
     </service>
 
-
-<!--
-
-        <service id="Acme\SyliusExamplePlugin\Payum\Action\NotifyAction" class="Acme\SyliusExamplePlugin\Payum\Action\NotifyAction">
-            <argument type="service" id="sylius.http_client"/>
-            <tag name="payum.action" factory="sylius_payment" alias="payum.action.notify"/>
-        </service>
-
-<service id="Acme\SyliusExamplePlugin\Payum\Action\ConvertPaymentAction" 
-                class="Acme\SyliusExamplePlugin\Payum\Action\ConvertPaymentAction">
-     <tag name="payum.action" factory="sylius_payment" alias="payum.action.convert_payment" />
-</service>
-
-
-
-
-
-        Put your services here -->
     </services>
 </container>

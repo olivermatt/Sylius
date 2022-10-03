@@ -15,7 +15,7 @@ use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 
 
-final class SyliusPaymentGatewayFactory extends GatewayFactory
+final class ModenaPaymentGatewayFactory extends GatewayFactory
 {
     protected function populateConfig(ArrayObject $config): void
     {
@@ -24,7 +24,7 @@ final class SyliusPaymentGatewayFactory extends GatewayFactory
         $class = $trace[1]['class'];
         $log = new Logger('Modena Log');
         $log->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::WARNING));        
-        $log->warning('SyliusPaymentGatewayFactory populateconfig has been run, called by: ' . $class);
+        $log->warning('ModenaPaymentGatewayFactory populateconfig has been run, called by: ' . $class);
        
     
         $client_id = "CLIENTID";
@@ -32,7 +32,7 @@ final class SyliusPaymentGatewayFactory extends GatewayFactory
         $product = "PRODUCT";
 
         $config->defaults([
-            'payum.factory_name' => 'sylius_payment',
+            'payum.factory_name' => 'modena_payment',
             'payum.factory_title' => 'Modena Payment',
             'payum.action.capture' => new CaptureAction($client_secret),
             'payum.action.status' => new StatusAction(),
