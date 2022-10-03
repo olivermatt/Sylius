@@ -28,13 +28,13 @@ final class SyliusPaymentGatewayFactory extends GatewayFactory
        
     
         $client_id = "CLIENTID";
-        $client_secret = "CLIENTSECRET";
+        $client_secret = "MODENACLIENTSECRET";
         $product = "PRODUCT";
 
         $config->defaults([
             'payum.factory_name' => 'sylius_payment',
             'payum.factory_title' => 'Modena Payment',
-            'payum.action.capture' => new CaptureAction(),
+            'payum.action.capture' => new CaptureAction($client_secret),
             'payum.action.status' => new StatusAction(),
         ]);
 

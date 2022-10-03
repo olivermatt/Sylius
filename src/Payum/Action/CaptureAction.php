@@ -38,14 +38,21 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
     private $api;
 
     private $openPayUBridge;
-    private $classmethods;
+    private $inputData;
 
     use GatewayAwareTrait;
 
  
-    public function __construct($client)
+    public function __construct($inputData = null)
     {
-
+        if($inputData!=null)
+        {
+            $this->inputData = $inputData;
+        }
+        else
+        {
+            $this->inputData = "---";
+        }
     }
 
 
@@ -65,6 +72,7 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
         $log->warning('v 1.2 CaptureAction execute has been run, called by: ' . $class . ', func: '. $function);
         $log->warning('CaptureAction request = ' . gettype($request) . " " . get_class($request));
         $log->warning('CaptureAction model = ' . gettype($model) . " " . get_class($model));
+        $log->warning('CaptureAction input data ' . $this->inputData);
 
         ////
         
