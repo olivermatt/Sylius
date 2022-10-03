@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Acme\SyliusExamplePlugin\Payum\Action;
 
-use Acme\SyliusExamplePlugin\Payum\SyliusApi;
+
 use Payum\Core\ApiAwareInterface;
 use Payum\Core\ApiAwareTrait;
 use GuzzleHttp\Client;
@@ -25,6 +25,7 @@ use Payum\Core\Request\RenderTemplate;
 use Payum\Core\Request\GetHumanStatus;
 use Acme\SyliusExamplePlugin\Payum\Action\StatusAction;
 use Acme\SyliusExamplePlugin\Payum\ModenaApi;
+use Acme\SyliusExamplePlugin\Payum\Lib\ModenaPaymentManager;
 
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
@@ -77,23 +78,6 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface, Api
          
         $log->warning('CaptureAction API config' . $this->api->options['payum.factory_name']);
         $log->warning('CaptureAction API ADMIn config' . $this->api->options['environment']);
-
-
-
-
-
-        ////$log->warning('CaptureAction input data ' . $this->inputData);
-        /*
-
-            $this->gateway->execute(new UpdateOrder(array(
-                'location' => $details['location'],
-                'status' => Constants::STATUS_CREATED,
-                'merchant_reference' => array(
-                    'orderid1' => $details['merchant_reference']['orderid1'],
-                ),
-            )));
-            */
-        ////
         
 
         //// Receive Callback or Customer Return
@@ -125,16 +109,16 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface, Api
         /////////////////////////////////////////////
         ////////// Create a New Request /////////////
         $token = $request->getToken();
-        $url = $this->tokenresolver($token);
+        $return_url = $this->tokenresolver($token);
         
         $gwname = $token->getGatewayName();
 
-        $log->warning('Return URL: ' . $url .'?done=1, token GW: ' . $gwname);
+        $log->warning('Return URL: ' . $return_url .'?done=1, token GW: ' . $gwname);
               
         ////header('Location: https://webhook.site/8c83605f-3347-4ad0-9b50-778dfc65dd89');
 
         
-        $this->gateway->execute(new TestB($url));
+        $this->gateway->execute(new ModenaPaymentManager($return_url));
 
 
 
@@ -216,8 +200,7 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface, Api
     public function supports($request)
     {
         return
-            $request instanceof Capture && 
-            $request->getModel() instanceof \ArrayAccess
+            $request instanceof Capture && $request->getModel() instanceof \ArrayAccess
         ;
     }
 

@@ -20,6 +20,9 @@
         <tag name="payum.action" factory="modena_payment" alias="payum.action.capture" />
     </service>
 
+     <service id="app.convert.modena_payment"
+                 class="Acme\SyliusExamplePlugin\Payum\Action\ConvertPaymentAction" public="true">
+        <tag name="payum.convertaction" factory="modena_payment"/>
 
 
     </services>
