@@ -43,7 +43,7 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
     use GatewayAwareTrait;
 
  
-    public function __construct($client_id, $client_secret, $product)
+    public function __construct($client)
     {
 
     }
@@ -60,7 +60,7 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
         $trace = debug_backtrace();
         $class = $trace[1]['class'];
         $function = $trace[1]['function'];
-        $log = new Logger('Modena Log');
+        $log = new Logger('Modena Log2');
         $log->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::WARNING));        
         $log->warning('v 1.2 CaptureAction execute has been run, called by: ' . $class . ', func: '. $function);
         $log->warning('CaptureAction request = ' . gettype($request) . " " . get_class($request));
@@ -189,7 +189,7 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
     public function supports($request)
     {
         return
-            $request instanceof Capture &&
+            $request instanceof Capture && 
             $request->getModel() instanceof \ArrayAccess
         ;
     }

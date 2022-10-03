@@ -34,7 +34,7 @@ final class SyliusPaymentGatewayFactory extends GatewayFactory
         $config->defaults([
             'payum.factory_name' => 'sylius_payment',
             'payum.factory_title' => 'Modena Payment',
-            'payum.action.capture' => new CaptureAction($client_id, $client_secret, $product),
+            'payum.action.capture' => new CaptureAction(),
             'payum.action.status' => new StatusAction(),
         ]);
 
