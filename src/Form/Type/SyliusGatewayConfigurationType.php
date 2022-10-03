@@ -19,8 +19,8 @@ final class SyliusGatewayConfigurationType extends AbstractType
             ChoiceType::class,
             [
                 'choices' => [
-                    'modena.payu_plugin.secure' => 'LIVE',
-                    'modena.payu_plugin.sandbox' => 'DEV'
+                    'Live' => 'LIVE',
+                    'Dev' => 'DEV'
                 ],
                 'label' => 'Modena environment',
             ]
@@ -32,22 +32,22 @@ final class SyliusGatewayConfigurationType extends AbstractType
                 ChoiceType::class,
                 [
                     'choices' => [
-                        'modena.payu_plugin.swedbank' => 'SWEDBANK',
-                        'modena.payu_plugin.lhv' => 'LHV',
-                        'modena.payu_plugin.seb' => 'SEB',
-                        'modena.payu_plugin.luminor' => 'LUMINOR',
-                        'modena.payu_plugin.coop' => 'COOP',
-                        'modena.payu_plugin.citadele' => 'CITADELE',
-                        'modena.payu_plugin.paylater' => 'Pay-Later',
-                        'modena.payu_plugin.hirepurchase' => 'Hire-Purchase'
+                        'Swedbank' => 'SWEDBANK',
+                        'LHV' => 'LHV',
+                        'SEB' => 'SEB',
+                        'Luminor' => 'LUMINOR',
+                        'Cooop' => 'COOP',
+                        'Citadele' => 'CITADELE',
+                        'Pay-later' => 'PAY-LATER',
+                        'Hire-Purchase' => 'HIRE-PURCHASE'
 
                     ],
-                    'label' => 'modena.payu_plugin.product',
+                    'label' => 'Modena payment products',
                 ]
                 );
 
             $builder->add('client_id', TextType::class, ['label' => 'Client Id']);
-            $builder->add('client_id', TextType::class, ['label' => 'Client secret']);
+            $builder->add('client_secret', TextType::class, ['label' => 'Client secret']);
     }
 }
 
