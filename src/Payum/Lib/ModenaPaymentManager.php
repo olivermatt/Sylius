@@ -21,7 +21,7 @@ class ModenaPaymentManager extends Generic
 
     private function startProcess()
     {                      
-        header('Location: '.$url.'?done=1');
+        header('Location: '.$this->return_url.'?done=1');
 
         /// Execute auth request
         /*

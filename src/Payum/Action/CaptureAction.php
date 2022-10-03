@@ -78,7 +78,14 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface, Api
          
         $log->warning('CaptureAction API config' . $this->api->options['payum.factory_name']);
         $log->warning('CaptureAction API ADMIn config' . $this->api->options['environment']);
-        
+
+        $order = $request->getFirstModel()->getOrder();
+        $payUdata['description'] = $order->getNumber();
+        $payUdata['currencyCode'] = $order->getCurrencyCode();
+        $payUdata['totalAmount'] = $order->getTotal();
+
+        $log->warning('CaptureAction Order total' . $order->getTotal());
+
 
         //// Receive Callback or Customer Return
         /// Get the GET request 
