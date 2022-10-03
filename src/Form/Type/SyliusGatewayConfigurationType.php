@@ -45,9 +45,8 @@ final class SyliusGatewayConfigurationType extends AbstractType
                 ]
                 );
 
-            $builder->add('client_id', TextType::class);
-
-            $builder->add('client_secret', TextType::class);
+            $builder->add('client_id', TextType::class, ['label' => 'Client Id']);
+            $builder->add('client_id', TextType::class, ['label' => 'Client secret']);
     }
 }
 
