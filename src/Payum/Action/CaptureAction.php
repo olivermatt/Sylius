@@ -5,10 +5,11 @@ declare(strict_types=1);
 namespace Acme\SyliusExamplePlugin\Payum\Action;
 
 use Acme\SyliusExamplePlugin\Payum\SyliusApi;
+use Payum\Core\ApiAwareInterface;
+use Payum\Core\ApiAwareTrait;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use Payum\Core\Action\ActionInterface;
-use Payum\Core\ApiAwareInterface;
 use Payum\Core\Exception\RequestNotSupportedException;
 use Payum\Core\Exception\UnsupportedApiException;
 use Sylius\Component\Core\Model\PaymentInterface as SyliusPaymentInterface;
@@ -30,16 +31,16 @@ use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 
 
-final class CaptureAction implements ActionInterface, GatewayAwareInterface
+final class CaptureAction implements ActionInterface, GatewayAwareInterface, ApiAwareInterface
 {
-    /** @var Client */
     private $client;
     /** @var SyliusApi */
-    private $api;
+    ///private $api;
 
     private $openPayUBridge;
     private $inputData;
 
+    use ApiAwareTrait;
     use GatewayAwareTrait;
 
  
@@ -62,7 +63,10 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
         RequestNotSupportedException::assertSupports($this, $request);
     
         $model = ArrayObject::ensureArrayObject($request->getModel());
-        $model2 = $request->getModel();
+
+
+        $payment = $request->getSource();
+        $details = ArrayObject::ensureArrayObject($payment->getDetails());
 
         //// Logging ////
         $trace = debug_backtrace();
@@ -73,10 +77,19 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface
         $log->warning('v 1.2 CaptureAction execute has been run, called by: ' . $class . ', func: '. $function);
         $log->warning('CaptureAction request = ' . gettype($request) . " " . get_class($request));
         $log->warning('CaptureAction model = ' . gettype($model) . " " . get_class($model));
-        $log->warning('CaptureAction model = ' . gettype($model2) . " " . get_class($model2));
+        $log->warning('CaptureAction model = ' . gettype($this->api) . " " . get_class($this->api));
 
         ////$log->warning('CaptureAction input data ' . $this->inputData);
+        /*
 
+            $this->gateway->execute(new UpdateOrder(array(
+                'location' => $details['location'],
+                'status' => Constants::STATUS_CREATED,
+                'merchant_reference' => array(
+                    'orderid1' => $details['merchant_reference']['orderid1'],
+                ),
+            )));
+            */
         ////
         
 
