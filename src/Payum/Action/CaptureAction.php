@@ -41,7 +41,7 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface, Api
     private $openPayUBridge;
     private $inputData;
 
-    use ApiAwareTrait;
+    //use ApiAwareTrait;
     use GatewayAwareTrait;
 
  
