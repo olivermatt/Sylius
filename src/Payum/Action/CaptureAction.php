@@ -65,10 +65,6 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface, Api
     
         $model = ArrayObject::ensureArrayObject($request->getModel());
 
-
-        $payment = $request->getSource();
-        $details = ArrayObject::ensureArrayObject($payment->getDetails());
-
         //// Logging ////
         $trace = debug_backtrace();
         $class = $trace[1]['class'];
