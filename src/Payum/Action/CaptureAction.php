@@ -23,7 +23,6 @@ use Payum\Core\Bridge\Spl\ArrayObject;
 use Payum\Core\Request\GetHttpRequest;
 use Payum\Core\Request\RenderTemplate;
 use Payum\Core\Request\GetHumanStatus;
-use Acme\SyliusExamplePlugin\Payum\Bridge\ModenaBridgeInterface;
 use Acme\SyliusExamplePlugin\Payum\Action\StatusAction;
 use Acme\SyliusExamplePlugin\Payum\ModenaApi;
 
@@ -38,7 +37,6 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface, Api
     /** @var SyliusApi */
     private $api;
 
-    private $openPayUBridge;
     private $inputData;
 
     //use ApiAwareTrait;

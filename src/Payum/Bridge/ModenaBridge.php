@@ -10,10 +10,10 @@ declare(strict_types=1);
 
 namespace Acme\SyliusExamplePlugin\Payum\Bridge;
 
-
+/*
 final class ModenaBridge implements ModenaBridgeInterface
 {
-    /*** @var string|null */
+    
     private $cacheDir;
 
     private $calldone;
@@ -44,11 +44,11 @@ final class ModenaBridge implements ModenaBridgeInterface
         OpenPayU_Configuration::setOauthClientSecret($clientSecret);
 
         OpenPayU_Configuration::setOauthTokenCache(new OauthCacheFile($this->cacheDir));
-        */
+        
     }
     public function create(array $order): ?OpenPayU_Result
     {
-        /** @var OpenPayU_Result|null $result */
+      
         $result = OpenPayU_Order::create($order);
 
         return $result;
@@ -68,4 +68,6 @@ final class ModenaBridge implements ModenaBridgeInterface
         
     }
 
+    
 }
+*/
