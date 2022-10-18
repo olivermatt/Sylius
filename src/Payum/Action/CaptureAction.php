@@ -91,7 +91,7 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface, Api
         $log->warning('CaptureAction Order currency' . $order->getCurrencyCode());
 
         $log->warning('CaptureAction Order Customer email' . $customer->getEmail());
-        $log->warning('CaptureAction Order total' . $customer->getNumber());
+        $log->warning('CaptureAction Order total' . $customer->getPhoneNumber());
 
         $log->warning('CaptureAction Order firstName' . $customer->getFirstName());
         $log->warning('CaptureAction Order lastName' . $customer->getLastName());
