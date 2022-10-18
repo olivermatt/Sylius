@@ -73,18 +73,27 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface, Api
         $log->warning('v 1.2 CaptureAction execute has been run, called by: ' . $class . ', func: '. $function);
         $log->warning('CaptureAction request = ' . gettype($request) . " " . get_class($request));
         $log->warning('CaptureAction model = ' . gettype($model) . " " . get_class($model));
-        $log->warning('CaptureAction model = ' . gettype($this->api) . " " . get_class($this->api));
+        $log->warning('CaptureAction model API = ' . gettype($this->api) . " " . get_class($this->api));
         $log->warning('CaptureAction API var' . $this->api->testvar);
          
         $log->warning('CaptureAction API config' . $this->api->options['payum.factory_name']);
         $log->warning('CaptureAction API ADMIn config' . $this->api->options['environment']);
 
         $order = $request->getFirstModel()->getOrder();
+        $customer = $order->getCustomer();
+
         $payUdata['description'] = $order->getNumber();
         $payUdata['currencyCode'] = $order->getCurrencyCode();
         $payUdata['totalAmount'] = $order->getTotal();
 
         $log->warning('CaptureAction Order total' . $order->getTotal());
+        $log->warning('CaptureAction Order Id' . $order->getNumber());
+        $log->warning('CaptureAction Order currency' . $order->getCurrencyCode());
+
+        $log->warning('CaptureAction Order Customer email' . $customer->getEmail());
+        $log->warning('CaptureAction Order total' . $customer->getPhone());
+
+
 
 
         //// Receive Callback or Customer Return
