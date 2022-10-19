@@ -21,7 +21,7 @@ class ModenaPaymentManager implements ActionInterface, GatewayAwareInterface
     public function __construct()
     {
         $this->return_url = "abc";
-        $this->startProcess();     
+        ////$this->startProcess();     
     }
 
     public function execute($request)
