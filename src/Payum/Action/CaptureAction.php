@@ -88,9 +88,10 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface, Api
             $log->warning('order method: ' . $method_name);
         }
         
+        $billingdata = $order->getBillingAddress();
 
         $log->warning('CaptureAction order  = ' . gettype($order) . " " . get_class($order));
-        $log->warning('CaptureAction customer = ' . gettype($customer) . " " . get_class($customer));
+        $log->warning('CaptureAction billingdata = ' . gettype($billingdata) . " " . get_class($billingdata));
 
 
         $payUdata['description'] = $order->getNumber();
