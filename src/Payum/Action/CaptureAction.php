@@ -103,12 +103,9 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface, Api
         $payUdata['totalAmount'] = $order->getTotal();
 
         $log->warning('CaptureAction Order state' . $order->getState());
-
         $log->warning('CaptureAction Order total' . $order->getTotal());
         $log->warning('CaptureAction Order number' . $order->getNumber());
-    
         $log->warning('CaptureAction Order order count:' . count($this->getOrderItems($order)));
-
         $log->warning('CaptureAction Shipping cost: ' . $order->getShippingTotal());
 
         
