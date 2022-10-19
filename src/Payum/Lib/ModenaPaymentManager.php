@@ -26,6 +26,7 @@ class ModenaPaymentManager implements ActionInterface, GatewayAwareInterface
 
     public function execute($request)
     {
+        echo 'Tere';
         //do its jobs
 
         // delegate some job to bar action.
