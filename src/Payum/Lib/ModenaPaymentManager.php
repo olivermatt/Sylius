@@ -14,7 +14,9 @@ class ModenaPaymentManager implements ActionInterface, GatewayAwareInterface
 /// extends Generic  
 
         private $return_url;
+        private $api;
 
+        use GatewayAwareTrait;
 
     public function __construct($return_url)
     {
@@ -28,6 +30,24 @@ class ModenaPaymentManager implements ActionInterface, GatewayAwareInterface
 
         // delegate some job to bar action.
     }
+
+    public function supports($request)
+    {
+        return
+            $request instanceof Capture && $request->getModel() instanceof \ArrayAccess
+        ;
+    }
+
+    
+    public function setApi($api): void
+    {
+        if (!$api instanceof ModenaApi) {
+            throw new UnsupportedApiException('Not supported. Expected an instance of ' . ModenaApi::class);
+        }
+
+        $this->api = $api;
+    }
+
 
     private function startProcess()
     {                      

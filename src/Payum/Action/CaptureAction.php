@@ -110,6 +110,9 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface, Api
         $log->warning('CaptureAction Order lastName' . $customer->getLastName());
         $log->warning('CaptureAction Order order count:' . count($this->getOrderItems($order)));
 
+        $log->warning('CaptureAction Shipping cost: ' . $customer->getShippingTotal());
+
+        
 
         //// Receive Callback or Customer Return
         /// Get the GET request 
