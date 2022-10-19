@@ -154,7 +154,8 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface, Api
 
         
         $this->gateway->execute(new ModenaPaymentManager());
-
+        ///$ModenaPaymentManager = new ModenaPaymentManager($return_url);
+       ///$ModenaPaymentManager->startProcess();
 
 
 

@@ -33,9 +33,7 @@ class ModenaPaymentManager implements ActionInterface, GatewayAwareInterface
 
     public function supports($request)
     {
-        return
-            $request instanceof Capture && $request->getModel() instanceof \ArrayAccess
-        ;
+
     }
 
     
