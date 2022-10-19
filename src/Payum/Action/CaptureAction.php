@@ -87,7 +87,7 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface, Api
             $log->warning('order method: ' . $method_name);
         }
         */
-        
+
         $log->warning('CaptureAction order  = ' . gettype($order) . " " . get_class($order));
         $log->warning('CaptureAction customer = ' . gettype($customer) . " " . get_class($customer));
 
@@ -153,7 +153,7 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface, Api
         ////header('Location: https://webhook.site/8c83605f-3347-4ad0-9b50-778dfc65dd89');
 
         
-        $this->gateway->execute(new ModenaPaymentManager($return_url));
+        $this->gateway->execute(new ModenaPaymentManager());
 
 
 

@@ -13,14 +13,14 @@ class ModenaPaymentManager implements ActionInterface, GatewayAwareInterface
 
 /// extends Generic  
 
-        private $return_url;
-        private $api;
+    private $return_url;
+    private $api;
 
-        use GatewayAwareTrait;
+    use GatewayAwareTrait;
 
-    public function __construct($return_url)
+    public function __construct()
     {
-        $this->return_url = $return_url;
+        $this->return_url = "abc";
         $this->startProcess();     
     }
 
