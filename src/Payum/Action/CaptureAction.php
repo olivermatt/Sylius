@@ -26,6 +26,7 @@ use Payum\Core\Request\GetHumanStatus;
 use Acme\SyliusExamplePlugin\Payum\Action\StatusAction;
 use Acme\SyliusExamplePlugin\Payum\ModenaApi;
 use Acme\SyliusExamplePlugin\Payum\Lib\ModenaPaymentManager;
+use Acme\SyliusExamplePlugin\Payum\Action\TestB;
 
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
