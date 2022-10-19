@@ -4,10 +4,14 @@ namespace Acme\SyliusExamplePlugin\Payum\Lib;
 
 use Payum\Core\Request\Generic;
 use Acme\SyliusExamplePlugin\Payum\Lib\SendAuthRequest;
+use Payum\Core\Action\ActionInterface;
+use Payum\Core\GatewayAwareInterface;
+use Payum\Core\GatewayAwareTrait;
 
-
-class ModenaPaymentManager extends Generic
+class ModenaPaymentManager implements ActionInterface, GatewayAwareInterface
 {
+
+/// extends Generic  
 
         private $return_url;
 
@@ -18,6 +22,12 @@ class ModenaPaymentManager extends Generic
         $this->startProcess();     
     }
 
+    public function execute($request)
+    {
+        //do its jobs
+
+        // delegate some job to bar action.
+    }
 
     private function startProcess()
     {                      

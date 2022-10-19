@@ -90,9 +90,13 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface, Api
         $payUdata['currencyCode'] = $order->getCurrencyCode();
         $payUdata['totalAmount'] = $order->getTotal();
 
+        $log->warning('CaptureAction Order state' . $order->getState());
+
         $log->warning('CaptureAction Order total' . $order->getTotal());
         $log->warning('CaptureAction Order number' . $order->getNumber());
         $log->warning('CaptureAction Order currency' . $order->getCurrencyCode());
+    
+        $log->warning('CaptureAction Order Customer Id' . $customer->getId());
 
         $log->warning('CaptureAction Order Customer email' . $customer->getEmail());
         $log->warning('CaptureAction Order phone' . $customer->getPhoneNumber());
@@ -160,35 +164,9 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface, Api
         $order = $payment->getOrder();
         $customer = $order->getCustomer();
 
-
-        ////$details['order'] = json_encode($orderSummary);
-        $details['amount'] = round($order->getTotal() / 100, 2);
-        $details['currency'] = 'EUR';
-        $details['reference'] = $order->getNumber();
-        $details['message'] = $order->getNotes();
-
-        $clientEmail = $customer->getEmail();
-        $clientPhone = $customer->getPhoneNumber(); 
-
         */
 
         /*
-
-        $itemsData = [];
-
-
-        if ($items = $order->getItems()) {
-
-            foreach ($items as $key => $item) {
-                $itemsData[$key] = [
-                    'name' => $item->getProductName(),
-                    'unitPrice' => $item->getUnitPrice(),
-                    'quantity' => $item->getQuantity(),
-                ];
-            }
-        }
-
-        var_dump($itemsData);
 
         */
 
