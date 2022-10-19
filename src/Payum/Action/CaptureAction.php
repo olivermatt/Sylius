@@ -82,12 +82,12 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface, Api
         $order = $request->getFirstModel()->getOrder();
         $customer = $order->getCustomer();
 
-        /*
+        
         $class_methods = get_class_methods($order);
         foreach ($class_methods as $method_name) {
             $log->warning('order method: ' . $method_name);
         }
-        */
+        
 
         $log->warning('CaptureAction order  = ' . gettype($order) . " " . get_class($order));
         $log->warning('CaptureAction customer = ' . gettype($customer) . " " . get_class($customer));
