@@ -95,8 +95,7 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface, Api
 
         $log->warning('CaptureAction billingdata phone ' . $billingdata->getPhoneNumber());
         $log->warning('CaptureAction billingdata email ' . $customer->getEmail());
-
-        
+ 
 
         $payUdata['description'] = $order->getNumber();
         $payUdata['currencyCode'] = $order->getCurrencyCode();
