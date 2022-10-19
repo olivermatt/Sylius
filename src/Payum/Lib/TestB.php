@@ -1,6 +1,6 @@
 <?php
 
-namespace Acme\SyliusExamplePlugin\Payum\Action;
+namespace Acme\SyliusExamplePlugin\Payum\Lib;
 
 
 use Payum\Core\Request\Generic;
