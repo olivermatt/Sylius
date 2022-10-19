@@ -72,7 +72,6 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface, Api
         $log->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::WARNING));        
         $log->warning('v 1.2 CaptureAction execute has been run, called by: ' . $class . ', func: '. $function);
         $log->warning('CaptureAction request = ' . gettype($request) . " " . get_class($request));
-        $log->warning('CaptureAction model = ' . gettype($model) . " " . get_class($model));
         $log->warning('CaptureAction model API = ' . gettype($this->api) . " " . get_class($this->api));
         $log->warning('CaptureAction API var' . $this->api->testvar);
          
@@ -82,16 +81,21 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface, Api
         $order = $request->getFirstModel()->getOrder();
         $customer = $order->getCustomer();
 
+
+        $log->warning('CaptureAction order  = ' . gettype($order) . " " . get_class($order));
+        $log->warning('CaptureAction customer = ' . gettype($customer) . " " . get_class($customer));
+
+
         $payUdata['description'] = $order->getNumber();
         $payUdata['currencyCode'] = $order->getCurrencyCode();
         $payUdata['totalAmount'] = $order->getTotal();
 
         $log->warning('CaptureAction Order total' . $order->getTotal());
-        $log->warning('CaptureAction Order Id' . $order->getNumber());
+        $log->warning('CaptureAction Order number' . $order->getNumber());
         $log->warning('CaptureAction Order currency' . $order->getCurrencyCode());
 
         $log->warning('CaptureAction Order Customer email' . $customer->getEmail());
-        $log->warning('CaptureAction Order total' . $customer->getPhoneNumber());
+        $log->warning('CaptureAction Order phone' . $customer->getPhoneNumber());
 
         $log->warning('CaptureAction Order firstName' . $customer->getFirstName());
         $log->warning('CaptureAction Order lastName' . $customer->getLastName());
