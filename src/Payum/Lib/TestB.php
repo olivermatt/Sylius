@@ -35,6 +35,9 @@ class TestB extends Generic
     
     private function getAccessToken() 
     {      
+        $log = new Logger('Modena Log4');
+        $log->pushHandler(new StreamHandler(__DIR__.'/lib_log.log', Logger::WARNING));        
+
         $user = '4273d91f-e80f-410f-87cb-29a48a4b6e12';
         $pass = '44c77b8c-bc26-4bf3-bf88-f35fe6b189d1';           
         $API_URL = 'https://login-dev.modena.ee/oauth2/token';
@@ -51,11 +54,21 @@ class TestB extends Generic
 
         $decodedRespone = json_decode($raw_response);
        
+        $info = curl_getinfo($curl);
+        $http_status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+
+
+        $log->warning('Curl HTTP resp: ' . $info['http_code']);
+        $log->warning('Curl HTTP resp: ' . $http_status);
+
+
         if(isset($decodedRespone->access_token))
         {
             $accessToken = $decodedRespone->access_token;
             curl_close($curl);
             return $accessToken;   
+        } else{
+
         }
     }
 
