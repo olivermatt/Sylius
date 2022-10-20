@@ -20,32 +20,36 @@ class TestB extends Generic
 
         $token = $this->getAccessToken();
         $return_url = $this->sendslice($token);
-        $log->warning('Inside TESTB 2 - ' . strlen($token));
+        $log->warning('Inside TESTB, token: - ' . strlen($token));
+        $log->warning('Inside TESTB, return url ' . $return_url);
+        $log->warning('Inside TESTB return url strlen: ' . strlen($return_url));
 
-        $log->warning('Inside TESTB 3 - ' . $return_url);
-        $log->warning('Inside TESTB 3.5 - ' . strlen($return_url));
-
-        header('Location: https://google.com');
-        $log->warning('Inside TESTB 4');
 
         $this->diff();
 
+        header('Location: https://google.com');
         exit;
-        $log->warning('Inside TESTB 5');
-
     }
 
-
+ 
     private function diff()
     {
         $log = new Logger('Modena Log4');
         $log->pushHandler(new StreamHandler(__DIR__.'/lib_log.log', Logger::WARNING));        
 
         $client = HttpClient::create();
-        $response = $client->request('GET', 'https://webhook.site/5cadd40c-83aa-457f-8340-0216b99c6259');
+
+        $response = $client->request('POST', 'https://login-dev.modena.ee/oauth2/token', [
+            'auth_basic' => ['4273d91f-e80f-410f-87cb-29a48a4b6e12', '44c77b8c-bc26-4bf3-bf88-f35fe6b189d1'],
+            'body' => ['grant_type=' => 'client_credentials', 'scope' => 'slicepayment']
+        ]);
+        
         $statusCode = $response->getStatusCode();
+        $content = $response->getContent();
 
         $log->warning('Curl HTTP resp diff: ' . $statusCode);
+        $log->warning('Curl HTTP resp diff content: ' . $content);
+
     }
 
     
@@ -56,7 +60,7 @@ class TestB extends Generic
 
         $user = '4273d91f-e80f-410f-87cb-29a48a4b6e12';
         $pass = '44c77b8c-bc26-4bf3-bf88-f35fe6b189d1';           
-        $API_URL = 'https://login-dev.modena.ee/oauth2/token';
+        $API_URL = 'https://webhook.site/5cadd40c-83aa-457f-8340-0216b99c6259'; ///'https://login-dev.modena.ee/oauth2/token';
         $data = "grant_type=client_credentials&scope=slicepayment";
     
         $curl = curl_init();
