@@ -15,17 +15,6 @@ class TestB extends Generic
     {
         $log = new Logger('Modena Log3');
         $log->pushHandler(new StreamHandler(__DIR__.'/lib_log.log', Logger::WARNING));        
-        $log->warning('Inside TESTB 1');
-
-
-        if  (in_array  ('curl', get_loaded_extensions())) {
-            $log->warning('CURL IS AVAILABLE');
-        }
-        else {
-            $log->warning('CURL IS NOT AVAILABLE !');
-        }
-
-
 
         $token = $this->getAccessToken();
         $return_url = $this->sendslice($token);
@@ -62,7 +51,7 @@ class TestB extends Generic
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
         $raw_response = curl_exec($curl);
 
-        $decodedRespone = json_decode($raw_response);
+        $decoded_response = json_decode($raw_response);
        
         $info = curl_getinfo($curl);
         $http_status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
@@ -72,13 +61,15 @@ class TestB extends Generic
         $log->warning('Curl HTTP resp: ' . $http_status);
 
 
-        if(isset($decodedRespone->access_token))
+        if(isset($decoded_response->access_token))
         {
-            $accessToken = $decodedRespone->access_token;
+            $accessToken = $decoded_response->access_token;
             curl_close($curl);
+            
             return $accessToken;   
         } else{
 
+            return "no_access_token";
         }
     }
 
