@@ -69,13 +69,13 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface, Api
         $function = $trace[1]['function'];
         $log = new Logger('Modena Log2');
         $log->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::WARNING));        
-        $log->warning('v 1.2 CaptureAction execute has been run, called by: ' . $class . ', func: '. $function);
-        $log->warning('CaptureAction request = ' . gettype($request) . " " . get_class($request));
-        $log->warning('CaptureAction model API = ' . gettype($this->api) . " " . get_class($this->api));
-        $log->warning('CaptureAction API var' . $this->api->testvar);
+        //$log->warning('v 1.2 CaptureAction execute has been run, called by: ' . $class . ', func: '. $function);
+        //$log->warning('CaptureAction request = ' . gettype($request) . " " . get_class($request));
+        //$log->warning('CaptureAction model API = ' . gettype($this->api) . " " . get_class($this->api));
+        ///$log->warning('CaptureAction API var' . $this->api->testvar);
          
-        $log->warning('CaptureAction API config' . $this->api->options['payum.factory_name']);
-        $log->warning('CaptureAction API ADMIn config' . $this->api->options['environment']);
+       // $log->warning('CaptureAction API config' . $this->api->options['payum.factory_name']);
+       /// $log->warning('CaptureAction API ADMIn config' . $this->api->options['environment']);
 
         $order = $request->getFirstModel()->getOrder();
         $customer = $order->getCustomer();
@@ -122,14 +122,12 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface, Api
             }
             */
             $token = $request->getToken(); 
-            $log->warning('CaptureAction model token ' . $token->getHash());
+           /// $log->warning('CaptureAction model token ' . $token->getHash());
 
             $log->warning('CaptureAction has marked the model as done');
            
             $model['status'] = 'DONE';
-            return;
-
-          
+            return;          
         }
 
 

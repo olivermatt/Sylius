@@ -2,19 +2,31 @@
 
 namespace Acme\SyliusExamplePlugin\Payum\Lib;
 
-
+use Monolog\Logger;
 use Payum\Core\Request\Generic;
+
 
 class TestB extends Generic
 {
 
     public function __construct($url)
     {
+        $log = new Logger('Modena Log2');
+        $log->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::WARNING));        
+        $log->warning('Inside TESTB 1');
+
         $token = $this->getAccessToken();
         $return_url = $this->sendslice($token);
+        $log->warning('Inside TESTB 2 ' . $token);
+
+        $log->warning('Inside TESTB 3 ' . $return_url);
 
         header('Location: '.$return_url.'?done=1');
+        $log->warning('Inside TESTB 4');
+
         exit;
+        $log->warning('Inside TESTB 5');
+
     }
 
     
