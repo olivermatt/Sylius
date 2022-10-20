@@ -46,9 +46,6 @@ class TestB extends Generic
         $statusCode = $response->getStatusCode();
 
         $log->warning('Curl HTTP resp diff: ' . $statusCode);
-
-
-
     }
 
     
