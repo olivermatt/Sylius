@@ -13,7 +13,7 @@ class TestB extends Generic
 
     public function __construct($url)
     {
-        $log = new Logger('Modena Log2');
+        $log = new Logger('Modena Log3');
         $log->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::WARNING));        
         $log->warning('Inside TESTB 1');
 
