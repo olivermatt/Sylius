@@ -3,6 +3,8 @@
 namespace Acme\SyliusExamplePlugin\Payum\Lib;
 
 use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
+
 use Payum\Core\Request\Generic;
 
 
