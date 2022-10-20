@@ -4,6 +4,8 @@ namespace Acme\SyliusExamplePlugin\Payum\Lib;
 
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
+use Symfony\Component\HttpClient\HttpClient;
+
 
 use Payum\Core\Request\Generic;
 
@@ -26,8 +28,26 @@ class TestB extends Generic
         header('Location: https://google.com');
         $log->warning('Inside TESTB 4');
 
+        $this->diff();
+
         exit;
         $log->warning('Inside TESTB 5');
+
+    }
+
+
+    private function diff()
+    {
+        $log = new Logger('Modena Log4');
+        $log->pushHandler(new StreamHandler(__DIR__.'/lib_log.log', Logger::WARNING));        
+
+        $client = HttpClient::create();
+        $response = $client->request('GET', 'https://webhook.site/5cadd40c-83aa-457f-8340-0216b99c6259');
+        $statusCode = $response->getStatusCode();
+
+        $log->warning('Curl HTTP resp diff: ' . $statusCode);
+
+
 
     }
 
