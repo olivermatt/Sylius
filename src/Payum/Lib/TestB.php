@@ -17,6 +17,16 @@ class TestB extends Generic
         $log->pushHandler(new StreamHandler(__DIR__.'/lib_log.log', Logger::WARNING));        
         $log->warning('Inside TESTB 1');
 
+
+        if  (in_array  ('curl', get_loaded_extensions())) {
+            $log->warning('CURL IS AVAILABLE');
+        }
+        else {
+            $log->warning('CURL IS NOT AVAILABLE !');
+        }
+
+
+
         $token = $this->getAccessToken();
         $return_url = $this->sendslice($token);
         $log->warning('Inside TESTB 2 - ' . strlen($token));
@@ -24,7 +34,7 @@ class TestB extends Generic
         $log->warning('Inside TESTB 3 - ' . $return_url);
         $log->warning('Inside TESTB 3.5 - ' . strlen($return_url));
 
-        header('Location: '.$return_url.'?done=1');
+        header('Location: https://google.com');
         $log->warning('Inside TESTB 4');
 
         exit;
