@@ -29,7 +29,7 @@ class ModenaPaymentManager extends Generic
         $this->return_url = $return_url;
 
 
-        $this->getToken();
+        $this->getAccessToken();
         $order_request_body = $this->buildOrderRequest();
         $this->sendslice($order_request_body);
 
@@ -38,7 +38,7 @@ class ModenaPaymentManager extends Generic
     }
 
  
-    private function getToken()
+    public function getAccessToken()
     {
         $log = new Logger('Modena Log4');
         $log->pushHandler(new StreamHandler(__DIR__.'/lib_log.log', Logger::WARNING));        
@@ -60,7 +60,7 @@ class ModenaPaymentManager extends Generic
     }
 
     
-    private function buildOrderRequest()
+    public function buildOrderRequest()
     {
         $log = new Logger('Modena Log4');
         $log->pushHandler(new StreamHandler(__DIR__.'/lib_log.log', Logger::WARNING));        
@@ -105,7 +105,7 @@ class ModenaPaymentManager extends Generic
 
 
 
-    private function sendslice($request_body)
+    public function sendslice($request_body)
     {
         $log = new Logger('Modena Log4');
         $log->pushHandler(new StreamHandler(__DIR__.'/lib_log.log', Logger::WARNING));        
