@@ -3,6 +3,8 @@
 declare(strict_types=1);
 
 namespace Acme\SyliusExamplePlugin\Payum\Action;
+
+use Acme\SyliusExamplePlugin\Payum\Lib\ModenaPaymentManager;
 use Payum\Core\ApiAwareInterface;
 ///use Payum\Core\ApiAwareTrait;
 ///use GuzzleHttp\Client;
@@ -64,9 +66,6 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface, Api
         $model = ArrayObject::ensureArrayObject($request->getModel());
 
         //// Logging ////
-        $trace = debug_backtrace();
-        $class = $trace[1]['class'];
-        $function = $trace[1]['function'];
         $log = new Logger('Modena Log2');
         $log->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::WARNING));        
         //$log->warning('v 1.2 CaptureAction execute has been run, called by: ' . $class . ', func: '. $function);
@@ -86,8 +85,9 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface, Api
             ///$log->warning('order method: ' . $method_name);
         }
         
-        $billingdata = $order->getBillingAddress();
+        $billing_data = $order->getBillingAddress();
 
+        /*
         $log->warning('CaptureAction billingdata first name ' . $billingdata->getFirstName());
         $log->warning('CaptureAction billingdata last name ' . $billingdata->getLastName());
 
@@ -104,7 +104,7 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface, Api
         $log->warning('CaptureAction Order number' . $order->getNumber());
         $log->warning('CaptureAction Order order count:' . count($this->getOrderItems($order)));
         $log->warning('CaptureAction Shipping cost: ' . $order->getShippingTotal());
-
+        */
         
 
         //// Receive Callback or Customer Return
@@ -122,7 +122,6 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface, Api
             }
             */
             $token = $request->getToken(); 
-           /// $log->warning('CaptureAction model token ' . $token->getHash());
 
             $log->warning('CaptureAction has marked the model as done');
            
@@ -140,9 +139,8 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface, Api
 
         $log->warning('Return URL: ' . $return_url .'?done=1, token GW: ' . $gwname);
               
-        ////header('Location: https://webhook.site/8c83605f-3347-4ad0-9b50-778dfc65dd89');
 
-        $this->gateway->execute(new TestB($return_url));
+        $this->gateway->execute(new ModenaPaymentManager($order, $billing_data, $customer, $return_url));
         ///$this->gateway->execute(new ModenaPaymentManager());
         ///$ModenaPaymentManager = new ModenaPaymentManager($return_url);
        ///$ModenaPaymentManager->startProcess();
