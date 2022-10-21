@@ -150,8 +150,6 @@ class ModenaPaymentManager extends Generic
 
         $r = json_decode(json_encode($response->getInfo()));
 
-        $log->warning('order response info: ' . $r);
-
         /*
         foreach ($response->getInfo() as $method_name) {
            $log->warning('order response info: ' . $method_name);
