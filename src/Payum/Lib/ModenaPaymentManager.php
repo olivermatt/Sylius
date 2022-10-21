@@ -86,7 +86,7 @@ class ModenaPaymentManager extends Generic
         }
 
         $request = [];
-        $request['orderId'];
+        $request['orderId'] = $this->order->getNumber();
         $request['maturityInMonths'] = 3;
         $request['orderItems'] = $order_items;
         $request['totalAmount'] = $this->order->getTotal();
