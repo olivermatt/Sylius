@@ -148,7 +148,7 @@ class ModenaPaymentManager extends Generic
         $redirect_url = $response->getInfo('Location');
         $statusCode = $response->getStatusCode();
 
-        $r = json_encode($response->getInfo());
+        $r = json_decode(json_encode($response->getInfo()));
 
         $log->warning('order response info: ' . $r);
 
@@ -159,10 +159,10 @@ class ModenaPaymentManager extends Generic
         */
 
         $this->modena_redirect_url = $redirect_url;
-        $log->warning('Redirurl 2: ' . $r->location);
 
         $log->warning('Redir url: ' . $redirect_url);
         $log->warning('Create Order resp status: ' . $statusCode);
-        
+        $log->warning('Redir url: ' . $r->location);
+        return;        
     }
 }
