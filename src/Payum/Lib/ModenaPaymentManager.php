@@ -147,7 +147,7 @@ class ModenaPaymentManager extends Generic
             ]
         ]);
         
-        $redirect_url = $response->getInfo('redirect_url');
+        $redirect_url = $response->getInfo('Location');
         $statusCode = $response->getStatusCode();
 
         $r = json_encode($response->getInfo());
