@@ -89,15 +89,15 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface, Api
                     return;
                 }
                 */
-                $log->warning('CaptureAction has marked the model as done');           
+                $log->warning('CaptureAction has marked the model as DONE');           
                 $model['status'] = 'DONE';
                 return;          
             } elseif($getHttpRequest->query['status'] == 'CANCEL') {
-                $log->warning('CaptureAction has marked the model as cancel');           
+                $log->warning('CaptureAction has marked the model as CANCEL');           
                 $model['status'] = 'CANCEL';
                 return;      
             } else {
-                $log->warning('CaptureAction has marked the model as else');           
+                $log->warning('CaptureAction has marked the model as ELSE');           
             }
         }
 
