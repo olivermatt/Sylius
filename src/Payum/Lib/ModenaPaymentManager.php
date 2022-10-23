@@ -12,7 +12,7 @@ use Payum\Core\Request\Generic;
 
 class ModenaPaymentManager extends Generic
 {
-
+    private $api;
     private $order;
     private $billing_data;
     private $customer;
@@ -20,14 +20,13 @@ class ModenaPaymentManager extends Generic
     private $access_token;
     private $modena_redirect_url;
 
-    public function __construct($order, $billing_data, $customer, $return_url)
+    public function __construct($api, $order, $billing_data, $customer, $return_url)
     {
-
+        $this->api = $api;
         $this->order = $order;
         $this->billing_data = $billing_data;
         $this->customer = $customer;
         $this->return_url = $return_url;
-
 
         $this->getAccessToken();
         $order_request_body = $this->buildOrderRequest();
@@ -40,21 +39,42 @@ class ModenaPaymentManager extends Generic
  
     public function getAccessToken()
     {
-        $log = new Logger('Modena Log4');
-        $log->pushHandler(new StreamHandler(__DIR__.'/lib_log.log', Logger::WARNING));        
+        $client_id = $this->api->options['client_id']; /// '4273d91f-e80f-410f-87cb-29a48a4b6e12'
+        $client_secret = $this->api->options['client_secret']; //// 44c77b8c-bc26-4bf3-bf88-f35fe6b189d1
+
+        if ($this->api->options['environment'] == 'DEV') {
+            $devURL = '-dev';
+        } else {
+            $devURL = '';
+        }
+    
+        switch($this->api->options['product']) {
+            case "PAY-LATER":
+            $scope = 'slicepayment';
+            break;
+            case "HIRE-PURCHASE":
+            $scope = 'creditpayment';
+            break;
+            default:
+            $scope = 'directpayment';
+            break;
+        }
 
         $client = HttpClient::create();
 
-        $response = $client->request('POST', 'https://login-dev.modena.ee/oauth2/token', [
-            'auth_basic' => ['4273d91f-e80f-410f-87cb-29a48a4b6e12', '44c77b8c-bc26-4bf3-bf88-f35fe6b189d1'],
-            'body' => ['grant_type' => 'client_credentials', 'scope' => 'slicepayment']
+        $response = $client->request('POST', 'https://login'.$devURL.'.modena.ee/oauth2/token', [
+            'auth_basic' => [$client_id, $client_secret],
+            'body' => ['grant_type' => 'client_credentials', 'scope' => $scope]
         ]);
         
-        $statusCode = $response->getStatusCode();
         $content = $response->getContent();
         $decoded_response = json_decode($content);
 
-        $log->warning('AccessToken HTTP resp status: ' . $statusCode);
+        if($response->getStatusCode() != 200) {
+            $log = new Logger('Modena Log');
+            $log->pushHandler(new StreamHandler(__DIR__.'/modena_payment.log', Logger::WARNING));      
+            $log->warning('Unable to get access token. POST request failed.');
+        }
 
         $this->access_token = $decoded_response->access_token;
     }
@@ -62,34 +82,44 @@ class ModenaPaymentManager extends Generic
     
     public function buildOrderRequest()
     {
-        $log = new Logger('Modena Log4');
-        $log->pushHandler(new StreamHandler(__DIR__.'/lib_log.log', Logger::WARNING));        
 
+        $request = [];
         $customer = [];
-        //$customer['firstName'] = $this->billingdata->getFirstName();
-        //$customer['lastName'] = $this->billingdata->getLastName();
-        $customer['phoneNumber'] = $this->billing_data->getPhoneNumber();
-        $customer['email'] = $this->customer->getEmail();
-        $customer['address'] = "Example street 12, Tallinn, 10333";
-
         $order_items = [];
+        $product = $this->api->options['product'];
+
+        if($product == 'PAY-LATER') {
+            $request['maturityInMonths'] = 3;
+            $customer['phoneNumber'] = $this->billing_data->getPhoneNumber();
+            $customer['address'] = "Example street 12, Tallinn, 10333";
+        } else if($product == 'HIRE-PURCHASE') {
+            $request['maturityInMonths'] = 36;
+            $customer['phoneNumber'] = $this->billing_data->getPhoneNumber();
+            $customer['address'] = "Example street 12, Tallinn, 10333";
+        } else {
+            $customer['firstName'] = $this->billingdata->getFirstName();
+            $customer['lastName'] = $this->billingdata->getLastName();
+            $request['selectedOption'] = $this->api->options['product'];
+        }
+
+
+        $customer['email'] = $this->customer->getEmail();
+
 
         if ($items = $this->order->getItems()) {
             foreach ($items as $key => $item) {
                 $orderItem = [];
                 $orderItem['description'] = $item->getProductName();
-                $orderItem['amount'] = $item->getUnitPrice() * $item->getQuantity();
+                $orderItem['amount'] = round(($item->getUnitPrice() * $item->getQuantity()/100),2);
                 $orderItem['currency'] = 'EUR';
                 $orderItem['quantity'] = $item->getQuantity();
                 array_push($order_items, $orderItem);
             }
         }
 
-        $request = [];
         $request['orderId'] = $this->order->getNumber();
-        $request['maturityInMonths'] = 3;
         $request['orderItems'] = $order_items;
-        $request['totalAmount'] = $this->order->getTotal();
+        $request['totalAmount'] = round($this->order->getTotal()/100,2);
         $request['currency'] = "EUR";
         $request['orderItems'] = $order_items;
         $request['customer'] = $customer;
@@ -102,41 +132,11 @@ class ModenaPaymentManager extends Generic
     }
 
 
-
     public function sendslice($request_body)
     {
-        $log = new Logger('Modena Log4');
-        $log->pushHandler(new StreamHandler(__DIR__.'/lib_log.log', Logger::WARNING));        
-
-        $api_url = 'https://api-dev.modena.ee/modena/api/merchant/slice-payment-order';
-
-        $content = '{
-        "maturityInMonths": 3,
-        "orderId": "123456",
-        "totalAmount": 90,
-        "currency": "EUR",
-        "orderItems": [
-            {
-            "description": "Shoes",
-            "amount": 90,
-            "currency": "EUR",
-            "quantity": 1
-            }
-        ],
-        "customer": {
-            "phoneNumber": "+372112233",
-            "email": "jon.doe@localhost",
-            "address": "Example street 12, Tallinn, 10333"
-        },
-        "timestamp": "2022-06-18T19:43:46.862Z",
-        "returnUrl": "https://modena.ee/return-url",
-        "cancelUrl": "https://modena.ee/cancel-url",
-        "callbackUrl": "https://modena.ee/callback-url"
-        }';
-
         $client = HttpClient::create();
 
-        $response = $client->request('POST', $api_url, [
+        $response = $client->request('POST', $this->getAPIURL(), [
             'auth_bearer' => $this->access_token,
             'body' => $request_body,
             'max_redirects' => 0,
@@ -145,25 +145,35 @@ class ModenaPaymentManager extends Generic
             ]
         ]);
         
-        $statusCode = $response->getStatusCode();
-
-        $r = json_decode(json_encode($response->getInfo()));
-        $en = json_encode($response->getInfo());
-        /*
-        foreach ($response->getInfo() as $method_name) {
-           $log->warning('order response info: ' . $method_name);
+        if($response->getStatusCode() != 302) {
+            $log = new Logger('Modena Log');
+            $log->pushHandler(new StreamHandler(__DIR__.'/modena_payment.log', Logger::WARNING));       
+            $log->warning('Unable to POST purchase order. Response not 302, no redirect address.'); 
+        } else {
+            $redirect_url = $response->getInfo('redirect_url');
+            $this->modena_redirect_url = $redirect_url;
         }
-        */
-
-        $log->warning('Redir url: ' . $r->redirect_url);
-
-        ///$log->warning('Redir url: ' . $en);
-        $redirect_url = $response->getInfo('redirect_url');
-        $this->modena_redirect_url = $redirect_url;
-
-        $log->warning('Redir url 2: ' . $redirect_url);
-        $log->warning('Create Order resp status: ' . $statusCode);
 
         return;        
+    }
+
+
+    public function getAPIURL()
+    {
+        $product = $this->api->options['product'];
+
+        if ($this->api->options['environment'] == 'DEV') {
+            $devURL = '-dev';
+        } else {
+            $devURL = '';
+        }
+
+        if ($product == 'PAY-LATER') {
+            return 'https://api' . $devURL . '.modena.ee/modena/api/merchant/slice-payment-order';
+        } elseif ($product == 'HIRE-PURCHASE') {
+            return 'https://api' . $devURL . '.modena.ee/modena/api/merchant/credit-payment-order';
+        } else {
+            return 'https://api' . $devURL . '.modena.ee/direct/api/partner-direct-payments/payment-order';
+        }
     }
 }

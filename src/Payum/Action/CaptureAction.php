@@ -63,53 +63,16 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface, Api
 
         RequestNotSupportedException::assertSupports($this, $request);
     
-        $model = ArrayObject::ensureArrayObject($request->getModel());
+        ///$model = ArrayObject::ensureArrayObject($request->getModel());
 
         //// Logging ////
         $log = new Logger('Modena Log2');
         $log->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::WARNING));        
-        //$log->warning('v 1.2 CaptureAction execute has been run, called by: ' . $class . ', func: '. $function);
-        //$log->warning('CaptureAction request = ' . gettype($request) . " " . get_class($request));
-        //$log->warning('CaptureAction model API = ' . gettype($this->api) . " " . get_class($this->api));
-        ///$log->warning('CaptureAction API var' . $this->api->testvar);
-         
-       // $log->warning('CaptureAction API config' . $this->api->options['payum.factory_name']);
-        $log->warning('CaptureAction API ADMIn config env' . $this->api->options['environment']);
-        $log->warning('CaptureAction API ADMIn config product' . $this->api->options['product']);
-        $log->warning('CaptureAction API ADMIn config client id' . $this->api->options['client_id']);
-        $log->warning('CaptureAction API ADMIn config client sescret' . $this->api->options['client_secret']);
 
         $order = $request->getFirstModel()->getOrder();
-        $customer = $order->getCustomer();
-
-        
-        $class_methods = get_class_methods($order);
-        foreach ($class_methods as $method_name) {
-            ///$log->warning('order method: ' . $method_name);
-        }
-        
+        $customer = $order->getCustomer();        
         $billing_data = $order->getBillingAddress();
-
-        /*
-        $log->warning('CaptureAction billingdata first name ' . $billingdata->getFirstName());
-        $log->warning('CaptureAction billingdata last name ' . $billingdata->getLastName());
-
-        $log->warning('CaptureAction billingdata phone ' . $billingdata->getPhoneNumber());
-        $log->warning('CaptureAction billingdata email ' . $customer->getEmail());
- 
-
-        $payUdata['description'] = $order->getNumber();
-        $payUdata['currencyCode'] = $order->getCurrencyCode();
-        $payUdata['totalAmount'] = $order->getTotal();
-
-        $log->warning('CaptureAction Order state' . $order->getState());
-        $log->warning('CaptureAction Order total' . $order->getTotal());
-        $log->warning('CaptureAction Order number' . $order->getNumber());
-        $log->warning('CaptureAction Order order count:' . count($this->getOrderItems($order)));
-        $log->warning('CaptureAction Shipping cost: ' . $order->getShippingTotal());
-        */
         
-
         //// Receive Callback or Customer Return
         /// Get the GET request 
         $getHttpRequest = new GetHttpRequest();
@@ -124,85 +87,31 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface, Api
                 return;
             }
             */
-            $token = $request->getToken(); 
-
-            $log->warning('CaptureAction has marked the model as done');
-           
+            $log->warning('CaptureAction has marked the model as done');           
             $model['status'] = 'DONE';
             return;          
+        } elseif($getHttpRequest->query['status'] == 'CANCEL') {
+            $model['status'] = 'CANCEL';
+            return;      
         }
 
-
-        /////////////////////////////////////////////
         ////////// Create a New Request /////////////
         $token = $request->getToken();
-        $return_url = $this->tokenresolver($token);
-        
-        $gwname = $token->getGatewayName();
+        $payment_done_return_url = $this->generateReturnURL($token, 'DONE');        
+        $payment_cancelled_return_url = $this->generateReturnURL($token, 'CANCEL');        
+    
+        $log->warning('Return URL .' . $payment_done_return_url); 
+        $log->warning('Return Cancel URL .' . $payment_cancelled_return_url); 
 
-        $log->warning('Return URL: ' . $return_url .'?done=1, token GW: ' . $gwname);
-              
-
-        $this->gateway->execute(new ModenaPaymentManager($order, $billing_data, $customer, $return_url));
-        ///$this->gateway->execute(new ModenaPaymentManager());
-        ///$ModenaPaymentManager = new ModenaPaymentManager($return_url);
-       ///$ModenaPaymentManager->startProcess();
-
-
-
-        /* -Authenticate
-        if($this->gateway->addAction(new Test))
-        {
-            echo '<script>alert("Test added to gateway success");</script>';
-            
-        }
-        else
-        {
-            echo '<script>alert("Test added to gateway fail");</script>';
-        }
-           
-        $payment = $request->getModel();
-        $order = $payment->getOrder();
-        $customer = $order->getCustomer();
-
-        */
-
-        /*
-
-        */
-
-       /// exit();
-        /*
-        try {
-            $response = $this->client->request('POST', 'https://modena.ee', [
-                'body' => json_encode([
-                    'price' => $payment->getAmount(),
-                    'currency' => $payment->getCurrencyCode(),
-                    'api_key' => $this->api->getApiKey(),
-                ]),
-            ]);
-        } catch (RequestException $exception) {
-            $response = $exception->getResponse();
-        } finally {
-            $payment->setDetails(['status' => $response->getStatusCode()]);
-        }
-
-        */
+        //// Execute Modena Payment 
+        $this->gateway->execute(new ModenaPaymentManager($this->api, $order, $billing_data, $customer, $payment_done_return_url));
+        ////
     }
-    /*
-    public function supports($request): bool
-    {
-        return
-            $request instanceof Capture &&
-            $request->getModel() instanceof SyliusPaymentInterface
-        ;
-    }
-    */
+
+    
     public function supports($request)
     {
-        return
-            $request instanceof Capture && $request->getModel() instanceof \ArrayAccess
-        ;
+        return $request instanceof Capture && $request->getModel() instanceof \ArrayAccess;
     }
 
     
@@ -211,33 +120,18 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface, Api
         if (!$api instanceof ModenaApi) {
             throw new UnsupportedApiException('Not supported. Expected an instance of ' . ModenaApi::class);
         }
-
         $this->api = $api;
     }
 
-    public function tokenresolver(TokenInterface $token)
-    {
-        return $token->getTargetUrl();
-    }
 
-    private function getOrderItems($order): array
+    public function generateReturnURL(TokenInterface $token, $status)
     {
-        $itemsData = [];
-
-        if ($items = $order->getItems()) {
-            /** @var OrderItemInterface $item */
-            foreach ($items as $key => $item) {
-                $itemsData[$key] = [
-                    'name' => $item->getProductName(),
-                    'unitPrice' => $item->getUnitPrice(),
-                    'quantity' => $item->getQuantity(),
-                ];
-            }
+        if($status == 'DONE') {
+            return $token->getTargetUrl()."&status=done";
+        } else {
+            return $token->getTargetUrl()."&status=cancel";
         }
-
-        return $itemsData;
-    }    
-
+    }
 
 
 }
