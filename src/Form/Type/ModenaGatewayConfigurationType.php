@@ -32,12 +32,13 @@ final class ModenaGatewayConfigurationType extends AbstractType
                 ChoiceType::class,
                 [
                     'choices' => [
-                        'Swedbank' => 'SWEDBANK',
-                        'LHV' => 'LHV',
-                        'SEB' => 'SEB',
-                        'Luminor' => 'LUMINOR',
-                        'Cooop' => 'COOP',
-                        'Citadele' => 'CITADELE',
+                        'Swedbank' => 'HABAEE2X',
+                        'LHV' => 'LHVBEE22',
+                        'SEB' => 'EEUHEE2X',
+                        'Luminor' => 'NDEAEE2X',
+                        'Coop' => 'EKRDEE22',
+                        'Citadele' => 'PARXEE22',
+                        'Visa & Mastercard' => 'CARD',
                         'Pay-later' => 'PAY-LATER',
                         'Hire-Purchase' => 'HIRE-PURCHASE'
 
