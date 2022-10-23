@@ -110,7 +110,13 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface, Api
         $log->warning('Return Cancel URL .' . $payment_cancelled_return_url); 
 
         //// Execute Modena Payment 
-        $this->gateway->execute(new ModenaPaymentManager($this->api, $order, $billing_data, $customer, $payment_done_return_url));
+        $this->gateway->execute(new ModenaPaymentManager($this->api, 
+        $order, 
+        $billing_data, 
+        $customer, 
+        $payment_done_return_url,
+        $payment_cancelled_return_url
+        ));
         ////
     }
 
