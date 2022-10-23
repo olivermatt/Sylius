@@ -1,5 +1,6 @@
 <?php
 
+/*
 declare(strict_types=1);
 
 namespace Acme\SyliusExamplePlugin\Payum\Action;
@@ -25,6 +26,8 @@ final class ConvertPaymentAction implements ActionInterface, GatewayAwareInterfa
      *
      * @param Convert $request
      */
+
+     /*
 
     public function execute($request): void
     {
@@ -64,3 +67,4 @@ final class ConvertPaymentAction implements ActionInterface, GatewayAwareInterfa
     }
 }
 
+*/
