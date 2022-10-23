@@ -71,7 +71,8 @@ final class StatusAction implements ActionInterface
         $function = $trace[1]['function'];
 
         $log->warning('StatusAction execute has been run, called by: ' . $class . ', func: '. $function);
-        $log->warning('Status in Statusaction ' . $request->getValue());
+        $log->warning('Request getvalue in Statusaction ' . $request->getValue());
+        $log->warning('Status in Statusaction ' . $model['status']);
        
 
         if($model['status'] == "DONE")
@@ -82,7 +83,9 @@ final class StatusAction implements ActionInterface
             return;
 
         } elseif ($model['status'] == 'CANCEL') {
+         
             $log->warning('StatusAction Model status cancelled');
+         
             $request->markCanceled();
             return;
         }
