@@ -80,7 +80,8 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface, Api
 
         /// Check the params of the requst, done means payment is done, proceed to make the order done
         if(isset($getHttpRequest->query['status'])) {
-            if (isset($getHttpRequest->query['done']) && $getHttpRequest->query['done']) {
+         ///   if (isset($getHttpRequest->query['done']) && $getHttpRequest->query['done']) {
+            if ($getHttpRequest->query['status']=='DONE') {
            
                 /*
                 if (!$this->requestHasValidMAC($getHttpRequest->request)) {       
@@ -129,9 +130,9 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface, Api
     public function generateReturnURL(TokenInterface $token, $status)
     {
         if($status == 'DONE') {
-            return $token->getTargetUrl()."&status=done";
+            return $token->getTargetUrl()."?status=DONE";
         } else {
-            return $token->getTargetUrl()."&status=cancel";
+            return $token->getTargetUrl()."?status=CANCEL";
         }
     }
 
