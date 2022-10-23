@@ -150,6 +150,10 @@ class ModenaPaymentManager extends Generic
             $log->pushHandler(new StreamHandler(__DIR__.'/modena_payment.log', Logger::WARNING));       
             $log->warning('Unable to POST purchase order. Response not 302, no redirect address.'); 
         } else {
+            $log = new Logger('Modena Log');
+            $log->pushHandler(new StreamHandler(__DIR__.'/modena_payment.log', Logger::WARNING));     
+            $log->warning('Redir URL: ' . $redirect_url); 
+
             $redirect_url = $response->getInfo('redirect_url');
             $this->modena_redirect_url = $redirect_url;
         }
