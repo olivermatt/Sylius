@@ -5,8 +5,6 @@ namespace Acme\SyliusExamplePlugin\Payum\Lib;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 use Symfony\Component\HttpClient\HttpClient;
-
-
 use Payum\Core\Request\Generic;
 
 
@@ -17,16 +15,18 @@ class ModenaPaymentManager extends Generic
     private $billing_data;
     private $customer;
     private $return_url;
+    private $cancel_url;
     private $access_token;
     private $modena_redirect_url;
 
-    public function __construct($api, $order, $billing_data, $customer, $return_url)
+    public function __construct($api, $order, $billing_data, $customer, $return_url, $cancel_url)
     {
         $this->api = $api;
         $this->order = $order;
         $this->billing_data = $billing_data;
         $this->customer = $customer;
         $this->return_url = $return_url;
+        $this->cancel_url = $cancel_url;
 
         $this->getAccessToken();
         $order_request_body = $this->buildOrderRequest();
@@ -125,7 +125,7 @@ class ModenaPaymentManager extends Generic
         $request['customer'] = $customer;
         $request['timestamp'] = "2022-06-18T19:43:46.862Z"; 
         $request['returnUrl'] = $this->return_url; 
-        $request['cancelUrl'] = "https://google.com"; 
+        $request['cancelUrl'] = $this->cancel_url; 
         $request['callbackUrl'] = $this->return_url;
 
         return json_encode($request);
