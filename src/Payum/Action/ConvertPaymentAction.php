@@ -1,5 +1,5 @@
 <?php
-/*
+
 declare(strict_types=1);
 
 namespace Acme\SyliusExamplePlugin\Payum\Action;
@@ -20,11 +20,12 @@ final class ConvertPaymentAction implements ActionInterface, GatewayAwareInterfa
 {
     use GatewayAwareTrait;
 
-    /**
+    /*
      * {@inheritdoc}
      *
      * @param Convert $request
-     
+     */
+
     public function execute($request): void
     {
         RequestNotSupportedException::assertSupports($this, $request);
@@ -35,7 +36,6 @@ final class ConvertPaymentAction implements ActionInterface, GatewayAwareInterfa
         $log->warning('ConvertPayment execute has been run');
         ////
 
-        /** @var PaymentInterface $payment 
         $payment = $request->getSource();
         $details = ArrayObject::ensureArrayObject($payment->getDetails());
 
@@ -51,9 +51,6 @@ final class ConvertPaymentAction implements ActionInterface, GatewayAwareInterfa
         $request->setResult((array) $details);
     }
 
-    /**
-     * {@inheritdoc}
-     
     public function supports($request): bool
     {
         return $request instanceof Convert
@@ -66,4 +63,4 @@ final class ConvertPaymentAction implements ActionInterface, GatewayAwareInterfa
         return $_SERVER['REMOTE_ADDR'] ?? null;
     }
 }
-*/
+

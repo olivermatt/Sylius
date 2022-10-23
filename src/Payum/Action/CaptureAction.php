@@ -63,7 +63,7 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface, Api
 
         RequestNotSupportedException::assertSupports($this, $request);
     
-        ///$model = ArrayObject::ensureArrayObject($request->getModel());
+        $model = ArrayObject::ensureArrayObject($request->getModel());
 
         //// Logging ////
         $log = new Logger('Modena Log2');
