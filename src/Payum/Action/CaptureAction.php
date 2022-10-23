@@ -79,20 +79,22 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface, Api
         $this->gateway->execute($getHttpRequest);
 
         /// Check the params of the requst, done means payment is done, proceed to make the order done
-        if (isset($getHttpRequest->query['done']) && $getHttpRequest->query['done']) {
+        if(isset($getHttpRequest->query['status'])) {
+            if (isset($getHttpRequest->query['done']) && $getHttpRequest->query['done']) {
            
-            /*
-            if (!$this->requestHasValidMAC($getHttpRequest->request)) {       
-                $model['status'] = 'failed';
-                return;
+                /*
+                if (!$this->requestHasValidMAC($getHttpRequest->request)) {       
+                    $model['status'] = 'failed';
+                    return;
+                }
+                */
+                $log->warning('CaptureAction has marked the model as done');           
+                $model['status'] = 'DONE';
+                return;          
+            } elseif($getHttpRequest->query['status'] == 'CANCEL') {
+                $model['status'] = 'CANCEL';
+                return;      
             }
-            */
-            $log->warning('CaptureAction has marked the model as done');           
-            $model['status'] = 'DONE';
-            return;          
-        } elseif($getHttpRequest->query['status'] == 'CANCEL') {
-            $model['status'] = 'CANCEL';
-            return;      
         }
 
         ////////// Create a New Request /////////////
