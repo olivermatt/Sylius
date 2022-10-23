@@ -28,8 +28,6 @@ final class StatusAction implements ActionInterface
     public function __construct()
     {
         ///$this->input = $input;
-        $this->input2 = "TERE";
-
     }
 
 
@@ -46,16 +44,13 @@ final class StatusAction implements ActionInterface
 
         $log = new Logger('Modena Log');
         $log->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::WARNING));
-
-        $log->warning('StatusAction request '. ", class instance: " . get_class($request));
         
+        /*
         if($token != null)
         {
             $log->warning('Statusaction model token ' . $token->getHash());
         }
         
-        $log->warning('StatusAction model:' . gettype($model) . " " . get_class($model));
-        $log->warning('StatusAction Constructor input: ' .$this->input2);
         $log->warning('StatusAction model status value: ' . $model['status']);
 
 
@@ -67,7 +62,7 @@ final class StatusAction implements ActionInterface
         {
             $log->warning('StatusAction model is NOT null');
         }
-
+        */
 
 
         //// Logging ////
@@ -81,7 +76,15 @@ final class StatusAction implements ActionInterface
 
         if($model['status'] == "DONE")
         {
+            $log->warning('StatusAction model status is DONE ' );
+
             $request->markCaptured();
+            return;
+
+        } elseif ($model['status'] == 'CANCEL') {
+            $log->warning('StatusAction Model status cancelled');
+            $request->markCanceled();
+            return;
         }
 
         /*
