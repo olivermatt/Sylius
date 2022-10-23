@@ -74,7 +74,10 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface, Api
         ///$log->warning('CaptureAction API var' . $this->api->testvar);
          
        // $log->warning('CaptureAction API config' . $this->api->options['payum.factory_name']);
-       /// $log->warning('CaptureAction API ADMIn config' . $this->api->options['environment']);
+        $log->warning('CaptureAction API ADMIn config env' . $this->api->options['environment']);
+        $log->warning('CaptureAction API ADMIn config product' . $this->api->options['product']);
+        $log->warning('CaptureAction API ADMIn config client id' . $this->api->options['client_id']);
+        $log->warning('CaptureAction API ADMIn config client sescret' . $this->api->options['client_secret']);
 
         $order = $request->getFirstModel()->getOrder();
         $customer = $order->getCustomer();
