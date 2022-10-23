@@ -145,7 +145,6 @@ class ModenaPaymentManager extends Generic
             ]
         ]);
         
-        $redirect_url = $response->getInfo('Location');
         $statusCode = $response->getStatusCode();
 
         $r = json_decode(json_encode($response->getInfo()));
@@ -156,12 +155,14 @@ class ModenaPaymentManager extends Generic
         }
         */
 
-        $this->modena_redirect_url = $redirect_url;
-        $log->warning('Redir url: ' . $en);
+        $log->warning('Redir url: ' . $r->redirect_url);
 
-        $log->warning('Redir url: ' . $redirect_url);
+        ///$log->warning('Redir url: ' . $en);
+        $redirect_url = $response->getInfo('redirect_url');
+        $this->modena_redirect_url = $redirect_url;
+
+        $log->warning('Redir url 2: ' . $redirect_url);
         $log->warning('Create Order resp status: ' . $statusCode);
-        $log->warning('Redir url: ' . $r->location);
 
         return;        
     }
