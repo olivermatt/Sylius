@@ -97,8 +97,8 @@ class ModenaPaymentManager extends Generic
             $customer['phoneNumber'] = $this->billing_data->getPhoneNumber();
             $customer['address'] = "Example street 12, Tallinn, 10333";
         } else {
-            $customer['firstName'] = $this->billingdata->getFirstName();
-            $customer['lastName'] = $this->billingdata->getLastName();
+            $customer['firstName'] = $this->billing_data->getFirstName();
+            $customer['lastName'] = $this->billing_data->getLastName();
             $request['selectedOption'] = $this->api->options['product'];
         }
 
