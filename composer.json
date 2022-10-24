@@ -19,7 +19,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Modena999\\PaymentsPlugin\\": "src/"
+            "Modena\\PaymentsPlugin\\": "src/"
         }
     }
 }
