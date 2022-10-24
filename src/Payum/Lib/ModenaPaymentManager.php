@@ -91,11 +91,9 @@ class ModenaPaymentManager extends Generic
 
         if($product == 'PAY-LATER') {
             $request['maturityInMonths'] = 3;
-            $customer['phoneNumber'] = $this->billing_data->getPhoneNumber();
             $customer['address'] =  $this->billing_data->getStreet() . " - ". $this->billing_data->getCity();
         } else if($product == 'HIRE-PURCHASE') {
             $request['maturityInMonths'] = 36;
-            $customer['phoneNumber'] = $this->billing_data->getPhoneNumber();
             $customer['address'] = $this->billing_data->getStreet() . " - ". $this->billing_data->getCity();
         } else {
             $customer['firstName'] = $this->billing_data->getFirstName();
@@ -105,6 +103,7 @@ class ModenaPaymentManager extends Generic
 
 
         $customer['email'] = $this->customer->getEmail();
+        $customer['phoneNumber'] = $this->billing_data->getPhoneNumber();
 
 
         if ($items = $this->order->getItems()) {
@@ -119,7 +118,6 @@ class ModenaPaymentManager extends Generic
         }
 
         $request['orderId'] = $this->order->getNumber();
-        $request['orderItems'] = $order_items;
         $request['totalAmount'] = round($this->order->getTotal()/100,2);
         $request['currency'] = "EUR";
         $request['orderItems'] = $order_items;
