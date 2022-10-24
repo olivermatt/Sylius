@@ -30,7 +30,7 @@ class ModenaPaymentManager extends Generic
 
         $this->getAccessToken();
         $order_request_body = $this->buildOrderRequest();
-        $this->sendslice($order_request_body);
+        $this->sendOrder($order_request_body);
 
         header('Location: '. $this->modena_redirect_url);
         exit;
@@ -75,7 +75,6 @@ class ModenaPaymentManager extends Generic
             $log->pushHandler(new StreamHandler(__DIR__.'/modena_payment.log', Logger::WARNING));      
             $log->warning('Unable to get access token. POST request failed.');
         }
-
         $this->access_token = $decoded_response->access_token;
     }
 
@@ -133,7 +132,7 @@ class ModenaPaymentManager extends Generic
     }
 
 
-    public function sendslice($request_body)
+    public function sendOrder($request_body)
     {
         $client = HttpClient::create();
 
@@ -152,10 +151,7 @@ class ModenaPaymentManager extends Generic
             $log->warning('Unable to POST purchase order. Response '.$response->getStatusCode().', no redirect address.'); 
             $this->modena_redirect_url =  $this->cancel_url;           
         } else {
-            $log = new Logger('Modena Log');
-            $log->pushHandler(new StreamHandler(__DIR__.'/modena_payment.log', Logger::WARNING));     
-            $redirect_url = $response->getInfo('redirect_url');
-            $log->warning('Redir URL: ' . $redirect_url); 
+             $redirect_url = $response->getInfo('redirect_url');
             $this->modena_redirect_url = $redirect_url;
         }
 
