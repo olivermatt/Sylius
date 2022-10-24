@@ -2,14 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Acme\SyliusExamplePlugin\Payum;
+///namespace Acme\SyliusExamplePlugin\Payum;
+namespace Modena\PaymentsPlugin\Payum;
 
 use Payum\Core\Bridge\Spl\ArrayObject;
 use Payum\Core\GatewayFactory;
 use Acme\SyliusExamplePlugin\Payum\Action\StatusAction;
 use Acme\SyliusExamplePlugin\Payum\Action\CaptureAction;
-use Acme\SyliusExamplePlugin\Payum\Bridge\ModenaBridgeInterface;
-use Acme\SyliusExamplePlugin\Payum\ModenaApi;
+
+///use Acme\SyliusExamplePlugin\Payum\ModenaApi;
+use Modena\PaymentsPlugin\Payum\ModenaApi;
 
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
