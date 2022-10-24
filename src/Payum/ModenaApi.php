@@ -2,8 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Modena\PaymentsPlugin\Payum;
-///namespace Acme\SyliusExamplePlugin\Payum;
+namespace Acme\SyliusExamplePlugin\Payum;
 use Http\Message\MessageFactory;
 use Payum\Core\Exception\Http\HttpException;
 use Payum\Core\HttpClientInterface;

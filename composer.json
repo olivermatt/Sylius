@@ -1,5 +1,5 @@
 {
-    "name": "mdnfin/mdnfinsyliusplugin",
+    "name": "sylius/plugin-skeleton",
     "type": "sylius-plugin",
     "description": "Modena payments plugin for Sylius.",
     "keywords": [
@@ -9,8 +9,24 @@
     "license": "MIT",
     "require": {
         "php": "^8.0",
-        "monolog/monolog": "*",
-        "symfony/http-client": "^6.1"
+        "mdnfin/mdnfinsyliusplugin": "dev-master"
+    },
+    "require-dev": {
+        "sylius-labs/coding-standard": "^4.0",
+        "symfony/browser-kit": "^5.4",
+        "symfony/debug-bundle": "^5.4",
+        "symfony/dotenv": "^5.4",
+        "symfony/intl": "^5.4",
+        "symfony/web-profiler-bundle": "^5.4",
+        "vimeo/psalm": "4.7.1",
+        "polishsymfonycommunity/symfony-mocker-container": "^1.0"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "phpstan/extension-installer": true
+        }
     },
     "extra": {
         "branch-alias": {
@@ -19,7 +35,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Modena\\PaymentsPlugin\\": "src/"
+            "Acme\\SyliusExamplePlugin\\": "src/"
         }
     }
 }

@@ -2,19 +2,18 @@
 
 declare(strict_types=1);
 
-///namespace Acme\SyliusExamplePlugin\Payum;
-namespace Modena\PaymentsPlugin\Payum;
-          
+namespace Acme\SyliusExamplePlugin\Payum;
+
 use Payum\Core\Bridge\Spl\ArrayObject;
 use Payum\Core\GatewayFactory;
-use Modena\PaymentsPlugin\Payum\Action\StatusAction;
-use Modena\PaymentsPlugin\Payum\Action\CaptureAction;
-
-///use Acme\SyliusExamplePlugin\Payum\ModenaApi;
-use Modena\PaymentsPlugin\Payum\ModenaApi;
+use Acme\SyliusExamplePlugin\Payum\Action\StatusAction;
+use Acme\SyliusExamplePlugin\Payum\Action\CaptureAction;
+use Acme\SyliusExamplePlugin\Payum\Bridge\ModenaBridgeInterface;
+use Acme\SyliusExamplePlugin\Payum\ModenaApi;
 
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
+
 
 final class ModenaPaymentGatewayFactory extends GatewayFactory
 {
@@ -27,7 +26,10 @@ final class ModenaPaymentGatewayFactory extends GatewayFactory
         $log->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::WARNING));        
         $log->warning('ModenaPaymentGatewayFactory populateconfig has been run, called by: ' . $class);
        
+    
+        $client_id = "CLIENTID";
         $client_secret = "MODENACLIENTSECRET";
+        $product = "PRODUCT";
 
         $config->defaults([
             'payum.factory_name' => 'modena_payment',
