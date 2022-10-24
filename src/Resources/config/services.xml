@@ -10,10 +10,15 @@
         <tag name="payum.gateway_factory_builder" factory="modena_payment" />
     </service>
                  
-    <service id="Modena\PaymentsPlugin\Form\Type\ModenaGatewayConfigurationType">
+    <service id="Modena\PaymentsPlugin\Form\Type\ModenaGatewayConfigurationType"
+                class="Modena\PaymentsPlugin\Form\Type\ModenaGatewayConfigurationType">
         <tag name="sylius.gateway_configuration_type" type="modena_payment" label="Modena Payments" />
         <tag name="form.type" />
     </service>
        
+
+
+
+
     </services>
 </container>
