@@ -7,8 +7,8 @@ namespace Modena\PaymentsPlugin\Payum;
 
 use Payum\Core\Bridge\Spl\ArrayObject;
 use Payum\Core\GatewayFactory;
-use Acme\SyliusExamplePlugin\Payum\Action\StatusAction;
-use Acme\SyliusExamplePlugin\Payum\Action\CaptureAction;
+use Modena\PaymentsPlugin\Payum\Action\StatusAction;
+use Modena\PaymentsPlugin\Payum\Action\CaptureAction;
 
 ///use Acme\SyliusExamplePlugin\Payum\ModenaApi;
 use Modena\PaymentsPlugin\Payum\ModenaApi;
