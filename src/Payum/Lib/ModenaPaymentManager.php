@@ -91,11 +91,11 @@ class ModenaPaymentManager extends Generic
         if($product == 'PAY-LATER') {
             $request['maturityInMonths'] = 3;
             $customer['phoneNumber'] = $this->billing_data->getPhoneNumber();
-            $customer['address'] = "Example street 12, Tallinn, 10333";
+            $customer['address'] =  $this->billing_data->getStreet() . " - ". $this->billing_data->getCity();
         } else if($product == 'HIRE-PURCHASE') {
             $request['maturityInMonths'] = 36;
             $customer['phoneNumber'] = $this->billing_data->getPhoneNumber();
-            $customer['address'] = "Example street 12, Tallinn, 10333";
+            $customer['address'] = $this->billing_data->getStreet() . " - ". $this->billing_data->getCity();
         } else {
             $customer['firstName'] = $this->billing_data->getFirstName();
             $customer['lastName'] = $this->billing_data->getLastName();
@@ -152,9 +152,10 @@ class ModenaPaymentManager extends Generic
         } else {
             $log = new Logger('Modena Log');
             $log->pushHandler(new StreamHandler(__DIR__.'/modena_payment.log', Logger::WARNING));     
-            $log->warning('Redir URL: ' . $redirect_url); 
 
             $redirect_url = $response->getInfo('redirect_url');
+            $log->warning('Redir URL: ' . $redirect_url); 
+
             $this->modena_redirect_url = $redirect_url;
         }
 
