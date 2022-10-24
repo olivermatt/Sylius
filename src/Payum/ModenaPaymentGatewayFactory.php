@@ -28,10 +28,7 @@ final class ModenaPaymentGatewayFactory extends GatewayFactory
         $log->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::WARNING));        
         $log->warning('ModenaPaymentGatewayFactory populateconfig has been run, called by: ' . $class);
        
-    
-        $client_id = "CLIENTID";
-        $client_secret = "MODENACLIENTSECRET";
-        $product = "PRODUCT";
+           $client_secret = "MODENACLIENTSECRET";
 
         $config->defaults([
             'payum.factory_name' => 'modena_payment',

@@ -16,9 +16,5 @@
         <tag name="form.type" />
     </service>
        
-
-
-
-
     </services>
 </container>
