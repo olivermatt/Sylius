@@ -2,9 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Acme\SyliusExamplePlugin\Payum\Action;
+///namespace Acme\SyliusExamplePlugin\Payum\Action;
+namespace Modena\PaymentsPlugin\Payum\Action;
 
-use Acme\SyliusExamplePlugin\Payum\Lib\ModenaPaymentManager;
+//use Acme\SyliusExamplePlugin\Payum\Lib\ModenaPaymentManager;
+//use Acme\SyliusExamplePlugin\Payum\ModenaApi;
+use Modena\ModenaPlugin\Payum\Lib\ModenaPaymentManager;
+use Modena\ModenaPlugin\Payum\ModenaApi;
+
 use Payum\Core\ApiAwareInterface;
 ///use Payum\Core\ApiAwareTrait;
 ///use GuzzleHttp\Client;
@@ -24,9 +29,7 @@ use Payum\Core\Request\GetHttpRequest;
 ///use Payum\Core\Request\RenderTemplate;
 ///use Payum\Core\Request\GetHumanStatus;
 //use Acme\SyliusExamplePlugin\Payum\Action\StatusAction;
-use Acme\SyliusExamplePlugin\Payum\ModenaApi;
 //use Acme\SyliusExamplePlugin\Payum\Lib\ModenaPaymentManager;
-use Acme\SyliusExamplePlugin\Payum\Lib\TestB;
 
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;

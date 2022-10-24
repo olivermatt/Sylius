@@ -1,6 +1,6 @@
 <?
-
-namespace Acme\SyliusExamplePlugin\Payum\Lib;
+namespace Modena\PaymentsPlugin\Payum\Lib;
+///namespace Acme\SyliusExamplePlugin\Payum\Lib;
 
 class SendAuthRequest
 {

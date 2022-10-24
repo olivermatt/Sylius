@@ -2,7 +2,8 @@
 
 declare(strict_types=1);
 
-namespace Acme\SyliusExamplePlugin\Payum\Action;
+///namespace Acme\SyliusExamplePlugin\Payum\Action;
+namespace Modena\PaymentsPlugin\Payum\Action;
 
 use Payum\Core\Action\ActionInterface;
 use Payum\Core\Exception\RequestNotSupportedException;
