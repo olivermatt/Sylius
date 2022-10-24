@@ -1,7 +1,7 @@
 {
     "name": "sylius/plugin-skeleton",
     "type": "sylius-plugin",
-    "description": "Acme example plugin for Sylius.",
+    "description": "Modena payments plugin for Sylius.",
     "keywords": [
         "sylius",
         "sylius-plugin"
@@ -58,16 +58,5 @@
         "psr-4": {
             "Acme\\SyliusExamplePlugin\\": "src/"
         }
-    },
-    "scripts": {
-        "post-install-cmd": [
-            "php bin/create_node_symlink.php"
-        ],
-        "post-update-cmd": [
-            "php bin/create_node_symlink.php"
-        ],
-        "post-create-project-cmd": [
-            "php bin/create_node_symlink.php"
-        ]
     }
 }

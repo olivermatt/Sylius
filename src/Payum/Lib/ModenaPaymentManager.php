@@ -82,7 +82,8 @@ class ModenaPaymentManager extends Generic
     
     public function buildOrderRequest()
     {
-
+        $log = new Logger('Modena Log');
+        $log->pushHandler(new StreamHandler(__DIR__.'/modena_payment.log', Logger::WARNING));      
         $request = [];
         $customer = [];
         $order_items = [];
@@ -128,6 +129,8 @@ class ModenaPaymentManager extends Generic
         $request['cancelUrl'] = $this->cancel_url; 
         $request['callbackUrl'] = $this->return_url;
 
+        $log->warning("Request:" . json_encode($request));
+
         return json_encode($request);
     }
 
@@ -148,14 +151,13 @@ class ModenaPaymentManager extends Generic
         if($response->getStatusCode() != 302) {
             $log = new Logger('Modena Log');
             $log->pushHandler(new StreamHandler(__DIR__.'/modena_payment.log', Logger::WARNING));       
-            $log->warning('Unable to POST purchase order. Response not 302, no redirect address.'); 
+            $log->warning('Unable to POST purchase order. Response '.$response->getStatusCode().', no redirect address.'); 
+            $this->modena_redirect_url =  $this->cancel_url;           
         } else {
             $log = new Logger('Modena Log');
             $log->pushHandler(new StreamHandler(__DIR__.'/modena_payment.log', Logger::WARNING));     
-
             $redirect_url = $response->getInfo('redirect_url');
             $log->warning('Redir URL: ' . $redirect_url); 
-
             $this->modena_redirect_url = $redirect_url;
         }
 
