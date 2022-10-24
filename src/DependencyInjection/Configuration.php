@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 
-///namespace Acme\SyliusExamplePlugin\DependencyInjection;
-namespace Modena\PaymentsPlugin\DependencyInjection;
-
+namespace Acme\SyliusExamplePlugin\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
