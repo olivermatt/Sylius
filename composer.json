@@ -1,5 +1,5 @@
 {
-    "name": "modena/modena-payments",
+    "name": "acme/modena-plugin",
     "type": "sylius-plugin",
     "description": "Modena payments plugin for Sylius.",
     "keywords": [
