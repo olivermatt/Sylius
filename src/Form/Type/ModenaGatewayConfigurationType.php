@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
           
-namespace Acme\ModenaPlugin\Form\Type;
+namespace Modena\PaymentGateway\Form\Type;
 
 ///namespace Acme\SyliusExamplePlugin\Form\Type;
 

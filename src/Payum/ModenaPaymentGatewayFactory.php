@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Acme\ModenaPlugin\Payum;
+namespace Modena\PaymentGateway\Payum;
 
 use Payum\Core\Bridge\Spl\ArrayObject;
 use Payum\Core\GatewayFactory;

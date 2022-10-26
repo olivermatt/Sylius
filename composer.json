@@ -1,7 +1,7 @@
 {
-    "name": "modena/modena-plugin",
+    "name": "modena/payment-gateway",
     "type": "sylius-plugin",
-    "description": "Modena payments plugin for Sylius.",
+    "description": "Modena payments gateway for Sylius.",
     "keywords": [
         "sylius",
         "sylius-plugin"
@@ -20,7 +20,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Modena\\ModenaPlugin\\": "src/"
+            "Modena\\PaymentGateway\\": "src/"
         }
     }
 }

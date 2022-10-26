@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Acme\ModenaPlugin\Payum\Action;
+namespace Modena\PaymentGateway\Payum\Action;
 
 use Acme\SyliusExamplePlugin\Payum\Lib\ModenaPaymentManager;
 use Payum\Core\ApiAwareInterface;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Acme\ModenaPlugin\Payum\Action;
+namespace Modena\PaymentGateway\Payum\Action;
 
 use Payum\Core\Action\ActionInterface;
 use Payum\Core\Exception\RequestNotSupportedException;
