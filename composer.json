@@ -20,7 +20,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Acme\\ModenaPlugin\\": "src/"
+            "Acme\\SyliusExamplePlugin\\": "src/"
         }
     }
 }
