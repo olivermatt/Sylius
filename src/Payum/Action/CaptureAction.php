@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Modena\PaymentGatewayPlugin\Payum\Action;
 
-use Acme\SyliusExamplePlugin\Payum\Lib\ModenaPaymentManager;
+use Modena\PaymentGatewayPlugin\Payum\Lib\ModenaPaymentManager;
 use Payum\Core\ApiAwareInterface;
 use Payum\Core\Action\ActionInterface;
 use Payum\Core\Exception\RequestNotSupportedException;
@@ -15,7 +15,7 @@ use Payum\Core\GatewayAwareTrait;
 use Payum\Core\Security\TokenInterface;
 use Payum\Core\Bridge\Spl\ArrayObject;
 use Payum\Core\Request\GetHttpRequest;
-use Acme\SyliusExamplePlugin\Payum\ModenaApi;
+use Modena\PaymentGatewayPlugin\Payum\ModenaApi;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 

@@ -11,7 +11,7 @@ use Payum\Core\Bridge\Spl\ArrayObject;
 ///use Payum\Core\Model\ModelAwareInterface;
 ///use Sylius\Component\Core\Model\PaymentInterface as SyliusPaymentInterface;
 ///use Payum\Core\Request\GetHumanStatus;
-use Acme\SyliusExamplePlugin\Payum\Bridge\ModenaBridgeInterface;
+use Modena\PaymentGatewayPlugin\Payum\Bridge\ModenaBridgeInterface;
 
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;

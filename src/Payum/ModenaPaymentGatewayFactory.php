@@ -6,10 +6,9 @@ namespace Modena\PaymentGatewayPlugin\Payum;
 
 use Payum\Core\Bridge\Spl\ArrayObject;
 use Payum\Core\GatewayFactory;
-use Acme\SyliusExamplePlugin\Payum\Action\StatusAction;
-use Acme\SyliusExamplePlugin\Payum\Action\CaptureAction;
-use Acme\SyliusExamplePlugin\Payum\ModenaApi;
-
+use Modena\PaymentGatewayPlugin\Payum\Action\StatusAction;
+use Modena\PaymentGatewayPlugin\Payum\Action\CaptureAction;
+use Modena\PaymentGatewayPlugin\Payum\ModenaApi;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 
