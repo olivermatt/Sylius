@@ -1,5 +1,5 @@
 {
-    "name": "acme/modena-plugin",
+    "name": "modena/modena-plugin",
     "type": "sylius-plugin",
     "description": "Modena payments plugin for Sylius.",
     "keywords": [
@@ -20,7 +20,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Acme\\ModenaPlugin\\": "src/"
+            "Modena\\ModenaPlugin\\": "src/"
         }
     }
 }
