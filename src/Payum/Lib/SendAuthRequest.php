@@ -1,8 +1,8 @@
 <?
 
-namespace Acme\SyliusExamplePlugin\Payum\Lib;
+namespace Modena\PaymentGatewayPlugin\Payum\Lib;
 
-class SendAuthRequest
+class SendAuthRequest222
 {
     private $client_id;
     private $client_secret;

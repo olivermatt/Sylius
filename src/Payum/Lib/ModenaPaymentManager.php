@@ -1,6 +1,6 @@
 <?php
 
-namespace Acme\SyliusExamplePlugin\Payum\Lib;
+namespace Modena\PaymentGatewayPlugin\Payum\Lib;
 
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
