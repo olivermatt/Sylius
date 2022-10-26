@@ -2,14 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Acme\SyliusExamplePlugin\Payum;
-use Http\Message\MessageFactory;
-use Payum\Core\Exception\Http\HttpException;
-use Payum\Core\HttpClientInterface;
-use Psr\Http\Message\ResponseInterface;
+namespace Acme\ModenaPlugin\Payum;
 
-use Monolog\Logger;
-use Monolog\Handler\StreamHandler;
+use Http\Message\MessageFactory;
+////use Payum\Core\Exception\Http\HttpException;
+use Payum\Core\HttpClientInterface;
+///use Psr\Http\Message\ResponseInterface;
+
+///use Monolog\Logger;
+///use Monolog\Handler\StreamHandler;
 
 final class ModenaApi
 {

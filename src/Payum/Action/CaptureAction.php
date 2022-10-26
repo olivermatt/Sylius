@@ -2,32 +2,20 @@
 
 declare(strict_types=1);
 
-namespace Acme\SyliusExamplePlugin\Payum\Action;
+namespace Acme\ModenaPlugin\Payum\Action;
 
 use Acme\SyliusExamplePlugin\Payum\Lib\ModenaPaymentManager;
 use Payum\Core\ApiAwareInterface;
-///use Payum\Core\ApiAwareTrait;
-///use GuzzleHttp\Client;
-///use GuzzleHttp\Exception\RequestException;
 use Payum\Core\Action\ActionInterface;
 use Payum\Core\Exception\RequestNotSupportedException;
 use Payum\Core\Exception\UnsupportedApiException;
-///use Sylius\Component\Core\Model\PaymentInterface as SyliusPaymentInterface;
 use Payum\Core\Request\Capture;
 use Payum\Core\GatewayAwareInterface;
 use Payum\Core\GatewayAwareTrait;
-///use Payum\Paypal\ExpressCheckout\Nvp\Request\Api\DoCapture;
-///use Payum\Core\Reply\HttpRedirect;
 use Payum\Core\Security\TokenInterface;
 use Payum\Core\Bridge\Spl\ArrayObject;
 use Payum\Core\Request\GetHttpRequest;
-///use Payum\Core\Request\RenderTemplate;
-///use Payum\Core\Request\GetHumanStatus;
-//use Acme\SyliusExamplePlugin\Payum\Action\StatusAction;
 use Acme\SyliusExamplePlugin\Payum\ModenaApi;
-//use Acme\SyliusExamplePlugin\Payum\Lib\ModenaPaymentManager;
-use Acme\SyliusExamplePlugin\Payum\Lib\TestB;
-
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 
