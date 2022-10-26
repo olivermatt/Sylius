@@ -6,11 +6,11 @@
     <defaults public="true" autoconfigure="false" autowire="false"/>
         
         <service id="app.modena_payment" class="Payum\Core\Bridge\Symfony\Builder\GatewayFactoryBuilder">
-        <argument>Acme\ModenaPlugin\Payum\ModenaPaymentGatewayFactory</argument>
+        <argument>Modena\PaymentGatewayPlugin\Payum\ModenaPaymentGatewayFactory</argument>
         <tag name="payum.gateway_factory_builder" factory="modena_payment" />
     </service>
 
-    <service id="Acme\ModenaPlugin\Form\Type\ModenaGatewayConfigurationType">
+    <service id="Modena\PaymentGatewayPlugin\Form\Type\ModenaGatewayConfigurationType">
         <tag name="sylius.gateway_configuration_type" type="modena_payment" label="Modena Payments" />
         <tag name="form.type" />
     </service>    

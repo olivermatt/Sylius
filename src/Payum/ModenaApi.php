@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Modena\PaymentGateway\Payum;
+namespace Modena\PaymentGatewayPlugin\Payum;
 
 use Http\Message\MessageFactory;
 ////use Payum\Core\Exception\Http\HttpException;
