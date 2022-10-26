@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Acme\ModenaPlugin\DependencyInjection;
+namespace Acme\SyliusExamplePlugin\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -14,7 +14,7 @@ final class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder(): TreeBuilder
     {
-        $treeBuilder = new TreeBuilder('acme_modena_plugin');
+        $treeBuilder = new TreeBuilder('acme_sylius_example_plugin');
         $rootNode = $treeBuilder->getRootNode();
 
         return $treeBuilder;
