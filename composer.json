@@ -1,28 +1,23 @@
 {
-    "name": "acme/modena-plugin",
+    "name": "buyplan-estonia/sylius-buyplan-plugin",
     "type": "sylius-plugin",
-    "description": "Modena payments plugin for Sylius.",
-    "keywords": [
-        "sylius",
-        "sylius-plugin"
-    ],
+    "keywords": ["sylius", "sylius-plugin"],
+    "description": "Sylius Plugin for BuyPlan Payments.",
     "license": "MIT",
     "require": {
         "php": "^8.0",
-        "mdnfin/mdnfinsyliusplugin": "dev-master",
-        "monolog/monolog": "*",
-        "symfony/http-client": "^6.1"
+        "sylius/sylius": "~1.5.0@rc",
+        "ext-json": "*"
+    },
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "BuyPlanEstonia\\SyliusBuyPlanPlugin\\": "src/"
+        }
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.11-dev"
-        }
-    },
-    "autoload": {
-        "psr-4": {
-            "Acme\\ModenaPlugin\\": "src/"
+            "dev-master": "1.0.x-dev"
         }
     }
 }
-
-
