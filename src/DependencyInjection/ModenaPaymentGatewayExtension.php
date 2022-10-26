@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Modena\PaymentGateway\DependencyInjection;
+namespace Modena\PaymentGatewayPlugin\DependencyInjection;
 ///namespace Acme\SyliusExamplePlugin\DependencyInjection;
 
 
@@ -14,7 +14,7 @@ use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 
 ///final class AcmeSyliusExampleExtension extends Extension
 
-final class ModenaPaymentExtension extends Extension
+final class ModenaPaymentGatewayExtension extends Extension
 {
     /**
      * @psalm-suppress UnusedVariable
