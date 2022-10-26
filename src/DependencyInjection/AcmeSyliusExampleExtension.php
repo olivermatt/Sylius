@@ -10,7 +10,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 
-final class AcmeSyliusExamplePluginExtension extends Extension
+final class AcmeSyliusExampleExtension extends Extension
 {
     /**
      * @psalm-suppress UnusedVariable
