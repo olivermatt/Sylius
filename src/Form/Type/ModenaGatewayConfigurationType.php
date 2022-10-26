@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
           
-namespace Acme\ModenaPlugin\Form\Type;
-///namespace Acme\SyliusExamplePlugin\Form\Type;
+///namespace Acme\ModenaPlugin\Form\Type;
+namespace Acme\SyliusExamplePlugin\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
