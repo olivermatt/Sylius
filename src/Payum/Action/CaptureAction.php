@@ -16,77 +16,40 @@ use Payum\Core\Security\TokenInterface;
 use Payum\Core\Bridge\Spl\ArrayObject;
 use Payum\Core\Request\GetHttpRequest;
 use Modena\PaymentGatewayPlugin\Payum\ModenaApi;
-use Monolog\Logger;
-use Monolog\Handler\StreamHandler;
 
 
 final class CaptureAction implements ActionInterface, GatewayAwareInterface, ApiAwareInterface
 {
-    private $client;
-
     /** @var SyliusApi */
     private $api;
-
-    private $inputData;
 
     //use ApiAwareTrait;
     use GatewayAwareTrait;
 
- 
-    public function __construct($inputData = null)
-    {
-        if($inputData!=null)
-        {
-            $this->inputData = $inputData;
-        }
-        else
-        {
-            $this->inputData = "---";
-        }
-    }
-
-
     public function execute($request): void
     {
-
         RequestNotSupportedException::assertSupports($this, $request);
     
         $model = ArrayObject::ensureArrayObject($request->getModel());
-
-        //// Logging ////
-        $log = new Logger('Modena Log2');
-        $log->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::WARNING));        
-
         $order = $request->getFirstModel()->getOrder();
         $customer = $order->getCustomer();        
         $billing_data = $order->getBillingAddress();
         
-        //// Receive Callback or Customer Return
-        /// Get the GET request 
         $getHttpRequest = new GetHttpRequest();
         $this->gateway->execute($getHttpRequest);
 
-        /// Check the params of the requst, done means payment is done, proceed to make the order done
         if(isset($getHttpRequest->query['status'])) {
-         ///   if (isset($getHttpRequest->query['done']) && $getHttpRequest->query['done']) {
-            if ($getHttpRequest->query['status']=='DONE') {
-           
-                /*
-                if (!$this->requestHasValidMAC($getHttpRequest->request)) {       
-                    $model['status'] = 'failed';
-                    return;
-                }
-                */
-                $log->warning('CaptureAction has marked the model as DONE');           
+                if ($getHttpRequest->query['status']=='DONE') {
+                   
                 $model['status'] = 'DONE';
                 return;          
-            } elseif($getHttpRequest->query['status'] == 'CANCEL') {
-                $log->warning('CaptureAction has marked the model as CANCEL');           
+            } elseif($getHttpRequest->query['status'] == 'CANCEL') {          
                 $model['status'] = 'CANCEL';
                 return;      
             } else {
-                $log->warning('CaptureAction has marked the model as ELSE');           
-            }
+                $model['status'] = 'CANCEL';
+                return;      
+            }  
         }
 
         ////////// Create a New Request /////////////
@@ -94,9 +57,6 @@ final class CaptureAction implements ActionInterface, GatewayAwareInterface, Api
         $payment_done_return_url = $this->generateReturnURL($token, 'DONE');        
         $payment_cancelled_return_url = $this->generateReturnURL($token, 'CANCEL');        
     
-        $log->warning('Return URL .' . $payment_done_return_url); 
-        $log->warning('Return Cancel URL .' . $payment_cancelled_return_url); 
-
         //// Execute Modena Payment 
         $this->gateway->execute(new ModenaPaymentManager($this->api, 
         $order, 
