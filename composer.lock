@@ -27,7 +27,7 @@
             "type": "sylius-plugin",
             "autoload": {
                 "psr-4": {
-                    "Modena\\PaymentsPlugin\\": "src/"
+                    "Modena\\PaymentGatewayPlugin\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
