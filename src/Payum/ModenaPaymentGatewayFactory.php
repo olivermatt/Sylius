@@ -24,7 +24,7 @@ final class ModenaPaymentGatewayFactory extends GatewayFactory
 
          $config['payum.api'] = function (ArrayObject $config) {
 
-            return new ModenaApi((array) $config, $config['payum.http_client'], $config['httplug.message_factory'], "AVC123");
+            return new ModenaApi((array) $config, $config['payum.http_client'], $config['httplug.message_factory']);
         };
 
     }

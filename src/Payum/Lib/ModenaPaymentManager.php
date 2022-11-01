@@ -39,8 +39,8 @@ class ModenaPaymentManager extends Generic
  
     public function getAccessToken()
     {
-        $client_id = $this->api->options['client_id']; /// '4273d91f-e80f-410f-87cb-29a48a4b6e12'
-        $client_secret = $this->api->options['client_secret']; //// 44c77b8c-bc26-4bf3-bf88-f35fe6b189d1
+        $client_id = $this->api->options['client_id'];
+        $client_secret = $this->api->options['client_secret'];
 
         if ($this->api->options['environment'] == 'DEV') {
             $devURL = '-dev';
