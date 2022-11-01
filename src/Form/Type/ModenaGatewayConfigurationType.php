@@ -4,8 +4,6 @@ declare(strict_types=1);
           
 namespace Modena\PaymentGatewayPlugin\Form\Type;
 
-///namespace Acme\SyliusExamplePlugin\Form\Type;
-
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
