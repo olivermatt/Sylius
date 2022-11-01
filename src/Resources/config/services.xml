@@ -15,35 +15,5 @@
         <tag name="form.type" />
     </service>    
 
-
-    <!--   
-
-   <service id="app.modena_payment" class="Payum\Core\Bridge\Symfony\Builder\GatewayFactoryBuilder">
-        <argument>Acme\SyliusExamplePlugin\Payum\ModenaPaymentGatewayFactory</argument>
-        <tag name="payum.gateway_factory_builder" factory="modena_payment" />
-    </service>
-
-    <service id="Acme\SyliusExamplePlugin\Form\Type\ModenaGatewayConfigurationType">
-        <tag name="sylius.gateway_configuration_type" type="modena_payment" label="Modena Payments" />
-        <tag name="form.type" />
-    </service>
-
-       
-    ___________________________________________________________________________________________________   
-
-    <service id="Acme\SyliusExamplePlugin\Payum\Action\CaptureAction" public="true">
-        <tag name="payum.convertpayment" factory="modena_payment" alias="payum.action.convertpayment" />
-    </service>
-
-
-    <service id="Acme\SyliusExamplePlugin\Payum\Action\ConvertPaymentAction" public="true">
-        <argument type="service" id="sylius.http_client" />
-        <tag name="payum.action" factory="modena_payment" alias="payum.action.capture" />
-    </service>
-
-  <service id="app.convert.modena_payment" class="Acme\SyliusExamplePlugin\Payum\Action\ConvertPaymentAction" public="true">
-    <tag name="payum.convertaction" factory="modena_payment"/> 
--->
-
     </services>
 </container>

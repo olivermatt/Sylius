@@ -31,35 +31,5 @@ final class ModenaApi
         $this->client = $client;
         $this->messageFactory = $messageFactory;
     }
-
-    /*
-    protected function doRequest($method, array $fields)
-    {
-        /*
-        $log = new Logger('Modena Log');
-        $log->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::WARNING));        
-        $log->warning('Modena API doRequest called');
-
-
-        $headers = [];
-        $request = $this->messageFactory->createRequest($method, $this->getApiEndpoint(), $headers, http_build_query($fields));
-
-        $response = $this->client->send($request);
-
-        if (false == ($response->getStatusCode() >= 200 && $response->getStatusCode() < 300)) {
-            throw HttpException::factory($request, $response);
-        }
-
-        return $response;
-       
-    }
-
-    public function getApiKey(): string
-    {
-        return $this->apiKey;
-    }
-
-
-    */
-
+    
 }
