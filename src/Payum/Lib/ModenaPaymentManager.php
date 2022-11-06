@@ -121,7 +121,7 @@ class ModenaPaymentManager extends Generic
         $request['currency'] = "EUR";
         $request['orderItems'] = $order_items;
         $request['customer'] = $customer;
-        $request['timestamp'] = "2022-06-18T19:43:46.862Z"; 
+        $request['timestamp'] = date("Y-m-d\TH:i:s.u\Z"); 
         $request['returnUrl'] = $this->return_url; 
         $request['cancelUrl'] = $this->cancel_url; 
         $request['callbackUrl'] = $this->return_url;
