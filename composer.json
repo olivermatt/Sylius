@@ -11,7 +11,7 @@
         "php": ">=7.2",
         "mdnfin/mdnfinsyliusplugin": "dev-master",
         "monolog/monolog": "*",
-        "symfony/http-client": "^5.4.0"
+        "symfony/http-client": ">=5.4.0"
     },
     "autoload": {
         "psr-4": {
