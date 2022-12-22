@@ -63,7 +63,7 @@ final class ModenaGatewayConfigurationType extends AbstractType
                 ]
                 );
 
-            $builder->add('logDir', TextType::class, ['label' => 'Log file directory (default __dir__)', 'placeholder' => '__dir__', 'value' => 'dir2']);
+            $builder->add('logDir', TextType::class, ['label' => 'Log file directory (default __dir__)', 'extra_fields_message' => '__dir__', 'data' => 'dir2']);
 
     }
 }
