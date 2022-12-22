@@ -31,11 +31,9 @@ class ModenaPaymentManager extends Generic
         $this->cancel_url = $cancel_url;
         
         if($this->api->options['loggingEnabled'] == "Yes") {
-            $this->loggingEnabled = true;
-            $logg = "yes";
+            $this->loggingEnabled = true;            
         } else {
-            $this->loggingEnabled = false;
-            $logg = "no";
+            $this->loggingEnabled = false;           
         }
 
         $this->loggingEnabled = true;
@@ -45,12 +43,6 @@ class ModenaPaymentManager extends Generic
         } else {
             $this->logDir = $this->api->options['logDir'];
         }
-
-        $log = new Logger('Modena Log');
-        $log->pushHandler(new StreamHandler($this->logDir.'/modena_payment.log', Logger::WARNING));      
-        $log->warning('Logging enabled.' . $this->api->options['loggingEnabled']);
-        $log->warning('Logging enabled 2' . $logg);
-
 
         $this->getAccessToken();
         $order_request_body = $this->buildOrderRequest();
