@@ -49,7 +49,7 @@ class ModenaPaymentManager extends Generic
         $log->pushHandler(new StreamHandler($this->logDir.'/modena_payment.log', Logger::WARNING));  
         $log->warning('Logging enabled: ' . $this->loggingEnabled);
         $log->warning('Logging location: ' . $this->logDir .'/modena_payment.log');
-        $log->warning('IT WORKS');
+        $log->warning('IT WORKS ');
         /////
 
 
