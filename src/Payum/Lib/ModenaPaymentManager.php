@@ -44,18 +44,6 @@ class ModenaPaymentManager extends Generic
             $this->logDir = $this->api->options['logDir'];
         }
 
-        //// LOGGING ////
-        $log = new Logger('Modena Log');
-        $log->pushHandler(new StreamHandler($this->logDir.'/modena_payment.log', Logger::WARNING));  
-        $log->warning('Logging enabled: ' . $this->loggingEnabled == "Yes" ? "yes" : "no");
-        
-        $log->warning('Logging enabled: ' . $this->api->options['loggingEnabled']);
-
-        $log->warning('Logging location: ' . $this->logDir .'/modena_payment.log');
-        $log->warning('IT WORKS ');
-        /////
-
-
         $this->getAccessToken();
         $order_request_body = $this->buildOrderRequest();
         $this->sendOrder($order_request_body);
