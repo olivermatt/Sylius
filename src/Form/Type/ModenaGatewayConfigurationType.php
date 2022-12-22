@@ -63,7 +63,7 @@ final class ModenaGatewayConfigurationType extends AbstractType
                 ]
                 );
 
-            $builder->add('logDir', TextType::class, ['label' => 'Log file directory (default: vendor/..../Payum/Lib)', 'data' => '__dir__']);
+            $builder->add('logDir', TextType::class, ['label' => 'Log file directory (default vendor/..../Payum/Lib)', 'data' => '__DIR__']);
 
     }
 }

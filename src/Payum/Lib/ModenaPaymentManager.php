@@ -38,7 +38,7 @@ class ModenaPaymentManager extends Generic
 
         $this->loggingEnabled = true;
         
-        if($this->api->options['logDir'] == null || $this->api->options['logDir'] == '__dir__') {
+        if($this->api->options['logDir'] == null || $this->api->options['logDir'] == '__DIR__') {
             $this->logDir = __DIR__;
         } else {
             $this->logDir = $this->api->options['logDir'];
@@ -50,8 +50,8 @@ class ModenaPaymentManager extends Generic
         $log = new Logger('Modena Log');
         $log->pushHandler(new StreamHandler(__DIR__.'/modena_payment.log', Logger::WARNING));  
         $log->warning('Logging enabled: ' . $this->loggingEnabled);
-        $log->warning('Logging location: ' . $$varr .'/modena_payment.log');
-        $log->warning('Logging location: ' . $$this->logDir .'/modena_payment.log');
+        $log->warning('Logging location: ' . $varr .'/modena_payment.log');
+        $log->warning('Logging location: ' . $this->logDir .'/modena_payment.log');
         /////
 
 
