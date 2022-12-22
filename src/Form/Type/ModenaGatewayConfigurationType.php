@@ -56,14 +56,14 @@ final class ModenaGatewayConfigurationType extends AbstractType
                 ChoiceType::class,
                 [
                     'choices' => [
-                        'Yes' => 'Yes',
-                        'No' => 'No'
+                        'No' => 'No',
+                        'Yes' => 'Yes'
                     ],
                     'label' => 'Enable logging',
                 ]
                 );
 
-            $builder->add('logDir', TextType::class, ['label' => 'Log file directory (default __dir__)']);
+            $builder->add('logDir', TextType::class, ['label' => 'Log file directory (default __dir__)', 'placeholder' => '__dir__', 'value' => 'dir2']);
 
     }
 }
