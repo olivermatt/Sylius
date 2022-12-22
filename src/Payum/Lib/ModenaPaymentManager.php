@@ -38,9 +38,8 @@ class ModenaPaymentManager extends Generic
 
         $this->loggingEnabled = true;
         
-        if($this->api->options['logDir'] == null) {
+        if($this->api->options['logDir'] == null || $this->api->options['logDir'] == '__dir__') {
             $this->logDir = __DIR__;
-
         } else {
             $this->logDir = $this->api->options['logDir'];
         }
