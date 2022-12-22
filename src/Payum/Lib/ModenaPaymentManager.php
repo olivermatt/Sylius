@@ -44,14 +44,12 @@ class ModenaPaymentManager extends Generic
             $this->logDir = $this->api->options['logDir'];
         }
 
-        $varr = $this->logDir;
-
         //// LOGGING ////
         $log = new Logger('Modena Log');
-        $log->pushHandler(new StreamHandler(__DIR__.'/modena_payment.log', Logger::WARNING));  
+        $log->pushHandler(new StreamHandler($this->logDir.'/modena_payment.log', Logger::WARNING));  
         $log->warning('Logging enabled: ' . $this->loggingEnabled);
-        $log->warning('Logging location: ' . $varr .'/modena_payment.log');
         $log->warning('Logging location: ' . $this->logDir .'/modena_payment.log');
+        $log->warning('IT WORKS');
         /////
 
 
