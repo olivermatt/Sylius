@@ -39,7 +39,7 @@ class ModenaPaymentManager extends Generic
         $this->loggingEnabled = true;
         
         if($this->api->options['logDir'] == null) {
-            $this->logDir = __DIR__.'/';
+            $this->logDir = __DIR__;
 
         } else {
             $this->logDir = $this->api->options['logDir'];
@@ -90,7 +90,7 @@ class ModenaPaymentManager extends Generic
         if($response->getStatusCode() != 200) {
             if($this->loggingEnabled) {
                 $log = new Logger('Modena Log');
-                $log->pushHandler(new StreamHandler($this->logDir.'modena_payment.log', Logger::WARNING));      
+                $log->pushHandler(new StreamHandler($this->logDir.'/modena_payment.log', Logger::WARNING));      
                 $log->warning('Unable to get access token. POST request failed.');
             }
         }
@@ -164,7 +164,7 @@ class ModenaPaymentManager extends Generic
         if($response->getStatusCode() != 302) {
             if($this->loggingEnabled) {
                 $log = new Logger('Modena Log');
-                $log->pushHandler(new StreamHandler($this->logDir.'modena_payment.log', Logger::WARNING));       
+                $log->pushHandler(new StreamHandler($this->logDir.'/modena_payment.log', Logger::WARNING));       
                 $log->warning('Unable to POST purchase order. Response '.$response->getStatusCode().', no redirect address.');     
             }             
             $this->modena_redirect_url =  $this->cancel_url;           
