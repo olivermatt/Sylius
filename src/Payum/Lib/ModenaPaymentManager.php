@@ -32,10 +32,10 @@ class ModenaPaymentManager extends Generic
         
         if($this->api->options['loggingEnabled'] == "Yes") {
             $this->loggingEnabled = true;
-            $logg = yes;
+            $logg = "yes";
         } else {
             $this->loggingEnabled = false;
-            $logg = no;
+            $logg = "no";
         }
 
         $this->loggingEnabled = true;
