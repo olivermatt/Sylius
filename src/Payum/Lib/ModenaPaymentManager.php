@@ -18,6 +18,8 @@ class ModenaPaymentManager extends Generic
     private $cancel_url;
     private $access_token;
     private $modena_redirect_url;
+    private $loggingEnabled;
+    private $logDir;
 
     public function __construct($api, $order, $billing_data, $customer, $return_url, $cancel_url)
     {
@@ -27,6 +29,21 @@ class ModenaPaymentManager extends Generic
         $this->customer = $customer;
         $this->return_url = $return_url;
         $this->cancel_url = $cancel_url;
+        
+        if($this->api->options['loggingEnabled'] == "Yes") {
+            $this->loggingEnabled = true;
+        } else {
+            $this->loggingEnabled = false;
+        }
+
+        $this->loggingEnabled = true;
+        
+        if($this->api->options['logDir'] == null) {
+            $this->logDir = __DIR__.'/';
+
+        } else {
+            $this->logDir = $this->api->options['logDir'];
+        }
 
         $this->getAccessToken();
         $order_request_body = $this->buildOrderRequest();
@@ -71,18 +88,19 @@ class ModenaPaymentManager extends Generic
         $decoded_response = json_decode($content);
 
         if($response->getStatusCode() != 200) {
-            $log = new Logger('Modena Log');
-            $log->pushHandler(new StreamHandler(__DIR__.'/modena_payment.log', Logger::WARNING));      
-            $log->warning('Unable to get access token. POST request failed.');
+            if($this->loggingEnabled) {
+                $log = new Logger('Modena Log');
+                $log->pushHandler(new StreamHandler($this->logDir.'modena_payment.log', Logger::WARNING));      
+                $log->warning('Unable to get access token. POST request failed.');
+            }
         }
+
         $this->access_token = $decoded_response->access_token;
     }
 
     
     public function buildOrderRequest()
-    {
-        $log = new Logger('Modena Log');
-        $log->pushHandler(new StreamHandler(__DIR__.'/modena_payment.log', Logger::WARNING));      
+    {  
         $request = [];
         $customer = [];
         $order_items = [];
@@ -126,8 +144,6 @@ class ModenaPaymentManager extends Generic
         $request['cancelUrl'] = $this->cancel_url; 
         $request['callbackUrl'] = $this->return_url;
 
-        $log->warning("Request:" . json_encode($request));
-
         return json_encode($request);
     }
 
@@ -146,12 +162,14 @@ class ModenaPaymentManager extends Generic
         ]);
         
         if($response->getStatusCode() != 302) {
-            $log = new Logger('Modena Log');
-            $log->pushHandler(new StreamHandler(__DIR__.'/modena_payment.log', Logger::WARNING));       
-            $log->warning('Unable to POST purchase order. Response '.$response->getStatusCode().', no redirect address.'); 
+            if($this->loggingEnabled) {
+                $log = new Logger('Modena Log');
+                $log->pushHandler(new StreamHandler($this->logDir.'modena_payment.log', Logger::WARNING));       
+                $log->warning('Unable to POST purchase order. Response '.$response->getStatusCode().', no redirect address.');     
+            }             
             $this->modena_redirect_url =  $this->cancel_url;           
         } else {
-             $redirect_url = $response->getInfo('redirect_url');
+            $redirect_url = $response->getInfo('redirect_url');
             $this->modena_redirect_url = $redirect_url;
         }
 

@@ -8,10 +8,7 @@ use Payum\Core\Action\ActionInterface;
 use Payum\Core\Exception\RequestNotSupportedException;
 use Payum\Core\Request\GetStatusInterface;
 use Payum\Core\Bridge\Spl\ArrayObject;
-use Modena\PaymentGatewayPlugin\Payum\Bridge\ModenaBridgeInterface;
 
-use Monolog\Logger;
-use Monolog\Handler\StreamHandler;
 
 final class StatusAction implements ActionInterface
 {

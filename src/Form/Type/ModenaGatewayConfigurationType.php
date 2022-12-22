@@ -49,6 +49,22 @@ final class ModenaGatewayConfigurationType extends AbstractType
 
             $builder->add('client_id', TextType::class, ['label' => 'Client Id']);
             $builder->add('client_secret', TextType::class, ['label' => 'Client secret']);
+
+            $builder
+            ->add(
+                'loggingEnabled',
+                ChoiceType::class,
+                [
+                    'choices' => [
+                        'Yes' => 'Yes',
+                        'No' => 'No'
+                    ],
+                    'label' => 'Enable logging',
+                ]
+                );
+
+            $builder->add('logDir', TextType::class, ['label' => 'Log file directory (default __dir__)']);
+
     }
 }
 
